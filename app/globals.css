@@ -190,6 +190,7 @@
   --primary-brown: #8f5e3d;
   --background-brown: #e3d9d2;
   --brown: #9b7961;
+  --secondary-brown: #e3d9d2;
 
   /* Text Colors */
   --text-primary: #262626;
@@ -301,3 +302,11 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+.text-primary-brown {
+  color: var(--primary-brown) !important;
+}
+
+.bg-primary-brown {
+  background-color: var(--primary-brown) !important;
+}
+

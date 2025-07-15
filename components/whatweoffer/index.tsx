@@ -1,0 +1,96 @@
+'use client'
+import { services } from '@/data/data';
+import React, { useState, useEffect } from 'react';
+
+
+const WhatWeOffer = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+
+
+  return (
+    <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-blue-50">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div 
+          className={`text-center mb-12 sm:mb-16 transform transition-all duration-1000 ${
+            isVisible ? 'translate-y-0 opacity-100' : '-translate-y-5 opacity-0'
+          }`}
+        >
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4">
+            What We{' '}
+            <span className=" text-primary-brown">
+              Offer
+            </span>
+          </h2>
+          <p className="text-gray-600 text-base sm:text-lg lg:text-xl max-w-2xl lg:max-w-3xl mx-auto leading-relaxed px-4">
+            Experience the transformative power of design with us today
+          </p>
+        </div>
+
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {services.map((service, index) => {
+            
+            return (
+              <div
+                key={index}
+                className={`transform transition-all duration-700 ${
+                  isVisible 
+                    ? 'translate-y-0 opacity-100 scale-100' 
+                    : 'translate-y-8 opacity-0 scale-95'
+                }`}
+                style={{
+                  transitionDelay: `${service.delay}ms`
+                }}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                <div
+                  className={`group bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg border border-gray-100 h-full flex flex-col items-center text-center transform transition-all duration-300 ${
+                    hoveredIndex === index 
+                      ? '-translate-y-2 shadow-2xl' 
+                      : 'translate-y-0 hover:-translate-y-2 hover:shadow-2xl'
+                  }`}
+                >
+                  {/* Icon Container */}
+                  <div
+                    className={`w-16 h-16 sm:w-20 sm:h-20   rounded-lg sm:rounded-xl flex items-center justify-center mb-4 sm:mb-6 shadow-lg transform transition-all duration-300 ${
+                      hoveredIndex === index ? 'scale-110 rotate-3' : 'scale-100 rotate-0'
+                    }`}
+                  >
+                    <img
+                      src={service.icon}
+                      alt={service.title}
+                      className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
+                    />
+                  </div>
+
+                  {/* Content */}
+                  <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-gray-900 group-hover:text-[#8F5E3D] transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  
+                  <p className="text-gray-600 text-sm sm:text-base leading-relaxed flex-grow px-2 sm:px-0">
+                    {service.description}
+                  </p>
+
+           
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+    
+      </div>
+    </section>
+  );
+};
+
+export default WhatWeOffer;
