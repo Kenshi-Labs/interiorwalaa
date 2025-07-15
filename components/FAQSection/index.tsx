@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from 'react';
-import { Button } from '../ui/button';
 
 const FAQSection = () => {
   const [openItems, setOpenItems] = useState(new Set([3])); // FAQ at index 3 is open by default
@@ -39,7 +38,7 @@ const FAQSection = () => {
   ];
 
   const toggleItem = (id: number) => {
-    const newOpenItems = new Set<number>();
+    const newOpenItems = new Set(openItems);
     if (!openItems.has(id)) {
       newOpenItems.add(id);
     }
@@ -90,7 +89,7 @@ const FAQSection = () => {
                   `}
                 >
                   {/* Question Button */}
-                  <Button
+                  <button
                     onClick={() => toggleItem(faq.id)}
                     className="w-full p-6 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-2xl"
                     aria-expanded={isOpen}
@@ -122,7 +121,7 @@ const FAQSection = () => {
                         {faq.question}
                       </h3>
                     </div>
-                  </Button>
+                  </button>
 
                   {/* Answer */}
                   <div
@@ -163,7 +162,6 @@ const FAQSection = () => {
                 >
                   {/* Question Button */}
                   <button
-                    type="button"
                     onClick={() => toggleItem(faq.id)}
                     className="w-full p-6 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-2xl"
                     aria-expanded={isOpen}
