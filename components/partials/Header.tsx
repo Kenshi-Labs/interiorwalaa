@@ -2,14 +2,16 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '../ui/button';
 import { Menu, X } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const menuItems = [
-  { label: "Home", isActive: true },
-  { label: "About Us", isActive: false },
-  { label: "Our Services", isActive: false },
-  { label: "Projects", isActive: false },
-  { label: "Career", isActive: false },
-  { label: "Blog", isActive: false },
+  { label: "Home", isActive: true, href: "/" },
+  { label: "About Us", isActive: false, href: "/about-us" },
+  { label: "Our Services", isActive: false, href: "/our-services" },
+  { label: "Projects", isActive: false, href: "/projects" },
+  { label: "Career", isActive: false, href: "/career" },
+  { label: "Blog", isActive: false, href: "/blog" },
 ];
 
 export const Header = () => {
@@ -50,7 +52,7 @@ export const Header = () => {
     } else {
       document.body.style.overflow = 'unset';
     }
-    
+
     return () => {
       document.body.style.overflow = 'unset';
     };
@@ -60,91 +62,92 @@ export const Header = () => {
     <>
       <div className="sticky top-0 left-0 right-0 z-50 w-full">
         {/* Sticky Navigation Bar */}
-        <div className="w-full px-2 sm:px-4 pt-2 sm:pt-3.5">
-          <div className={`w-full max-w-[1348px] h-[56px] sm:h-[63px] mx-auto rounded-[40px] sm:rounded-[83.3px] flex items-center justify-between px-3 sm:px-4 md:px-7 transition-all duration-300 ${
-            isScrolled 
-              ? 'bg-[#ffffff33] border-[0.83px] border-solid border-[#ffffff40] backdrop-blur-[11.08px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(11.08px)_brightness(100%)]'
-              : 'bg-transparent border-none'
-          }`}>
-            
+        <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8 pt-3 sm:pt-4">
+          <div className={`w-full h-[56px] sm:h-[64px] md:h-[72px] mx-auto rounded-[32px] sm:rounded-[40px] flex items-center justify-between px-4 sm:px-6 container transition-all duration-300 ${isScrolled
+            ? 'bg-white/90 backdrop-blur-md shadow-sm'
+            : 'bg-white'
+            }`}>
+
             {/* Logo */}
             <div className="flex-shrink-0">
-              <img
-                className="w-[100px] h-[26px] sm:w-[120px] sm:h-[31px] md:w-[150px] md:h-[39px] lg:w-[188px] lg:h-[49px]"
-                alt="Interiorwalaa Logo"
-                src="https://interiorwalaa.smepulse.in/Logo.png"
-              />
+              <Link href="/">
+                <Image
+                  width={188}
+                  height={49}
+                  className="w-[120px] h-[31px] sm:w-[140px] sm:h-[36px] md:w-[160px] md:h-[42px] lg:w-[188px] lg:h-[49px]"
+                  alt="Interiorwalaa Logo"
+                  src="https://interiorwalaa.smepulse.in/Logo.png"
+                />
+              </Link>
             </div>
-            
-            {/* Desktop Navigation - Hidden on mobile/tablet */}
-            <nav className="hidden xl:flex items-center gap-6 2xl:gap-[87px]">
-              {menuItems.map((item, index) => (
-                <a
-                  key={index}
-                  href="#"
-                  className={`${
-                    item.isActive
-                      ? "font-bold text-[#20a7df]"
-                      : "font-normal text-black"
-                  } [font-family:'Manrope',Helvetica] text-sm 2xl:text-base whitespace-nowrap hover:text-[#20a7df] transition-colors duration-200`}
-                >
-                  {item.label}
-                </a>
-              ))}
-            </nav>
 
-            {/* Tablet Navigation - Visible on lg screens */}
-            <nav className="hidden lg:flex xl:hidden items-center gap-4">
-              {menuItems.slice(0, 4).map((item, index) => (
-                <a
-                  key={index}
-                  href="#"
-                  className={`${
-                    item.isActive
-                      ? "font-bold text-[#20a7df]"
-                      : "font-normal text-black"
-                  } [font-family:'Manrope',Helvetica] text-sm whitespace-nowrap hover:text-[#20a7df] transition-colors duration-200`}
-                >
-                  {item.label}
-                </a>
-              ))}
-              {/* More dropdown for tablet */}
-              <div className="relative group">
-                <button className="font-normal text-black [font-family:'Manrope',Helvetica] text-sm hover:text-[#20a7df] transition-colors duration-200">
-                  More
-                </button>
-                <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                  {menuItems.slice(4).map((item, index) => (
-                    <a
-                      key={index}
-                      href="#"
-                      className="block px-4 py-2 text-sm text-black hover:text-[#20a7df] hover:bg-gray-50 transition-colors duration-200"
-                    >
-                      {item.label}
-                    </a>
-                  ))}
+            {/* Right side container with navigation and buttons */}
+            <div className="flex items-center gap-6 sm:gap-8 md:gap-10 lg:gap-14">
+              {/* Desktop Navigation - Right side */}
+              <nav className="hidden lg:flex items-center gap-8">
+                {menuItems.map((item, index) => (
+                  <Link
+                    key={index}
+                    href={item.href}
+                    className={`${item.isActive
+                      ? "font-bold text-[#8f5e3d]"
+                      : "font-normal text-gray-700"
+                      } font-manrope text-base whitespace-nowrap hover:text-[#8f5e3d] transition-colors duration-200`}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </nav>
+
+              {/* Tablet Navigation - Visible on md screens */}
+              <nav className="hidden md:flex lg:hidden items-center gap-4">
+                {menuItems.slice(0, 3).map((item, index) => (
+                  <Link
+                    key={index}
+                    href={item.href}
+                    className={`${item.isActive
+                      ? "font-medium text-[#8f5e3d]"
+                      : "font-normal text-gray-700"
+                      } font-manrope text-sm whitespace-nowrap hover:text-[#8f5e3d] transition-colors duration-200`}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+                {/* More dropdown for tablet */}
+                <div className="relative group">
+                  <button className="font-normal text-gray-700 font-manrope text-sm hover:text-[#8f5e3d] transition-colors duration-200 px-2 py-1">
+                    More
+                  </button>
+                  <div className="absolute top-full right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                    {menuItems.slice(3).map((item, index) => (
+                      <Link
+                        key={index}
+                        href={item.href}
+                        className="block px-3 py-2 text-sm text-gray-700 hover:text-[#8f5e3d] hover:bg-gray-50 transition-colors duration-200"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </nav>
-            
-            {/* Right side container */}
-            <div className="flex items-center gap-2 sm:gap-4">
+              </nav>
+
               {/* Get In Touch Button - Hidden on mobile, visible on tablet+ */}
-              <button className="hidden md:flex items-center justify-center w-[90px] lg:w-[100px] xl:w-[123px] h-7 sm:h-8 xl:h-10 rounded-[30px] sm:rounded-[38.89px] border border-solid border-[#20a7df] bg-transparent hover:bg-[#20a7df] hover:text-white transition-all duration-200 group">
-                <span className="[font-family:'Manrope',Helvetica] font-normal text-[#20a7df] text-xs lg:text-sm text-center tracking-[0] leading-[12.7px] whitespace-nowrap group-hover:text-white">
+              <button className="hidden md:flex items-center justify-center w-[100px] md:w-[120px] h-9 md:h-10 rounded-full border border-[#8f5e3d] bg-transparent hover:bg-[#8f5e3d] hover:text-white transition-all duration-200 group">
+                <span className="font-manrope font-normal text-[#8f5e3d] text-sm md:text-base text-center group-hover:text-white">
                   Get In Touch
                 </span>
               </button>
 
               {/* Mobile menu button */}
-              <Button 
-                className="lg:hidden p-2 bg-transparent border-none hover:bg-[#20a7df]/10 mobile-menu-container"
+              <Button
+                className="md:hidden p-2 bg-transparent border-none hover:bg-gray-100 mobile-menu-container rounded-full"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
                 {isMobileMenuOpen ? (
-                  <X size={20} className="text-[#20a7df]" />
+                  <X size={18} className="text-gray-700" />
                 ) : (
-                  <Menu size={20} className="text-[#20a7df]" />
+                  <Menu size={18} className="text-gray-700" />
                 )}
               </Button>
             </div>
@@ -154,32 +157,31 @@ export const Header = () => {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-40 lg:hidden">
+        <div className="fixed inset-0 z-40 md:hidden">
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
-          <div className="absolute top-[70px] sm:top-[80px] left-2 right-2 sm:left-4 sm:right-4 bg-white rounded-2xl shadow-2xl mobile-menu-container">
+          <div className="absolute top-[72px] sm:top-[80px] left-3 right-3 sm:left-4 sm:right-4 bg-white rounded-2xl shadow-2xl mobile-menu-container max-h-[calc(100vh-100px)] overflow-y-auto">
             <nav className="p-4 sm:p-6">
               {menuItems.map((item, index) => (
-                <a
+                <Link
                   key={index}
-                  href="#"
-                  className={`block py-3 sm:py-4 px-2 border-b border-gray-100 last:border-b-0 ${
-                    item.isActive
-                      ? "font-bold text-[#20a7df]"
-                      : "font-normal text-black"
-                  } [font-family:'Manrope',Helvetica] text-base sm:text-lg hover:text-[#20a7df] transition-colors duration-200`}
+                  href={item.href}
+                  className={`block py-3 sm:py-4 px-2 border-b border-gray-100 last:border-b-0 ${item.isActive
+                    ? "font-medium text-[#8f5e3d]"
+                    : "font-normal text-gray-700"
+                    } font-manrope text-base sm:text-lg hover:text-[#8f5e3d] transition-colors duration-200`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
-              
+
               {/* Mobile Get In Touch Button */}
-              <div className="mt-6 pt-4 border-t border-gray-100">
-                <button 
-                  className="w-full flex items-center justify-center h-12 rounded-full border border-solid border-[#20a7df] bg-transparent hover:bg-[#20a7df] hover:text-white transition-all duration-200 group"
+              <div className="mt-4 sm:mt-6 pt-4 border-t border-gray-100">
+                <button
+                  className="w-full flex items-center justify-center h-11 sm:h-12 rounded-full border border-[#8f5e3d] bg-transparent hover:bg-[#8f5e3d] hover:text-white transition-all duration-200 group"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  <span className="[font-family:'Manrope',Helvetica] font-normal text-[#20a7df] text-base text-center group-hover:text-white">
+                  <span className="font-manrope font-normal text-[#8f5e3d] text-base text-center group-hover:text-white">
                     Get In Touch
                   </span>
                 </button>
@@ -188,8 +190,6 @@ export const Header = () => {
           </div>
         </div>
       )}
-
-
     </>
   );
 };

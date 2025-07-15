@@ -5,14 +5,10 @@ import { Header } from "@/components/partials/Header";
 
 export default function Home() {
   return (
-    <div>
+    <div className="bg-[var(--color-white-alt)]">
       <Header />
       <HeroBanner
-        title="Bring Serenity "
-        subtitle="To Your Place With"
-        brandName="INTERIORWALAA"
-        description="Fast, reliable interior design services."
-        backgroundImage="https://interiorwalaa.smepulse.in/modern-luxury-living-room-interior-black-sofa-with-dark-concrete-wall%201.png"
+        backgroundImage="https://interiorwalaa.smepulse.in/homebannerbg.png"
       />
       <FooterSubsection />
     </div>
