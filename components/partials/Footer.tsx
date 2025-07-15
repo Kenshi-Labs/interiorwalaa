@@ -20,31 +20,31 @@ export const FooterSubsection = (): JSX.Element => {
   const socialIcons = [
     {
       name: "Instagram",
-      src: "/instagram.svg",
+      src: "https://interiorwalaa.smepulse.in/Instagram.svg",
       width: "w-3",
       height: "h-[12.09px]",
     },
     {
       name: "Facebook",
-      src: "/facebook.svg",
+      src: "https://interiorwalaa.smepulse.in/Facebook.svg",
       width: "w-[15px]",
       height: "h-[15.11px]",
     },
     {
       name: "Linkedin negative",
-      src: "/linkedin---negative.svg",
+      src: "https://interiorwalaa.smepulse.in/LinkedIn%20-%20Negative.svg",
       width: "w-[13.55px]",
       height: "h-[13.55px]",
     },
     {
       name: "Vector",
-      src: "/vector-1.svg",
+      src: "https://interiorwalaa.smepulse.in/Vector.svg",
       width: "w-[12.35px]",
       height: "h-[9.27px]",
     },
     {
       name: "Youtube",
-      src: "/youtube.svg",
+      src: "https://interiorwalaa.smepulse.in/Youtube.svg",
       width: "w-[14.25px]",
       height: "h-[10.05px]",
     },
