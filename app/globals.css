@@ -9,7 +9,6 @@
   font-display: swap;
 }
 
-
 @font-face {
   font-family: "Alexandria";
   src: url("/fonts/Alexandria-Light.ttf") format("truetype");
@@ -97,7 +96,6 @@
   font-style: normal;
   font-display: swap;
 }
-
 
 @font-face {
   font-family: "Manrope";
@@ -221,6 +219,7 @@
 
   /* Base Colors */
   --white: #ffffff;
+  --white-alt: #fffffe;
   --black: #000000;
 }
 
@@ -258,6 +257,7 @@
 
   /* Base Colors */
   --color-white: var(--white);
+  --color-white-alt: var(--white-alt);
   --color-black: var(--black);
 
   /* Font Families */
@@ -271,4 +271,33 @@ body {
   background: var(--bg-primary);
   color: var(--text-primary);
   font-family: var(--font-manrope), Arial, Helvetica, sans-serif;
+}
+
+/* Custom backdrop blur for header hover */
+.header-hover-blur {
+  backdrop-filter: blur(22.15690803527832px);
+}
+
+/* Glassmorphism effect for header */
+.header-glassmorphism {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+/* Text gradient effect */
+.text-gradient {
+  background: linear-gradient(
+    0deg,
+    #ffffff 0%,
+    #f0f0f0 25.52%,
+    rgba(171, 162, 150, 0.9) 45%,
+    rgba(171, 162, 150, 0.6) 65.17%,
+    rgba(171, 162, 150, 0.3) 85%,
+    rgba(171, 162, 150, 0.1) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }

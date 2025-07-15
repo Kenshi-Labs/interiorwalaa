@@ -1,71 +1,43 @@
 
 import React from 'react';
+import Image from 'next/image';
 
 export const HeroBanner = ({
-  title = "Bring Serenity",
-  subtitle = "To Your Place With",
-  brandName = "INTERIORWALAA",
-  description = "Interiorwalaa stands at the forefront of commercial interior designers in Bangalore",
-  backgroundImage = "https://interiorwalaa.smepulse.in/modern-luxury-living-room-interior-black-sofa-with-dark-concrete-wall%201.png",
-  textAlign = "left",
+  backgroundImage = "https://interiorwalaa.smepulse.in/homebannerbg.png",
   showOverlay = true,
   overlayOpacity = "bg-black/40",
-  height = "h-[400px] md:h-[500px] lg:h-[600px]",
+  height = "h-[300px] sm:h-[350px] md:h-[450px] lg:h-[500px] xl:h-[600px]",
 }) => {
   return (
-    <div className="w-full px-4 md:px-8 lg:px-12 xl:px-16 2xl:px-24 ">
-      <div className={`relative ${height} rounded-2xl overflow-hidden shadow-2xl max-w-7xl mx-auto`}>
+    <div className="w-full px-2 sm:px-3 md:px-4 lg:px-6 xl:px-8 py-2 sm:py-6 md:py-4">
+      <div className={`relative ${height} rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl sm:shadow-2xl max-w-8xl mx-auto`}>
         {/* Background Image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url(${backgroundImage})`
-          }}
+        <Image
+          src={backgroundImage}
+          alt="Hero background"
+          fill
+          className="object-cover object-center"
+          priority
         />
-        
+
         {/* Overlay */}
         {showOverlay && (
           <div className={`absolute inset-0 ${overlayOpacity}`} />
         )}
-        
-        {/* Content */}
-        <div className="relative z-10 h-full flex items-center">
-          <div className={`px-8 md:px-12 lg:px-16 xl:px-20 py-8 md:py-12 max-w-2xl ${textAlign === 'center' ? 'mx-auto text-center' : ''}`}>
-            
-            {/* Main Title */}
-            <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4 ${textAlign === 'center' ? 'text-center' : 'text-left'}`}>
-              <div className="mb-2">
-                {title}
-              </div>
-              <div className="mb-2">
-                {subtitle}
-              </div>
-              <div className="text-cyan-400 text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-wide">
-                {brandName}
-              </div>
-            </h1>
-            
-            {/* Description */}
-            {description && (
-              <div className="mb-8">
-                <p className={`text-gray-200 text-lg md:text-xl leading-relaxed ${textAlign === 'center' ? 'text-center' : 'text-left'}`}>
-                  {description}
-                </p>
-              </div>
-            )}
-            
-            {/* Optional CTA Button */}
-            <div className={`${textAlign === 'center' ? 'text-center' : 'text-left'}`}>
-              <button className="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
-                Get Started
-              </button>
-            </div>
-          </div>
+
+        {/* INTERIORWALAA Text */}
+        <div className="absolute bottom-0 left-0 right-0 flex justify-center items-end">
+          <h1
+            className="text-center leading-none tracking-normal drop-shadow-lg sm:drop-shadow-xl md:drop-shadow-2xl font-alexandria text-[38px] sm:text-[64px] md:text-[70px] lg:text-[100px] xl:text-[117.17px] font-bold text-gradient"
+            style={{ lineHeight: '0.7' }}
+          >
+            INTERIORWALAA
+          </h1>
         </div>
-        
+
         {/* Decorative Elements */}
-        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-cyan-400/20 to-transparent rounded-full blur-2xl"></div>
-        <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-cyan-400/20 to-transparent rounded-full blur-xl"></div>
+        <div className="absolute top-0 right-0 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 bg-gradient-to-br from-cyan-400/20 to-transparent rounded-full blur-lg sm:blur-xl md:blur-2xl"></div>
+        <div className="absolute bottom-0 left-0 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-gradient-to-tr from-cyan-400/20 to-transparent rounded-full blur-md sm:blur-lg md:blur-xl"></div>
       </div>
     </div>
   );
