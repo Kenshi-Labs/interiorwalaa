@@ -1,3 +1,4 @@
+import AllAbout from "@/components/common/AllAbout";
 import { HeroBanner } from "@/components/common/HeroBanner";
 import FAQSection from "@/components/FAQSection";
 import { FooterSubsection } from "@/components/partials/Footer";
@@ -15,6 +16,7 @@ export default function Home() {
       <HeroBanner
         backgroundImage="https://interiorwalaa.smepulse.in/homebannerbg.png"
       />
+      <AllAbout />
       <WhatWeOffer />
       <ScrollWrapper />
       <ServicesPortfolio />
