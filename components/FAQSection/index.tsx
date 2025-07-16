@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react';
+import { ChevronDown } from 'lucide-react';
 
 const FAQSection = () => {
   const [openItems, setOpenItems] = useState(new Set([3])); // FAQ at index 3 is open by default
@@ -39,14 +40,19 @@ const FAQSection = () => {
 
   const toggleItem = (id: number) => {
     const newOpenItems = new Set(openItems);
-    if (!openItems.has(id)) {
+    
+    if (newOpenItems.has(id)) {
+      newOpenItems.delete(id);
+    } else {
       newOpenItems.add(id);
     }
     setOpenItems(newOpenItems);
+  
+  
   };
 
   return (
-    <section className="py-16 lg:py-24 bg-gradient-to-br from-slate-50 to-blue-50 relative overflow-hidden">
+    <section className="py-16 lg:py-24 bg-gradient-to-br from-slate-50 to-amber-50 relative overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 opacity-10">
         <img 
@@ -57,16 +63,16 @@ const FAQSection = () => {
       </div>
       
       {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-100/30 to-transparent rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-cyan-100/20 to-transparent rounded-full blur-2xl"></div>
+      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-amber-100/30 to-transparent rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-orange-100/20 to-transparent rounded-full blur-2xl"></div>
       
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Title */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">
-            <span className="text-blue-600">F</span>requently{' '}
-            <span className="text-blue-600">A</span>sked{' '}
-            <span className="text-blue-600">Q</span>uestions
+            <span className="text-amber-700">F</span>requently{' '}
+            <span className="text-amber-700">A</span>sked{' '}
+            <span className="text-amber-700">Q</span>uestions
           </h2>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
             Find answers to common questions about our interior design services and process
@@ -84,38 +90,35 @@ const FAQSection = () => {
                 <div
                   key={faq.id}
                   className={`
-                    bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300
-                    ${isOpen ? 'bg-blue-50 border-2 border-blue-200' : 'border border-gray-200'}
+                     rounded-2xl shadow-md hover:shadow-lg transition-all duration-300
+   ${isOpen ? 'bg-[#bba99c] border-l-4 border-l-[#8F5E3D]' : 'bg-white border border-gray-200'}
                   `}
                 >
                   {/* Question Button */}
                   <button
                     onClick={() => toggleItem(faq.id)}
-                    className="w-full p-6 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-2xl"
+                    className="w-full p-6 text-left focus:outline-none  rounded-2xl"
                     aria-expanded={isOpen}
                     aria-controls={`faq-answer-${faq.id}`}
                   >
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center">
                       {/* Arrow Icon - Left Side */}
                       <div className={`
                         flex-shrink-0 w-8 h-8 flex items-center justify-center mr-4
-                        ${isOpen ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-600'}
+                   ${isOpen ? 'bg-[#bba99c] text-[#8F5E3D]' : 'bg-gray-100 text-gray-600'}
                         rounded-full transition-all duration-300
                       `}>
-                        <div 
+                        <ChevronDown 
                           className={`
-                            w-0 h-0 transition-transform duration-300
-                            ${isOpen 
-                              ? 'border-l-[6px] border-r-[6px] border-t-[8px] border-l-transparent border-r-transparent border-t-white rotate-180' 
-                              : 'border-l-[6px] border-r-[6px] border-t-[8px] border-l-transparent border-r-transparent border-t-gray-600'
-                            }
+                            w-5 h-5 transition-transform duration-300
+                            ${isOpen ? 'rotate-180' : 'rotate-0'}
                           `}
                         />
                       </div>
                       
                       <h3 className={`
                         text-lg md:text-xl font-semibold leading-tight flex-1
-                        ${isOpen ? 'text-blue-700' : 'text-gray-900'}
+                        ${isOpen ? 'text-[#8F5E3D]': 'text-gray-900'}
                         transition-colors duration-200
                       `}>
                         {faq.question}
@@ -136,7 +139,7 @@ const FAQSection = () => {
                         pt-2 border-t border-blue-200/50
                         ${isOpen ? 'animate-fadeInUp' : ''}
                       `}>
-                        <p className="text-gray-700 leading-relaxed">
+                        <p className="text-[#585859] leading-relaxed">
                           {faq.answer}
                         </p>
                       </div>
@@ -156,38 +159,35 @@ const FAQSection = () => {
                 <div
                   key={faq.id}
                   className={`
-                    bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300
-                    ${isOpen ? 'bg-blue-50 border-2 border-blue-200' : 'border border-gray-200'}
+                     rounded-2xl shadow-md hover:shadow-lg transition-all duration-300
+                   ${isOpen ? 'bg-[#bba99c] border-l-4 border-l-[#8F5E3D]' : 'bg-white border border-gray-200'}
                   `}
                 >
                   {/* Question Button */}
                   <button
                     onClick={() => toggleItem(faq.id)}
-                    className="w-full p-6 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-2xl"
+                    className="w-full p-6 text-left focus:outline-none rounded-2xl"
                     aria-expanded={isOpen}
                     aria-controls={`faq-answer-${faq.id}`}
                   >
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center">
                       {/* Arrow Icon - Left Side */}
                       <div className={`
                         flex-shrink-0 w-8 h-8 flex items-center justify-center mr-4
-                        ${isOpen ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-600'}
+                     ${isOpen ? 'bg-[#bba99c] text-[#8F5E3D]' : 'bg-gray-100 text-gray-600'}
                         rounded-full transition-all duration-300
                       `}>
-                        <div 
+                        <ChevronDown 
                           className={`
-                            w-0 h-0 transition-transform duration-300
-                            ${isOpen 
-                              ? 'border-l-[6px] border-r-[6px] border-t-[8px] border-l-transparent border-r-transparent border-t-white rotate-180' 
-                              : 'border-l-[6px] border-r-[6px] border-t-[8px] border-l-transparent border-r-transparent border-t-gray-600'
-                            }
+                            w-5 h-5 transition-transform duration-300
+                            ${isOpen ? 'rotate-180' : 'rotate-0'}
                           `}
                         />
                       </div>
                       
                       <h3 className={`
                         text-lg md:text-xl font-semibold leading-tight flex-1
-                        ${isOpen ? 'text-blue-700' : 'text-gray-900'}
+                        ${isOpen ? 'text-[#8F5E3D]' : 'text-gray-900'}
                         transition-colors duration-200
                       `}>
                         {faq.question}
@@ -205,7 +205,7 @@ const FAQSection = () => {
                   >
                     <div className="px-6 pb-6">
                       <div className={`
-                        pt-2 border-t border-blue-200/50
+                        pt-2 border-t border-amber-200/50
                         ${isOpen ? 'animate-fadeInUp' : ''}
                       `}>
                         <p className="text-gray-700 leading-relaxed">
@@ -225,7 +225,7 @@ const FAQSection = () => {
           <p className="text-lg text-gray-600 mb-6">
             Still have questions? We are here to help!
           </p>
-          <button className="inline-flex items-center px-8 py-4 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+          <button className="inline-flex items-center px-8 py-4 bg-amber-700 text-white font-semibold rounded-full hover:bg-amber-800 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
             Contact Us Today
           </button>
         </div>
