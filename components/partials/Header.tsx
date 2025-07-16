@@ -176,16 +176,7 @@ export const Header = () => {
                 </Link>
               ))}
 
-              {/* Mobile Get In Touch Button */}
-              <div className="mt-4 sm:mt-6 pt-4 border-t border-gray-100">
-                <Button
-                  variant="interior"
-                  className="w-full h-11 sm:h-12"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Get In Touch
-                </Button>
-              </div>
+
             </nav>
           </div>
         </div>
