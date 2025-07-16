@@ -23,8 +23,8 @@ export default function Home() {
       <AllAbout />
       <WhatWeOffer />
       <WhyChooseUs />
-      <ScrollWrapper />
       <ServicesPortfolio />
+      <ScrollWrapper />
       <FAQSection />
       <ContactSection />
       <TestimonialCarousel />

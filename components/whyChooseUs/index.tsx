@@ -12,18 +12,19 @@ const Card = ({ title, description, isBrown = false, isRotated = false }: {
 }) => {
     return (
         <div
-            className={`rounded-3xl p-6 ${isBrown
-                    ? 'bg-primary-brown text-white'
-                    : 'bg-white text-text-primary'
+            className={`rounded-4xl p-6 min-h-[220px] flex flex-col justify-start ${isBrown
+                ? 'text-white'
+                : 'bg-white text-text-primary'
                 } ${isRotated ? 'transform -rotate-6' : ''}`}
             style={{
-                boxShadow: '5px 5px 10px 0px var(--primary-brown)40',
+                backgroundColor: isBrown ? '#9b7961' : undefined,
+                boxShadow: '5px 5px 10px 0px #9b796140',
             }}
         >
-            <h3 className="text-xl font-bold mb-3 font-work-sans">
+            <h3 className="text-2xl font-semibold mb-3 font-work-sans">
                 {title}
             </h3>
-            <p className="text-base leading-relaxed font-manrope">
+            <p className="text-base leading-relaxed font-manrope flex-grow">
                 {description}
             </p>
         </div>
@@ -72,7 +73,7 @@ const WhyChooseUs = () => {
                     </div>
 
                     {/* Right Columns - First 2 Cards */}
-                    <div className="lg:col-span-2">
+                    <div className="lg:col-span-2 mb-5">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {/* Card 1 - Brown Background with rotation */}
                             <Card
