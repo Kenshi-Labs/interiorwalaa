@@ -221,16 +221,6 @@ const FAQSection = () => {
             })}
           </div>
         </div>
-
-        {/* Bottom CTA */}
-        <div className="text-center mt-16">
-          <p className="text-lg text-gray-600 mb-6">
-            Still have questions? We are here to help!
-          </p>
-          <button className="inline-flex items-center px-8 py-4 bg-amber-700 text-white font-semibold rounded-full hover:bg-amber-800 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
-            Contact Us Today
-          </button>
-        </div>
       </div>
 
       {/* Custom CSS for animations */}
