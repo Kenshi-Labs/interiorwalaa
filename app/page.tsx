@@ -7,6 +7,7 @@ import { Header } from "@/components/partials/Header";
 import ScrollWrapper from "@/components/scrollWrapper";
 import ServicesPortfolio from "@/components/servicesPortfolio";
 import WhatWeOffer from "@/components/whatweoffer";
+import WhyChooseUs from "@/components/whyChooseUs";
 
 
 
@@ -19,10 +20,11 @@ export default function Home() {
       />
       <AllAbout />
       <WhatWeOffer />
+      <WhyChooseUs />
       <ScrollWrapper />
       <ServicesPortfolio />
       <FAQSection />
-      <ContactSection/>
+      <ContactSection />
       <FooterSubsection />
     </div>
   );

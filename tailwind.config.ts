@@ -25,6 +25,7 @@ const config: Config = {
                 'bg-secondary': 'var(--bg-secondary)',
                 'bg-tertiary': 'var(--bg-tertiary)',
                 'bg-accent': 'var(--bg-accent)',
+                'white-alt': 'var(--white-alt)',
             }
         },
     },
