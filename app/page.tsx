@@ -10,6 +10,7 @@ import ScrollWrapper from "@/components/scrollWrapper";
 import ServicesPortfolio from "@/components/servicesPortfolio";
 import VideoGallerySection from "@/components/videoSection";
 import WhatWeOffer from "@/components/whatweoffer";
+import WhyChooseUs from "@/components/whyChooseUs";
 
 
 
@@ -22,13 +23,14 @@ export default function Home() {
       />
       <AllAbout />
       <WhatWeOffer />
-      <ScrollWrapper />
+      <WhyChooseUs />
       <ServicesPortfolio />
+      <ScrollWrapper />
       <FAQSection />
+      <ContactSection />
       <VideoGallerySection />
       <TestimonialCarousel />
-
-      <ContactSection/>
+      <ContactSection />
       <FooterSubsection />
     </div>
   );

@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react';
-import { ExternalLink, ArrowRight } from 'lucide-react';
+import { ArrowRight, MoveUpRightIcon } from 'lucide-react';
 import Image from 'next/image';
 
 type TabKey = 'cafe' | 'pub' | 'restaurant' | 'hotel';
@@ -20,19 +20,19 @@ const ServicesPortfolio = () => {
       {
         id: 1,
         title: "Belgian Waffle Factory",
-        image: "https://interiorwalaa.smepulse.in/Rectangle%203859.png",
+        image: "https://interiorwalaa.smepulse.in/serviceimg1.jpg",
         description: "Modern cafe design with warm ambiance"
       },
       {
         id: 2,
         title: "Wow Momo",
-        image: "https://interiorwalaa.smepulse.in/Rectangle%203860.png",
+        image: "https://interiorwalaa.smepulse.in/serviceimg2.jpg",
         description: "Contemporary momo cafe with vibrant interiors"
       },
       {
         id: 3,
         title: "Eleven Bakehouse",
-        image: "https://interiorwalaa.smepulse.in/Rectangle%203861.png",
+        image: "https://interiorwalaa.smepulse.in/serviceimg3.jpg",
         description: "Artisanal bakehouse with rustic charm"
       }
     ],
@@ -40,19 +40,19 @@ const ServicesPortfolio = () => {
       {
         id: 4,
         title: "The Urban Tap",
-        image: "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=600&h=400&fit=crop",
+        image: "https://interiorwalaa.smepulse.in/serviceimg1.jpg",
         description: "Industrial pub design with exposed brick"
       },
       {
         id: 5,
         title: "Brewmaster's Den",
-        image: "https://interiorwalaa.smepulse.in/generate%20a%20realistic%203D%20image%20for%20a%20interior%20designing%20website's%20banner%20section.png",
+        image: "https://interiorwalaa.smepulse.in/serviceimg2.jpg",
         description: "Traditional pub with modern touches"
       },
       {
         id: 6,
         title: "Craft & Draft",
-        image: "https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?w=600&h=400&fit=crop",
+        image: "https://interiorwalaa.smepulse.in/serviceimg3.jpg",
         description: "Craft beer pub with wooden aesthetics"
       }
     ],
@@ -60,19 +60,19 @@ const ServicesPortfolio = () => {
       {
         id: 7,
         title: "Spice Garden",
-        image: "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&h=400&fit=crop",
+        image: "https://interiorwalaa.smepulse.in/serviceimg1.jpg",
         description: "Fine dining with elegant ambiance"
       },
       {
         id: 8,
         title: "Ocean's Table",
-        image: "https://interiorwalaa.smepulse.in/generate%20a%20realistic%203D%20image%20for%20a%20interior%20designing%20website's%20banner%20section.png",
+        image: "https://interiorwalaa.smepulse.in/serviceimg2.jpg",
         description: "Seafood restaurant with coastal vibes"
       },
       {
         id: 9,
         title: "Metro Bistro",
-        image: "https://images.unsplash.com/photo-1578474846511-04ba529f0b88?w=600&h=400&fit=crop",
+        image: "https://interiorwalaa.smepulse.in/serviceimg3.jpg",
         description: "Urban bistro with contemporary design"
       }
     ],
@@ -80,19 +80,19 @@ const ServicesPortfolio = () => {
       {
         id: 10,
         title: "Grand Plaza Lobby",
-        image: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=600&h=400&fit=crop",
+        image: "https://interiorwalaa.smepulse.in/serviceimg1.jpg",
         description: "Luxury hotel lobby with marble finishes"
       },
       {
         id: 11,
         title: "Boutique Suites",
-        image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&h=400&fit=crop",
+        image: "https://interiorwalaa.smepulse.in/serviceimg2.jpg",
         description: "Boutique hotel with personalized comfort"
       },
       {
         id: 12,
         title: "Resort Paradise",
-        image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&h=400&fit=crop",
+        image: "https://interiorwalaa.smepulse.in/serviceimg3.jpg",
         description: "Tropical resort with natural elements"
       }
     ]
@@ -101,37 +101,34 @@ const ServicesPortfolio = () => {
   const currentProjects = portfolioData[activeTab];
 
   return (
-    <section className="py-16 lg:py-24 bg-gradient-to-br from-gray-50 to-amber-50 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-amber-100/50 to-transparent rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-orange-100/30 to-transparent rounded-full blur-2xl"></div>
-      
-      <div className="container mx-auto px-6 relative z-10">
+    <section className="py-16 lg:py-24 bg-[var(--bg-primary)] relative overflow-hidden">
+
+      <div className="container mx-auto max-w-[1400px] px-6 relative z-10">
         {/* Header Section */}
-        <div className="grid grid-cols-2 justify-betweens items-center mb-16 ">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            <span className="text-amber-700">Services</span>
+        <div className="grid grid-cols-2 justify-betweens items-center mb-8 ">
+          <h2 className="text-4xl md:text-5xl lg:text-5xl font-work-sans text-gray-900 leading-tight">
+            <span className="text-[var(--primary-brown)] font-semibold">Services</span>
             <br />
-            that we offer
+            <span className="text-text-primary font-normal">that we offer</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
-            We are <span className="font-semibold text-amber-700">INTERIORWALAA</span>, emphasizing professionalism and expertise in commercial interior design
+            We are <span className="font-semibold font-manrope text-[var(--primary-brown)]">INTERIORWALAA</span>, emphasizing professionalism and expertise in commercial interior design
           </p>
         </div>
 
         {/* Tab Navigation */}
-        <div className="mb-12 mx-auto">
-          <div className="grid grid-cols-4 gap-2 p-2 bg-white/70 backdrop-blur-sm rounded-full shadow-lg max-w-full">
+        <div className="mb-12 w-full">
+          <div className="flex flex-wrap justify-center gap-3 p-3 bg-white/70 backdrop-blur-sm rounded-full shadow-lg w-full border border-[var(--primary-brown)]">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`
-                  px-6 py-3 rounded-full font-medium text-sm md:text-base
-                  transition-all duration-300 ease-out
+                  px-8 py-2 rounded-full cursor-pointer font-medium text-sm md:text-base bg-[var(--bg-secondary)]
+                  transition-all duration-300 ease-out whitespace-nowrap flex-1 min-w-0
                   ${activeTab === tab.id
-                    ? 'bg-amber-700 text-white shadow-lg transform scale-105'
-                    : 'text-gray-600 hover:text-amber-700 hover:bg-amber-50'
+                    ? 'bg-[var(--primary-brown)] text-white shadow-lg'
+                    : 'text-[var(--primary-brown)] hover:text-white hover:bg-[var(--primary-brown)]'
                   }
                 `}
               >
@@ -157,13 +154,13 @@ const ServicesPortfolio = () => {
                 width={100}
                 height={100}
               />
-              
+
               {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-              
+
               {/* View Full Icon */}
-              <div className="absolute top-6 right-6 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-80 hover:opacity-100 transition-all duration-300 cursor-pointer">
-                <ExternalLink className="w-6 h-6 text-white" />
+              <div className="absolute top-4 right-4 w-10 h-10 bg-white backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer">
+                <MoveUpRightIcon className="w-4 h-4 text-black" />
               </div>
 
               {/* Content at Bottom */}
@@ -193,13 +190,13 @@ const ServicesPortfolio = () => {
                 width={100}
                 height={100}
               />
-              
+
               {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-              
+
               {/* View Full Icon */}
-              <div className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-80 hover:opacity-100 transition-all duration-300 cursor-pointer">
-                <ExternalLink className="w-5 h-5 text-white" />
+              <div className="absolute top-4 right-4 w-10 h-10 bg-white backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer">
+                <MoveUpRightIcon className="w-4 h-4 text-black" />
               </div>
 
               {/* Content at Bottom */}
@@ -229,13 +226,13 @@ const ServicesPortfolio = () => {
                 width={100}
                 height={100}
               />
-              
+
               {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-              
+
               {/* View Full Icon */}
-              <div className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-80 hover:opacity-100 transition-all duration-300 cursor-pointer">
-                <ExternalLink className="w-5 h-5 text-white" />
+              <div className="absolute top-4 right-4 w-10 h-10 bg-white backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer">
+                <MoveUpRightIcon className="w-4 h-4 text-black" />
               </div>
 
               {/* Content at Bottom */}
