@@ -4,19 +4,24 @@ import { Button } from '../ui/button';
 import { Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const menuItems = [
-  { label: "Home", isActive: true, href: "/" },
-  { label: "About Us", isActive: false, href: "/about-us" },
-  { label: "Our Services", isActive: false, href: "/our-services" },
-  { label: "Projects", isActive: false, href: "/projects" },
-  { label: "Career", isActive: false, href: "/career" },
-  { label: "Blog", isActive: false, href: "/blog" },
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about-us" },
+  { label: "Our Services", href: "/our-services" },
+  { label: "Projects", href: "/projects" },
+  { label: "Career", href: "/career" },
+  { label: "Blog", href: "/blog" },
 ];
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  
+  // Determine if current route is home
+  const isHomePage = pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,15 +63,23 @@ export const Header = () => {
     };
   }, [isMobileMenuOpen]);
 
+  // Determine background classes based on route and scroll state
+  const getBackgroundClasses = () => {
+    if (!isHomePage) {
+      // Non-home pages always use dark background
+      return 'bg-white/25 backdrop-blur-xl';
+    }
+    
+    // Home page uses scroll-based background
+    return isScrolled ? 'bg-white/25 backdrop-blur-xl' : 'bg-white';
+  };
+
   return (
     <>
       <div className="sticky top-0 left-0 right-0 z-50 w-full">
         {/* Sticky Navigation Bar */}
         <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8 pt-3 sm:pt-4">
-          <div className={`w-full h-[56px] sm:h-[64px] md:h-[72px] mx-auto rounded-[32px] sm:rounded-[40px] flex items-center justify-between px-4 sm:px-6 container transition-all duration-300 ${isScrolled
-            ? 'bg-white/90 backdrop-blur-md shadow-sm'
-            : 'bg-white'
-            }`}>
+          <div className={`w-full h-[56px] sm:h-[64px] md:h-[72px] mx-auto rounded-[32px] sm:rounded-[40px] flex items-center justify-between px-4 sm:px-6 container transition-all duration-300 ${getBackgroundClasses()}`}>
 
             {/* Logo */}
             <div className="flex-shrink-0">
@@ -89,7 +102,7 @@ export const Header = () => {
                   <Link
                     key={index}
                     href={item.href}
-                    className={`${item.isActive
+                    className={`${pathname === item.href
                       ? "font-bold text-[#8f5e3d]"
                       : "font-normal text-gray-700"
                       } font-manrope text-base whitespace-nowrap hover:text-[#8f5e3d] transition-colors duration-200`}
@@ -105,7 +118,7 @@ export const Header = () => {
                   <Link
                     key={index}
                     href={item.href}
-                    className={`${item.isActive
+                    className={`${pathname === item.href
                       ? "font-medium text-[#8f5e3d]"
                       : "font-normal text-gray-700"
                       } font-manrope text-sm whitespace-nowrap hover:text-[#8f5e3d] transition-colors duration-200`}
@@ -166,7 +179,7 @@ export const Header = () => {
                 <Link
                   key={index}
                   href={item.href}
-                  className={`block py-3 sm:py-4 px-2 border-b border-gray-100 last:border-b-0 ${item.isActive
+                  className={`block py-3 sm:py-4 px-2 border-b border-gray-100 last:border-b-0 ${pathname === item.href
                     ? "font-medium text-[#8f5e3d]"
                     : "font-normal text-gray-700"
                     } font-manrope text-base sm:text-lg hover:text-[#8f5e3d] transition-colors duration-200`}
@@ -175,8 +188,6 @@ export const Header = () => {
                   {item.label}
                 </Link>
               ))}
-
-
             </nav>
           </div>
         </div>
