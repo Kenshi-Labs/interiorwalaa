@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import { ExternalLink, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 
 type TabKey = 'cafe' | 'pub' | 'restaurant' | 'hotel';
 
@@ -149,10 +150,12 @@ const ServicesPortfolio = () => {
           >
             {/* Image Container */}
             <div className="relative overflow-hidden flex-1">
-              <img
+              <Image
                 src={currentProjects[0].image}
                 alt={currentProjects[0].title}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                width={100}
+                height={100}
               />
               
               {/* Overlay */}
@@ -183,10 +186,12 @@ const ServicesPortfolio = () => {
           >
             {/* Image Container */}
             <div className="relative overflow-hidden flex-1">
-              <img
+              <Image
                 src={currentProjects[1].image}
                 alt={currentProjects[1].title}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                width={100}
+                height={100}
               />
               
               {/* Overlay */}
@@ -217,10 +222,12 @@ const ServicesPortfolio = () => {
           >
             {/* Image Container */}
             <div className="relative overflow-hidden flex-1">
-              <img
+              <Image
                 src={currentProjects[2].image}
                 alt={currentProjects[2].title}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                width={100}
+                height={100}
               />
               
               {/* Overlay */}
