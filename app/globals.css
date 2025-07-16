@@ -323,3 +323,18 @@ body {
 .animate-marquee {
   animation: marquee 15s linear infinite;
 }
+
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbars for Firefox */
+.scrollbar-hide {
+  scrollbar-width: none;
+}
+
+/* Hide scrollbars for IE/Edge Legacy */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+}
