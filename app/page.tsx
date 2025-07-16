@@ -1,4 +1,5 @@
 import { HeroBanner } from "@/components/common/HeroBanner";
+import ContactSection from "@/components/contact";
 import FAQSection from "@/components/FAQSection";
 import { FooterSubsection } from "@/components/partials/Footer";
 import { Header } from "@/components/partials/Header";
@@ -19,6 +20,7 @@ export default function Home() {
       <ScrollWrapper />
       <ServicesPortfolio />
       <FAQSection />
+      <ContactSection/>
       <FooterSubsection />
     </div>
   );

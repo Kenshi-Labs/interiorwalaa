@@ -1,5 +1,6 @@
 'use client'
 import { services } from '@/data/data';
+import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 
 
@@ -64,10 +65,12 @@ const WhatWeOffer = () => {
                       hoveredIndex === index ? 'scale-110 rotate-3' : 'scale-100 rotate-0'
                     }`}
                   >
-                    <img
+                    <Image
                       src={service.icon}
                       alt={service.title}
                       className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
+                      width={100}
+                      height={100}
                     />
                   </div>
 

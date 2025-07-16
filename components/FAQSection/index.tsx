@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
+import Image from 'next/image';
 
 const FAQSection = () => {
   const [openItems, setOpenItems] = useState(new Set([3])); // FAQ at index 3 is open by default
@@ -55,10 +56,12 @@ const FAQSection = () => {
     <section className="py-16 lg:py-24 bg-gradient-to-br from-slate-50 to-amber-50 relative overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 opacity-10">
-        <img 
+        <Image
           src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1920&h=1080&fit=crop" 
           alt="Interior Design Background"
           className="w-full h-full object-cover"
+          width={100}
+          height={100}
         />
       </div>
       
@@ -80,7 +83,7 @@ const FAQSection = () => {
         </div>
 
         {/* FAQ Layout - Split into two independent columns */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full mx-auto">
           {/* Left Column */}
           <div className="space-y-6">
             {faqData.slice(0, Math.ceil(faqData.length / 2)).map((faq) => {
@@ -220,15 +223,7 @@ const FAQSection = () => {
           </div>
         </div>
 
-        {/* Bottom CTA */}
-        <div className="text-center mt-16">
-          <p className="text-lg text-gray-600 mb-6">
-            Still have questions? We are here to help!
-          </p>
-          <button className="inline-flex items-center px-8 py-4 bg-amber-700 text-white font-semibold rounded-full hover:bg-amber-800 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
-            Contact Us Today
-          </button>
-        </div>
+        
       </div>
 
       {/* Custom CSS for animations */}
