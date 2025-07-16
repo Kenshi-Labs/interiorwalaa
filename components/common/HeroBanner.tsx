@@ -9,8 +9,8 @@ export const HeroBanner = ({
   height = "h-[300px] sm:h-[350px] md:h-[450px] lg:h-[500px] xl:h-[600px]",
 }) => {
   return (
-    <div className="w-full px-2 sm:px-3 md:px-4 lg:px-6 xl:px-8 py-2 sm:py-6 md:py-4">
-      <div className={`relative ${height} rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl sm:shadow-2xl max-w-8xl mx-auto`}>
+    <div className="w-full px-2 sm:px-3 md:px-4 lg:px-6 xl:px-8 py-2 sm:py-6 md:pt-4 md:pb-10">
+      <div className={`relative ${height} rounded-2xl sm:rounded-3xl overflow-hidden max-w-8xl mx-auto`}>
         {/* Background Image */}
         <Image
           src={backgroundImage}

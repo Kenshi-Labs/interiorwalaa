@@ -40,12 +40,32 @@ export const FooterSubsection = (): JSX.Element => {
   ];
 
   const recentWorkImages = [
-    { id: '1571460', alt: 'Modern living room with blue sofa' },
-    { id: '2029667', alt: 'Light grey sofa in yellow room' },
-    { id: '1080721', alt: 'Spacious modern living room' },
-    { id: '2029722', alt: 'Brown textured armchair' },
-    { id: '1571453', alt: 'Yellow sofa in industrial room' },
-    { id: '2029719', alt: 'Minimalist white bedroom' },
+    {
+      name: "footer-1",
+      src: "https://interiorwalaa.smepulse.in/footerImg1.png",
+    },
+    {
+      name: "footer-2",
+      src: "https://interiorwalaa.smepulse.in/footerImg2.png",
+    },
+
+    {
+      name: "footer-3",
+      src: "https://interiorwalaa.smepulse.in/footerImg3.png",
+    },
+    {
+      name: "footer-4",
+      src: "https://interiorwalaa.smepulse.in/footerImg4.png",
+    },
+
+    {
+      name: "footer-5",
+      src: "https://interiorwalaa.smepulse.in/footerImg5.png",
+    },
+    {
+      name: "footer-6",
+      src: "https://interiorwalaa.smepulse.in/footerImg6.png",
+    },
   ];
 
   return (
@@ -160,8 +180,8 @@ export const FooterSubsection = (): JSX.Element => {
                     width={120}
                     height={120}
                     className="w-full h-20 sm:h-20 md:h-20 lg:h-20 object-cover rounded-lg sm:rounded-lg md:rounded-lg lg:rounded-lg shadow-lg group-hover:shadow-xl transition-all duration-300"
-                    alt={image.alt}
-                    src={`https://images.pexels.com/photos/${image.id}/pexels-photo-${image.id}.jpeg?auto=compress&cs=tinysrgb&w=320&h=276&dpr=2`}
+                    alt={image.name}
+                    src={image.src}
                   />
                 </div>
               ))}
