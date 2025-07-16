@@ -8,6 +8,7 @@ import { Header } from "@/components/partials/Header";
 import TestimonialCarousel from "@/components/scrollToSlide";
 import ScrollWrapper from "@/components/scrollWrapper";
 import ServicesPortfolio from "@/components/servicesPortfolio";
+import VideoGallerySection from "@/components/videoSection";
 import WhatWeOffer from "@/components/whatweoffer";
 
 
@@ -24,7 +25,9 @@ export default function Home() {
       <ScrollWrapper />
       <ServicesPortfolio />
       <FAQSection />
+      <VideoGallerySection />
       <TestimonialCarousel />
+
       <ContactSection/>
       <FooterSubsection />
     </div>
