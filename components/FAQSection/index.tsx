@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import Image from 'next/image';
 
 const FAQSection = () => {
   const [openItems, setOpenItems] = useState(new Set([3])); // FAQ at index 3 is open by default
@@ -41,22 +40,22 @@ const FAQSection = () => {
 
   const toggleItem = (id: number) => {
     const newOpenItems = new Set(openItems);
-    
+
     if (newOpenItems.has(id)) {
       newOpenItems.delete(id);
     } else {
       newOpenItems.add(id);
     }
     setOpenItems(newOpenItems);
-  
-  
+
+
   };
 
   return (
     <section className="py-16 lg:py-24 bg-gradient-to-br from-slate-50 to-amber-50 relative overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 opacity-10">
-        <Image
+        <img 
           src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1920&h=1080&fit=crop" 
           alt="Interior Design Background"
           className="w-full h-full object-cover"
@@ -64,11 +63,11 @@ const FAQSection = () => {
           height={100}
         />
       </div>
-      
+
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-amber-100/30 to-transparent rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-orange-100/20 to-transparent rounded-full blur-2xl"></div>
-      
+
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Title */}
         <div className="text-center mb-16">
@@ -88,7 +87,7 @@ const FAQSection = () => {
           <div className="space-y-6">
             {faqData.slice(0, Math.ceil(faqData.length / 2)).map((faq) => {
               const isOpen = openItems.has(faq.id);
-              
+
               return (
                 <div
                   key={faq.id}
@@ -111,17 +110,17 @@ const FAQSection = () => {
                    ${isOpen ? 'bg-[#bba99c] text-[#8F5E3D]' : 'bg-gray-100 text-gray-600'}
                         rounded-full transition-all duration-300
                       `}>
-                        <ChevronDown 
+                        <ChevronDown
                           className={`
                             w-5 h-5 transition-transform duration-300
                             ${isOpen ? 'rotate-180' : 'rotate-0'}
                           `}
                         />
                       </div>
-                      
+
                       <h3 className={`
                         text-lg md:text-xl font-semibold leading-tight flex-1
-                        ${isOpen ? 'text-[#8F5E3D]': 'text-gray-900'}
+                        ${isOpen ? 'text-[#8F5E3D]' : 'text-gray-900'}
                         transition-colors duration-200
                       `}>
                         {faq.question}
@@ -157,7 +156,7 @@ const FAQSection = () => {
           <div className="space-y-6">
             {faqData.slice(Math.ceil(faqData.length / 2)).map((faq) => {
               const isOpen = openItems.has(faq.id);
-              
+
               return (
                 <div
                   key={faq.id}
@@ -180,14 +179,14 @@ const FAQSection = () => {
                      ${isOpen ? 'bg-[#bba99c] text-[#8F5E3D]' : 'bg-gray-100 text-gray-600'}
                         rounded-full transition-all duration-300
                       `}>
-                        <ChevronDown 
+                        <ChevronDown
                           className={`
                             w-5 h-5 transition-transform duration-300
                             ${isOpen ? 'rotate-180' : 'rotate-0'}
                           `}
                         />
                       </div>
-                      
+
                       <h3 className={`
                         text-lg md:text-xl font-semibold leading-tight flex-1
                         ${isOpen ? 'text-[#8F5E3D]' : 'text-gray-900'}
@@ -223,7 +222,15 @@ const FAQSection = () => {
           </div>
         </div>
 
-        
+        {/* Bottom CTA */}
+        <div className="text-center mt-16">
+          <p className="text-lg text-gray-600 mb-6">
+            Still have questions? We are here to help!
+          </p>
+          <button className="inline-flex items-center px-8 py-4 bg-amber-700 text-white font-semibold rounded-full hover:bg-amber-800 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+            Contact Us Today
+          </button>
+        </div>
       </div>
 
       {/* Custom CSS for animations */}

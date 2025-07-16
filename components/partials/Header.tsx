@@ -133,11 +133,12 @@ export const Header = () => {
               </nav>
 
               {/* Get In Touch Button - Hidden on mobile, visible on tablet+ */}
-              <button className="hidden md:flex items-center justify-center w-[100px] md:w-[120px] h-9 md:h-10 rounded-full border border-[#8f5e3d] bg-transparent hover:bg-[#8f5e3d] hover:text-white transition-all duration-200 group">
-                <span className="font-manrope font-normal text-[#8f5e3d] text-sm md:text-base text-center group-hover:text-white">
-                  Get In Touch
-                </span>
-              </button>
+              <Button
+                variant="interior"
+                className="hidden md:flex"
+              >
+                Get In Touch
+              </Button>
 
               {/* Mobile menu button */}
               <Button
@@ -175,17 +176,7 @@ export const Header = () => {
                 </Link>
               ))}
 
-              {/* Mobile Get In Touch Button */}
-              <div className="mt-4 sm:mt-6 pt-4 border-t border-gray-100">
-                <button
-                  className="w-full flex items-center justify-center h-11 sm:h-12 rounded-full border border-[#8f5e3d] bg-transparent hover:bg-[#8f5e3d] hover:text-white transition-all duration-200 group"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <span className="font-manrope font-normal text-[#8f5e3d] text-base text-center group-hover:text-white">
-                    Get In Touch
-                  </span>
-                </button>
-              </div>
+
             </nav>
           </div>
         </div>
