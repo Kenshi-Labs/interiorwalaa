@@ -67,11 +67,11 @@ export const Header = () => {
   const getBackgroundClasses = () => {
     if (!isHomePage) {
       // Non-home pages always use dark background
-      return 'bg-white/25 backdrop-blur-xl';
+      return 'bg-white';
     }
     
     // Home page uses scroll-based background
-    return isScrolled ? 'bg-white/25 backdrop-blur-xl' : 'bg-white';
+    return isScrolled ? 'bg-white' : 'bg-white';
   };
 
   return (
