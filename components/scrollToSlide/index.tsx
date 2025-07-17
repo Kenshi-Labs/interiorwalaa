@@ -38,19 +38,23 @@ const TestimonialCarousel = () => {
   // Handle responsive cards per view
   useEffect(() => {
     const updateCardsPerView = () => {
-      const width = window.innerWidth;
-      if (width < 640) {
-        setCardsPerView(1);
-      } else if (width < 1024) {
-        setCardsPerView(1.5);
-      } else {
-        setCardsPerView(2);
+      if (typeof window !== 'undefined') {
+        const width = window.innerWidth;
+        if (width < 640) {
+          setCardsPerView(1);
+        } else if (width < 1024) {
+          setCardsPerView(1.5);
+        } else {
+          setCardsPerView(2);
+        }
       }
     };
 
     updateCardsPerView();
-    window.addEventListener('resize', updateCardsPerView);
-    return () => window.removeEventListener('resize', updateCardsPerView);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', updateCardsPerView);
+      return () => window.removeEventListener('resize', updateCardsPerView);
+    }
   }, []);
 
   const maxIndex = Math.max(0, testimonials.length - Math.ceil(cardsPerView));
@@ -156,7 +160,7 @@ const TestimonialCarousel = () => {
                       : 'bg-[var(--light-cream)] shadow-md scale-100 z-0 opacity-70'
                     } hover:scale-105 hover:shadow-2xl`}
                   style={{
-                    transform: `translateX(${index * (window.innerWidth < 640 ? 10 : 20)}px) scale(${isFirstCard ? 1.05 : isSecondCard ? 1.02 : 1})`,
+                    transform: `translateX(${index * (typeof window !== 'undefined' && window.innerWidth < 640 ? 10 : 20)}px) scale(${isFirstCard ? 1.05 : isSecondCard ? 1.02 : 1})`,
                     transition: `all 0.5s cubic-bezier(0.4, 0, 0.2, 1)`
                   }}
                 >
@@ -166,7 +170,7 @@ const TestimonialCarousel = () => {
                         ? 'text-[var(--primary-brown)] scale-110'
                         : 'text-[var(--neutral-medium)] scale-100'
                         }`}
-                      size={window.innerWidth < 640 ? 24 : 30}
+                      size={typeof window !== 'undefined' && window.innerWidth < 640 ? 24 : 30}
                     />
                     <div className="animate-fade-in-up">
                       <h4 className={`font-bold font-work-sans text-sm sm:text-base md:text-xl transition-all duration-500 ${isFirstCard

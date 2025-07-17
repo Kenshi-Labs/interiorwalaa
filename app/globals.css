@@ -341,3 +341,13 @@ body {
 .scrollbar-hide {
   -ms-overflow-style: none;
 }
+
+/* Google Map Box Shadow */
+.google-map-shadow {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.google-map-shadow:hover {
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2), 0 12px 24px rgba(0, 0, 0, 0.15);
+}
