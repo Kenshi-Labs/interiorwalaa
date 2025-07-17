@@ -17,8 +17,8 @@ const Card = ({ title, description, isBrown = false, isRotated = false }: {
                 : 'bg-white text-text-primary'
                 } ${isRotated ? 'transform -rotate-3 sm:-rotate-4 lg:-rotate-6' : ''}`}
             style={{
-                backgroundColor: isBrown ? '#9b7961' : undefined,
-                boxShadow: '5px 5px 10px 0px #9b796140',
+                backgroundColor: isBrown ? 'var(--secondary-brown)' : undefined,
+                boxShadow: '5px 5px 10px 0px rgba(155, 121, 97, 0.4)',
             }}
         >
             <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 font-work-sans">
@@ -59,7 +59,7 @@ const WhyChooseUs = () => {
                                     Why
                                 </span>
                                 <span
-                                    className="block font-work-sans font-semibold text-primary-brown"
+                                    className="block font-work-sans font-bold text-primary-brown"
                                 >
                                     Choose Us?
                                 </span>

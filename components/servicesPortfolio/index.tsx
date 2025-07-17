@@ -1,103 +1,13 @@
 'use client'
 import React, { useState } from 'react';
-import { ArrowRight, MoveUpRightIcon } from 'lucide-react';
+import { MoveUpRightIcon, MoveRightIcon } from 'lucide-react';
 import Image from 'next/image';
-
-type TabKey = 'cafe' | 'pub' | 'restaurant' | 'hotel';
+import { servicesData, TabKey } from '../../data/service';
 
 const ServicesPortfolio = () => {
   const [activeTab, setActiveTab] = useState<TabKey>('cafe');
 
-  const tabs: { id: TabKey; label: string }[] = [
-    { id: 'cafe', label: 'Cafe Interiors' },
-    { id: 'pub', label: 'Pub Interiors' },
-    { id: 'restaurant', label: 'Restaurant Interiors' },
-    { id: 'hotel', label: 'Hotel Interiors' }
-  ];
-
-  const portfolioData: Record<TabKey, { id: number; title: string; image: string; description: string; }[]> = {
-    cafe: [
-      {
-        id: 1,
-        title: "Belgian Waffle Factory",
-        image: "https://interiorwalaa.smepulse.in/serviceimg1.jpg",
-        description: "Modern cafe design with warm ambiance"
-      },
-      {
-        id: 2,
-        title: "Wow Momo",
-        image: "https://interiorwalaa.smepulse.in/serviceimg2.jpg",
-        description: "Contemporary momo cafe with vibrant interiors"
-      },
-      {
-        id: 3,
-        title: "Eleven Bakehouse",
-        image: "https://interiorwalaa.smepulse.in/serviceimg3.jpg",
-        description: "Artisanal bakehouse with rustic charm"
-      }
-    ],
-    pub: [
-      {
-        id: 4,
-        title: "The Urban Tap",
-        image: "https://interiorwalaa.smepulse.in/serviceimg1.jpg",
-        description: "Industrial pub design with exposed brick"
-      },
-      {
-        id: 5,
-        title: "Brewmaster's Den",
-        image: "https://interiorwalaa.smepulse.in/serviceimg2.jpg",
-        description: "Traditional pub with modern touches"
-      },
-      {
-        id: 6,
-        title: "Craft & Draft",
-        image: "https://interiorwalaa.smepulse.in/serviceimg3.jpg",
-        description: "Craft beer pub with wooden aesthetics"
-      }
-    ],
-    restaurant: [
-      {
-        id: 7,
-        title: "Spice Garden",
-        image: "https://interiorwalaa.smepulse.in/serviceimg1.jpg",
-        description: "Fine dining with elegant ambiance"
-      },
-      {
-        id: 8,
-        title: "Ocean's Table",
-        image: "https://interiorwalaa.smepulse.in/serviceimg2.jpg",
-        description: "Seafood restaurant with coastal vibes"
-      },
-      {
-        id: 9,
-        title: "Metro Bistro",
-        image: "https://interiorwalaa.smepulse.in/serviceimg3.jpg",
-        description: "Urban bistro with contemporary design"
-      }
-    ],
-    hotel: [
-      {
-        id: 10,
-        title: "Grand Plaza Lobby",
-        image: "https://interiorwalaa.smepulse.in/serviceimg1.jpg",
-        description: "Luxury hotel lobby with marble finishes"
-      },
-      {
-        id: 11,
-        title: "Boutique Suites",
-        image: "https://interiorwalaa.smepulse.in/serviceimg2.jpg",
-        description: "Boutique hotel with personalized comfort"
-      },
-      {
-        id: 12,
-        title: "Resort Paradise",
-        image: "https://interiorwalaa.smepulse.in/serviceimg3.jpg",
-        description: "Tropical resort with natural elements"
-      }
-    ]
-  };
-
+  const { tabs, portfolioData } = servicesData;
   const currentProjects = portfolioData[activeTab];
 
   return (
@@ -106,7 +16,7 @@ const ServicesPortfolio = () => {
         {/* Header Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start lg:items-center mb-8 lg:mb-12">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-work-sans text-gray-900 leading-tight">
-            <span className="text-[var(--primary-brown)] font-semibold">Services</span>
+            <span className="text-[var(--primary-brown)] font-bold">Services</span>
             <br />
             <span className="text-text-primary font-normal">that we offer</span>
           </h2>
@@ -170,7 +80,7 @@ const ServicesPortfolio = () => {
                 </h3>
                 <button className="inline-flex items-center text-white/90 hover:text-white font-medium text-sm sm:text-base transition-colors duration-200 group/link">
                   <span>See this Project</span>
-                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 transition-transform duration-200 group-hover/link:translate-x-1" />
+                  <MoveRightIcon className="w-4 h-4 sm:w-5 sm:h-5 ml-2 transition-transform duration-200 group-hover/link:translate-x-1" />
                 </button>
               </div>
             </div>
@@ -206,7 +116,7 @@ const ServicesPortfolio = () => {
                 </h3>
                 <button className="inline-flex items-center text-white/90 hover:text-white font-medium text-xs sm:text-sm transition-colors duration-200 group/link">
                   <span>See this Project</span>
-                  <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-2 transition-transform duration-200 group-hover/link:translate-x-1" />
+                  <MoveRightIcon className="w-3 h-3 sm:w-4 sm:h-4 ml-2 transition-transform duration-200 group-hover/link:translate-x-1" />
                 </button>
               </div>
             </div>
@@ -242,7 +152,7 @@ const ServicesPortfolio = () => {
                 </h3>
                 <button className="inline-flex items-center text-white/90 hover:text-white font-medium text-xs sm:text-sm transition-colors duration-200 group/link">
                   <span>See this Project</span>
-                  <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-2 transition-transform duration-200 group-hover/link:translate-x-1" />
+                  <MoveRightIcon className="w-3 h-3 sm:w-4 sm:h-4 ml-2 transition-transform duration-200 group-hover/link:translate-x-1" />
                 </button>
               </div>
             </div>
