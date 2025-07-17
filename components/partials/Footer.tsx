@@ -1,5 +1,6 @@
 import React, { JSX } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export const FooterSubsection = (): JSX.Element => {
   const services = [
@@ -10,10 +11,11 @@ export const FooterSubsection = (): JSX.Element => {
   ];
 
   const quickLinks = [
-    { name: "Home" },
-    { name: "About Us" },
-    { name: "Blog" },
-    { name: "Contact" },
+    { name: "Home", href: "/" },
+    { name: "About Us", href: "/about-us" },
+    { name: "Blog", href: "/blogs" },
+    { name: "Our Projects", href: "/our-projects" },
+    { name: "Our Services", href: "/our-services" },
   ];
 
   const socialIcons = [
@@ -178,11 +180,14 @@ export const FooterSubsection = (): JSX.Element => {
                 </h3>
                 <ul className="space-y-3 sm:space-y-3 md:space-y-3 lg:space-y-3">
                   {quickLinks.map((link, index) => (
-                    <li
-                      key={index}
-                      className="text-white/80 text-sm sm:text-sm md:text-sm lg:text-sm font-['Work_Sans'] font-normal text-center md:text-left hover:text-white transition-colors duration-300 cursor-pointer"
-                    >
-                      {link.name}
+                    <li key={index}>
+                      <Link
+                        key={index}
+                        href={link.href}
+                        className="text-white/80 text-sm sm:text-sm md:text-sm lg:text-sm font-['Work_Sans'] font-normal text-center md:text-left hover:text-white transition-colors duration-300 cursor-pointer"
+                      >
+                        {link.name}
+                      </Link>
                     </li>
                   ))}
                 </ul>
