@@ -20,22 +20,27 @@ export const FooterSubsection = (): JSX.Element => {
     {
       name: "Instagram",
       src: "https://interiorwalaa.smepulse.in/Instagram.svg",
+      link:"https://www.instagram.com/interiorwalaa/"
     },
     {
       name: "Facebook",
       src: "https://interiorwalaa.smepulse.in/Facebook.svg",
+        link:"https://www.facebook.com/rrenterprisejpnagar"
     },
     {
       name: "LinkedIn",
       src: "https://interiorwalaa.smepulse.in/LinkedIn%20-%20Negative.svg",
+      link:"https://www.linkedin.com/company/interiorwalaa"
     },
     {
       name: "Twitter",
       src: "https://interiorwalaa.smepulse.in/Vector.svg",
+      link:"https://x.com/Interiorwalaa"
     },
     {
       name: "YouTube",
       src: "https://interiorwalaa.smepulse.in/Youtube.svg",
+      link:""
     },
   ];
 
@@ -110,18 +115,38 @@ export const FooterSubsection = (): JSX.Element => {
             {/* Social Media Icons with enhanced mobile design */}
             <div className="flex items-center justify-center md:justify-start gap-4 sm:gap-4 md:gap-4 lg:gap-4 mb-6 md:mb-6 lg:mb-6">
               {socialIcons.map((icon, index) => (
-                <div
-                  key={index}
-                  className="group cursor-pointer transition-all duration-300 hover:scale-110 hover:opacity-80"
-                >
-                  <Image
-                    width={24}
-                    height={24}
-                    className="w-6 h-6 sm:w-6 sm:h-6 md:w-6 md:h-6 lg:w-6 lg:h-6 opacity-80 group-hover:opacity-100 transition-opacity duration-300"
-                    alt={icon.name}
-                    src={icon.src}
-                  />
-                </div>
+                icon.link ? (
+                  <a
+                    key={index}
+                    href={icon.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group cursor-pointer transition-all duration-300 hover:scale-110 hover:opacity-80"
+                    aria-label={icon.name}
+                  >
+                    <Image
+                      width={24}
+                      height={24}
+                      className="w-6 h-6 opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                      alt={icon.name}
+                      src={icon.src}
+                    />
+                  </a>
+                ) : (
+                  <span
+                    key={index}
+                    className="group opacity-50 cursor-not-allowed"
+                    aria-label={icon.name}
+                  >
+                    <Image
+                      width={24}
+                      height={24}
+                      className="w-6 h-6"
+                      alt={icon.name}
+                      src={icon.src}
+                    />
+                  </span>
+                )
               ))}
             </div>
           </div>
