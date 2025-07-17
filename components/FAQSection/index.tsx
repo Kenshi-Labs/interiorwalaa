@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
+import Image from 'next/image';
 
 const FAQSection = () => {
   const [openItems, setOpenItems] = useState(new Set([3])); // FAQ at index 3 is open by default
@@ -55,7 +56,7 @@ const FAQSection = () => {
     <section className="py-16 lg:py-24 bg-gradient-to-br from-slate-50 to-amber-50 relative overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 opacity-10">
-        <img 
+        <Image 
           src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1920&h=1080&fit=crop" 
           alt="Interior Design Background"
           className="w-full h-full object-cover"

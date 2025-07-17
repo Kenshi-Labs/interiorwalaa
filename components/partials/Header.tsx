@@ -12,7 +12,7 @@ const menuItems = [
   { label: "Our Services", href: "/our-services" },
   { label: "Projects", href: "/projects" },
   { label: "Career", href: "/career" },
-  { label: "Blog", href: "/blog" },
+  { label: "Blogs", href: "/blogs" },
 ];
 
 export const Header = () => {
