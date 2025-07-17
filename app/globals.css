@@ -285,17 +285,17 @@ body {
 /* Text gradient effect */
 .text-gradient {
   background: linear-gradient(
-    0deg,
-    #ffffff 0%,
-    #f0f0f0 25.52%,
-    rgba(171, 162, 150, 0.9) 45%,
-    rgba(171, 162, 150, 0.6) 65.17%,
-    rgba(171, 162, 150, 0.3) 85%,
-    rgba(171, 162, 150, 0.1) 100%
+    180deg,
+    #8f5e3d 0%,
+    #a88c7a 25%,
+    #c0a898 50%,
+    #e8e0d8 75%,
+    #ffffff 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 /* Custom banner gradient */
@@ -388,3 +388,7 @@ body {
   height: auto;
 }
 
+/* Custom box shadow with CSS variable */
+.card-shadow {
+  box-shadow: 5px 5px 10px 0px rgba(155, 121, 97, 0.4);
+}
