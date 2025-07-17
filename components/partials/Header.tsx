@@ -19,7 +19,7 @@ export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  
+
   // Determine if current route is home
   const isHomePage = pathname === '/';
 
@@ -69,9 +69,9 @@ export const Header = () => {
       // Non-home pages always use dark background
       return 'bg-white';
     }
-    
+
     // Home page uses scroll-based background
-    return isScrolled ? 'bg-white/50 backdrop-blur-xl shadow-2xl' : 'bg-white';
+    return isScrolled ? 'bg-white' : 'bg-white';
   };
 
   return (
