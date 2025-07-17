@@ -10,7 +10,7 @@ const menuItems = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about-us" },
   { label: "Our Services", href: "/our-services" },
-  { label: "Projects", href: "/projects" },
+  { label: "Projects", href: "/our-projects" },
   { label: "Career", href: "/career" },
   { label: "Blogs", href: "/blogs" },
 ];
