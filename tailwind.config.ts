@@ -36,6 +36,15 @@ const config: Config = {
                 'bg-tertiary': 'var(--bg-tertiary)',
                 'bg-accent': 'var(--bg-accent)',
                 'white-alt': 'var(--white-alt)',
+            },
+            animation: {
+                'shake-up-down': 'shakeUpDown 0.4s ease-in-out infinite',
+            },
+            keyframes: {
+                shakeUpDown: {
+                    '0%, 100%': { transform: 'translateY(0)' },
+                    '50%': { transform: 'translateY(-2px)' },
+                }
             }
         },
     },
