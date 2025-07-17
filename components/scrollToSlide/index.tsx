@@ -1,12 +1,12 @@
 'use client'
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 
 const TestimonialCarousel = () => {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsPerView, setCardsPerView] = useState(2);
-  const [maxIndex, setMaxIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   const testimonials = [
     {
@@ -18,7 +18,7 @@ const TestimonialCarousel = () => {
     {
       id: 2,
       name: "Raveendra Holla",
-      role: "Customer", 
+      role: "Customer",
       text: "They are one stop shop for all my renovation needs. Finished work on budget, on time with highest quality."
     },
     {
@@ -38,168 +38,216 @@ const TestimonialCarousel = () => {
   // Handle responsive cards per view
   useEffect(() => {
     const updateCardsPerView = () => {
-      const width = window.innerWidth;
-      if (width < 768) {
-        setCardsPerView(1);
-      } else if (width < 1024) {
-        setCardsPerView(1.5);
-      } else {
-        setCardsPerView(2);
+      if (typeof window !== 'undefined') {
+        const width = window.innerWidth;
+        if (width < 640) {
+          setCardsPerView(1);
+        } else if (width < 1024) {
+          setCardsPerView(1.5);
+        } else {
+          setCardsPerView(2);
+        }
       }
     };
 
     updateCardsPerView();
-    window.addEventListener('resize', updateCardsPerView);
-    return () => window.removeEventListener('resize', updateCardsPerView);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', updateCardsPerView);
+      return () => window.removeEventListener('resize', updateCardsPerView);
+    }
   }, []);
 
-  // Update max index based on cards per view
-  useEffect(() => {
-    setMaxIndex(Math.max(0, testimonials.length - Math.ceil(cardsPerView)));
-  }, [cardsPerView, testimonials.length]);
+  const maxIndex = Math.max(0, testimonials.length - Math.ceil(cardsPerView));
 
   const scrollLeft = () => {
-    if (scrollContainerRef.current) {
-      const container = scrollContainerRef.current;
-      const cardWidth = (container.children[0] as HTMLElement).offsetWidth;
-      const gap = window.innerWidth < 768 ? 16 : 24; // Responsive gap
-      const scrollAmount = cardWidth + gap;
-      
-      container.scrollBy({
-        left: -scrollAmount,
-        behavior: 'smooth'
-      });
-      
-      setCurrentIndex(prev => Math.max(0, prev - 1));
-    }
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrentIndex(prev => Math.max(0, prev - 1));
+    setTimeout(() => setIsAnimating(false), 500);
   };
 
   const scrollRight = () => {
-    if (scrollContainerRef.current) {
-      const container = scrollContainerRef.current;
-      const cardWidth = (container.children[0] as HTMLElement).offsetWidth;
-      const gap = window.innerWidth < 768 ? 16 : 24; // Responsive gap
-      const scrollAmount = cardWidth + gap;
-      
-      container.scrollBy({
-        left: scrollAmount,
-        behavior: 'smooth'
-      });
-      
-      setCurrentIndex(prev => Math.min(maxIndex, prev + 1));
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrentIndex(prev => Math.min(maxIndex, prev + 1));
+    setTimeout(() => setIsAnimating(false), 500);
+  };
+
+  // Auto-play functionality
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!isAnimating) {
+        if (currentIndex >= maxIndex) {
+          setCurrentIndex(0);
+        } else {
+          setCurrentIndex(prev => prev + 1);
+        }
+      }
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [currentIndex, maxIndex, isAnimating]);
+
+  // Get visible testimonials based on current index
+  const getVisibleTestimonials = () => {
+    const visible = [];
+    for (let i = 0; i < Math.ceil(cardsPerView); i++) {
+      const index = (currentIndex + i) % testimonials.length;
+      visible.push(testimonials[index]);
     }
+    return visible;
   };
 
   return (
-    <section className="py-8 pl-4 sm:py-12 lg:py-16 sm:pl-8 lg:pl-10 xl:pl-40">
+    <section className="py-6 px-4 sm:py-8 sm:px-6 md:py-12 md:px-8 lg:py-16 lg:pl-10 xl:pl-20 overflow-hidden">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-start">
         {/* Left Column - Header and Navigation */}
-        <div className="space-y-4 sm:space-y-6">
-          <div className="space-y-1 sm:space-y-2">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-gray-900 leading-tight">
+        <div className="space-y-4 sm:space-y-5 text-center lg:text-left">
+          <div className="space-y-2 sm:space-y-3">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl text-black leading-tight font-work-sans font-semibold animate-fade-in">
               What Our Clients Say
             </h2>
-            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-amber-700 leading-tight">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[var(--primary-brown)] leading-tight font-work-sans font-bold animate-fade-in-delay">
               About Us
             </h3>
           </div>
-          
-          <p className="text-gray-600 text-base sm:text-lg leading-relaxed max-w-md">
+
+          <p className="text-[var(--dark-gray)] text-sm sm:text-base md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 font-manrope animate-fade-in-delay-2">
             Get an insight on what our clients say about us
           </p>
-          
+
           {/* Navigation Arrows */}
-          <div className="flex gap-3 sm:gap-4 pt-2 sm:pt-4">
+          <div className="flex gap-3 sm:gap-4 pt-2 sm:pt-4 justify-center lg:justify-start">
             <button
-              title="Scroll left"
+              title="Previous testimonial"
               onClick={scrollLeft}
-              disabled={currentIndex === 0}
-              className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-gray-400 bg-white flex items-center justify-center text-gray-600 hover:border-amber-700 hover:text-amber-700 transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:border-gray-400 disabled:hover:text-gray-600 shadow-sm hover:shadow-md"
+              disabled={currentIndex === 0 || isAnimating}
+              className="group w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-[var(--primary-brown)] bg-white flex items-center justify-center text-[var(--primary-brown)] hover:bg-[var(--primary-brown)] hover:text-white transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-[var(--primary-brown)] shadow-md hover:shadow-xl hover:scale-110 active:scale-95 transform"
             >
-              <ChevronLeft size={window.innerWidth < 640 ? 14 : 16} />
+              <ChevronLeft
+                size={18}
+                className="transition-transform duration-200 group-hover:-translate-x-0.5"
+              />
             </button>
             <button
-              title="Scroll right"
+              title="Next testimonial"
               onClick={scrollRight}
-              disabled={currentIndex >= maxIndex}
-              className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-gray-400 bg-white flex items-center justify-center text-gray-600 hover:border-amber-700 hover:text-amber-700 transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:border-gray-400 disabled:hover:text-gray-600 shadow-sm hover:shadow-md"
+              disabled={currentIndex >= maxIndex || isAnimating}
+              className="group w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-[var(--primary-brown)] bg-white flex items-center justify-center text-[var(--primary-brown)] hover:bg-[var(--primary-brown)] hover:text-white transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-[var(--primary-brown)] shadow-md hover:shadow-xl hover:scale-110 active:scale-95 transform"
             >
-              <ChevronRight size={window.innerWidth < 640 ? 14 : 16} />
+              <ChevronRight
+                size={18}
+                className="transition-transform duration-200 group-hover:translate-x-0.5"
+              />
             </button>
           </div>
         </div>
 
         {/* Right Column - Testimonial Carousel */}
-        <div className="relative">
-          <div
-            ref={scrollContainerRef}
-            className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-hide scroll-smooth pb-2"
-            style={{ scrollSnapType: 'x mandatory' }}
-          >
-            {testimonials.map((testimonial, index) => {
-              const isActive = index === currentIndex;
-              
+        <div className="relative mt-6 lg:mt-0" ref={carouselRef}>
+          <div className="flex gap-3 sm:gap-4 md:gap-6 transition-transform duration-500 ease-out justify-center lg:justify-start">
+            {getVisibleTestimonials().map((testimonial, index) => {
+              const isFirstCard = index === 0;
+              const isSecondCard = index === 1;
+
               return (
                 <div
-                  key={testimonial.id}
-                  className={`flex-shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[380px] p-4 sm:p-6 rounded-xl sm:rounded-2xl transition-all duration-300 ${
-                    isActive 
-                      ? 'bg-[#EFEBE8] shadow-lg scale-[1.02] sm:scale-105 ' 
-                      : 'bg-[#EFEBE8] shadow-md hover:shadow-lg'
-                  }`}
-                  style={{ scrollSnapAlign: 'start' }}
+                  key={`${testimonial.id}-${currentIndex}`}
+                  className={`flex-shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[380px] p-4 sm:p-6 md:p-8 lg:p-10 rounded-2xl sm:rounded-3xl md:rounded-4xl transition-all duration-500 ease-out transform ${isFirstCard
+                    ? 'bg-[var(--light-cream)] shadow-xl scale-105 z-20'
+                    : isSecondCard
+                      ? 'bg-[var(--light-cream)] shadow-lg scale-[1.02] z-10 opacity-90'
+                      : 'bg-[var(--light-cream)] shadow-md scale-100 z-0 opacity-70'
+                    } hover:scale-105 hover:shadow-2xl`}
+                  style={{
+                    transform: `translateX(${index * (typeof window !== 'undefined' && window.innerWidth < 640 ? 10 : 20)}px) scale(${isFirstCard ? 1.05 : isSecondCard ? 1.02 : 1})`,
+                    transition: `all 0.5s cubic-bezier(0.4, 0, 0.2, 1)`
+                  }}
                 >
-       
                   <div className="flex flex-wrap gap-2 mb-3 sm:mb-4">
-                    <Quote 
-                      className={`fill-current transition-colors duration-300 ${
-                        isActive ? 'text-[#8F5E3D]' : 'text-[#F3F4F6]'
-                      }`} 
-                      size={window.innerWidth < 640 ? 30 : 30} 
+                    <Quote
+                      className={`fill-current transition-all duration-500 ${isFirstCard
+                        ? 'text-[var(--primary-brown)] scale-110'
+                        : 'text-[var(--neutral-medium)] scale-100'
+                        }`}
+                      size={typeof window !== 'undefined' && window.innerWidth < 640 ? 24 : 30}
                     />
-                     <div className="">
-                    <h4 className={`font-bold text-base sm:text-lg transition-colors duration-300 ${
-                      isActive ? 'text-[#8F5E3D]' : 'text-[#8F5E3D]'
-                    }`}>
-                      {testimonial.name}
-                    </h4>
-                    <p className={`text-xs sm:text-sm transition-colors duration-300 ${
-                      isActive ? 'text-black' : 'text-black'
-                    }`}>
-                      {testimonial.role}
-                    </p>
+                    <div className="animate-fade-in-up">
+                      <h4 className={`font-bold font-work-sans text-sm sm:text-base md:text-xl transition-all duration-500 ${isFirstCard
+                        ? 'text-[var(--primary-brown)]'
+                        : 'text-[var(--primary-brown)]'
+                        }`}>
+                        {testimonial.name}
+                      </h4>
+                      <p className={`text-xs font-manrope font-semibold sm:text-sm transition-all duration-500 ${isFirstCard
+                        ? 'text-black'
+                        : 'text-black'
+                        }`}>
+                        {testimonial.role}
+                      </p>
+                    </div>
                   </div>
-                  </div>
-                  
-                
-                 
-                  
+
                   {/* Testimonial Text */}
-                  <p className={`text-sm sm:text-base leading-relaxed transition-colors duration-300 ${
-                    isActive ? 'text-[#4F4F4F]' : 'text-[#4F4F4F]'
-                  }`}>
+                  <p className={`text-xs sm:text-sm md:text-base font-manrope leading-relaxed transition-all duration-500 ${isFirstCard
+                    ? 'text-[var(--dark-gray)]'
+                    : 'text-[var(--dark-gray)]'
+                    }`}>
                     {testimonial.text}
                   </p>
                 </div>
               );
             })}
           </div>
-          
-          {/* Mobile Touch Indicator */}
-          <div className="flex justify-center mt-4 lg:hidden">
-            <div className="flex gap-1.5">
-              {testimonials.map((_, index) => (
-                <div
-                  key={index}
-                  className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-colors duration-200 ${
-                    index === currentIndex ? 'bg-amber-700' : 'bg-gray-300'
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fade-in {
+          animation: fadeIn 0.6s ease-out;
+        }
+
+        .animate-fade-in-delay {
+          animation: fadeIn 0.6s ease-out 0.2s both;
+        }
+
+        .animate-fade-in-delay-2 {
+          animation: fadeIn 0.6s ease-out 0.4s both;
+        }
+
+        .animate-fade-in-up {
+          animation: fadeInUp 0.5s ease-out;
+        }
+
+        /* Mobile-specific improvements */
+        @media (max-width: 640px) {
+          .testimonial-card {
+            min-height: 200px;
+          }
+        }
+      `}</style>
     </section>
   );
 };

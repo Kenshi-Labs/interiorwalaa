@@ -1,40 +1,10 @@
 import React from 'react';
 import { Play, MoveRightIcon } from 'lucide-react';
 import { Button } from '../ui/button';
+import { videos } from '@/data/videos';
 
 const VideoGallerySection = () => {
-  const videos = [
-    {
-      id: 1,
-      title: 'Wow Momo',
-      subtitle: 'See this Project',
-      thumbnail: 'https://interiorwalaa.smepulse.in/ourvideos1.png',
-    },
-    {
-      id: 2,
-      title: 'Eleven Bakehouse',
-      subtitle: 'See this Project',
-      thumbnail: 'https://interiorwalaa.smepulse.in/ourvideos2.jpg',
-    },
-    {
-      id: 3,
-      title: 'Sama Calm Studio',
-      subtitle: 'See this Project',
-      thumbnail: 'https://interiorwalaa.smepulse.in/ourvideos3.jpg',
-    },
-    {
-      id: 4,
-      title: 'Belgian Waffle Factory',
-      subtitle: 'See this Project',
-      thumbnail: 'https://interiorwalaa.smepulse.in/ourvideos4.jpg',
-    },
-    {
-      id: 5,
-      title: 'Purani Delhi in M5 Mall',
-      subtitle: 'See this Project',
-      thumbnail: 'https://interiorwalaa.smepulse.in/ourvideos5.jpg',
-    }
-  ];
+
 
   interface Video {
     id: number;
@@ -65,9 +35,9 @@ const VideoGallerySection = () => {
 
       {/* Content - Positioned at bottom right */}
       <div className="absolute bottom-4 right-4 text-white text-right z-10">
-        <h3 className={`font-bold mb-2 ${isLarge ? 'text-lg' : 'text-base'} drop-shadow-lg`}>{video.title}</h3>
+        <h3 className={`font-bold mb-2 ${isLarge ? 'text-lg' : 'text-base'} font-manrope drop-shadow-lg`}>{video.title}</h3>
         <div className="flex items-center gap-2 text-white hover:text-white transition-colors justify-end">
-          <span className={`${isLarge ? 'text-sm' : 'text-xs'} drop-shadow-md`}>{video.subtitle}</span>
+          <span className={`${isLarge ? 'text-sm' : 'text-xs'} drop-shadow-md font-manrope`}>{video.subtitle}</span>
           <MoveRightIcon size={isLarge ? 14 : 12} className="transition-transform duration-200 group-hover:translate-x-1" />
         </div>
       </div>
@@ -82,9 +52,53 @@ const VideoGallerySection = () => {
   );
 
   return (
-    <section className="py-20 px-6 max-w-[1340px] mx-auto">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <section className="py-8 lg:py-20 px-6 max-w-[1340px] mx-auto">
+      {/* Mobile/Tablet Layout */}
+      <div className="lg:hidden">
+        {/* Section Header for Mobile */}
+        <div className="text-center mb-12">
+          <h2 className="text-2xl md:text-4xl font-bold mb-4 font-work-sans">
+            Explore<br />
+            <span className="text-[var(--primary-brown)] text-4xl font-work-sans">Our Videos</span>
+          </h2>
+          <p className="text-base md:text-lg text-[var(--dark-gray)] font-manrope max-w-md mx-auto">
+            Get an insight of our projects
+          </p>
+        </div>
 
+        {/* Mobile Video Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <VideoCard
+            video={videos[1]}
+            className="h-[250px] md:h-[280px]"
+          />
+          <VideoCard
+            video={videos[2]}
+            className="h-[250px] md:h-[280px]"
+          />
+          <VideoCard
+            video={videos[3]}
+            className="h-[250px] md:h-[280px]"
+          />
+          <VideoCard
+            video={videos[4]}
+            className="h-[250px] md:h-[280px]"
+          />
+        </div>
+
+        {/* Mobile CTA Button */}
+        <div className="text-center mt-8">
+          <Button
+            variant="interior"
+            className="shadow-lg"
+          >
+            View All Videos
+          </Button>
+        </div>
+      </div>
+
+      {/* Desktop Layout */}
+      <div className="hidden lg:grid lg:grid-cols-12 gap-8">
         {/* First Column - Large video with text overlay */}
         <div className="lg:col-span-6 relative">
           <VideoCard

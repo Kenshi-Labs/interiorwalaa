@@ -33,6 +33,10 @@ export default function Home() {
           img3: "https://interiorwalaa.smepulse.in/allaboutimg3.png"
         }}
         buttonText="Get In Touch"
+        stats={{
+          number: "150+",
+          label: ["Successful", "Projects"]
+        }}
       />
       <WhatWeOffer />
       <WhyChooseUs />

@@ -21,7 +21,16 @@ const page = () => {
           "Interiorwalaa stands at the forefront of commercial interior designers in Bangalore. With six years of industry leadership and more than 50 spaces transformed nationwide, we excel in designing interiors that resonate with quality and distinction. Our experienced team is well-versed in creating dynamic environments for cafes, pubs, restaurants, and hotels, each designed to enhance functionality and style.",
           "Whether crafting the elegant ambiance of a hotel, the cozy charm of a cafe, the vibrant atmosphere of a pub, or the sophisticated setting of a restaurant, our projects are adventures in creativity, tailored to boost comfort and productivity. Let Interiorwalaa transform your commercial space into a masterpiece. Experience the transformative power of design with us today.",
         ]}
+        images={{
+          img1: "https://interiorwalaa.smepulse.in/allaboutimg1.png",
+          img2: "https://interiorwalaa.smepulse.in/allaboutimg2.png",
+          img3: "https://interiorwalaa.smepulse.in/allaboutimg3.png"
+        }}
         buttonText="Get In Touch"
+        stats={{
+          number: "150+",
+          label: ["Successful", "Projects"]
+        }}
       />
       <WhyChooseUs />
       <ContactSection />
