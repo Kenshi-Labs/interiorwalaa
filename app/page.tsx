@@ -39,11 +39,9 @@ export default function Home() {
       <ServicesPortfolio />
       <ScrollWrapper />
       <FAQSection />
-      <ContactSection />
       <VideoGallerySection />
       <TestimonialCarousel />
       <ContactSection />
-
     </div>
   );
 }

@@ -219,9 +219,7 @@
   --neutral-medium: #f3f4f6;
   --white: #ffffff;
   --white-alt: #fffffe;
-}
 
-@theme inline {
   /* Brand Colors */
   --color-primary: var(--primary-brown);
   --color-secondary: var(--background-brown);
@@ -299,6 +297,16 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* Custom banner gradient */
+.banner-gradient {
+  background: linear-gradient(
+    89.94deg,
+    rgba(0, 0, 0, 0) -0.46%,
+    rgba(0, 0, 0, 0.9) 130.2%
+  );
+}
+
 .text-primary-brown {
   color: var(--primary-brown) !important;
 }
