@@ -71,7 +71,7 @@ export const Header = () => {
     }
     
     // Home page uses scroll-based background
-    return isScrolled ? 'bg-white/25 backdrop-blur-xl' : 'bg-white';
+    return isScrolled ? 'bg-white/50 backdrop-blur-xl shadow-2xl' : 'bg-white';
   };
 
   return (
@@ -103,9 +103,9 @@ export const Header = () => {
                     key={index}
                     href={item.href}
                     className={`${pathname === item.href
-                      ? "font-bold text-[#8f5e3d]"
-                      : "font-normal text-gray-700"
-                      } font-manrope text-base whitespace-nowrap hover:text-[#8f5e3d] transition-colors duration-200`}
+                      ? "font-bold text-[var(--primary-brown)]"
+                      : "font-normal text-dark-gray-alt"
+                      } font-manrope text-base whitespace-nowrap hover:text-[var(--primary-brown)] transition-colors duration-200`}
                   >
                     {item.label}
                   </Link>
@@ -119,16 +119,16 @@ export const Header = () => {
                     key={index}
                     href={item.href}
                     className={`${pathname === item.href
-                      ? "font-medium text-[#8f5e3d]"
-                      : "font-normal text-gray-700"
-                      } font-manrope text-sm whitespace-nowrap hover:text-[#8f5e3d] transition-colors duration-200`}
+                      ? "font-medium text-[var(--primary-brown)]"
+                      : "font-normal text-dark-gray-alt"
+                      } font-manrope text-sm whitespace-nowrap hover:text-[var(--primary-brown)] transition-colors duration-200`}
                   >
                     {item.label}
                   </Link>
                 ))}
                 {/* More dropdown for tablet */}
                 <div className="relative group">
-                  <button className="font-normal text-gray-700 font-manrope text-sm hover:text-[#8f5e3d] transition-colors duration-200 px-2 py-1">
+                  <button className="font-normal text-dark-gray-alt font-manrope text-sm hover:text-[var(--primary-brown)] transition-colors duration-200 px-2 py-1">
                     More
                   </button>
                   <div className="absolute top-full right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
@@ -136,7 +136,7 @@ export const Header = () => {
                       <Link
                         key={index}
                         href={item.href}
-                        className="block px-3 py-2 text-sm text-gray-700 hover:text-[#8f5e3d] hover:bg-gray-50 transition-colors duration-200"
+                        className="block px-3 py-2 text-sm text-dark-gray-alt hover:text-[var(--primary-brown)] hover:bg-gray-50 transition-colors duration-200"
                       >
                         {item.label}
                       </Link>
@@ -180,9 +180,9 @@ export const Header = () => {
                   key={index}
                   href={item.href}
                   className={`block py-3 sm:py-4 px-2 border-b border-gray-100 last:border-b-0 ${pathname === item.href
-                    ? "font-medium text-[#8f5e3d]"
-                    : "font-normal text-gray-700"
-                    } font-manrope text-base sm:text-lg hover:text-[#8f5e3d] transition-colors duration-200`}
+                    ? "font-medium text-[var(--primary-brown)]"
+                    : "font-normal text-dark-gray-alt"
+                    } font-manrope text-base sm:text-lg hover:text-[var(--primary-brown)] transition-colors duration-200`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.label}
