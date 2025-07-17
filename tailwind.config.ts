@@ -15,7 +15,17 @@ const config: Config = {
                 'work-sans': ['Work Sans', 'sans-serif'],
             },
             colors: {
+                // Primary Colors
                 'primary-brown': 'var(--primary-brown)',
+                'black': 'var(--black)',
+
+                // Secondary Colors
+                'secondary-brown': 'var(--secondary-brown)',
+                'dark-gray': 'var(--dark-gray)',
+                'light-cream': 'var(--light-cream)',
+                'dark-gray-alt': 'var(--dark-gray-alt)',
+
+                // Legacy Colors (keeping for compatibility)
                 'background-brown': 'var(--background-brown)',
                 'brown': 'var(--brown)',
                 'text-primary': 'var(--text-primary)',

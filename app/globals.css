@@ -186,24 +186,26 @@
 }
 
 :root {
-  /* Primary Brand Colors */
+  /* Primary Colors */
   --primary-brown: #8f5e3d;
+  --black: #000000;
+
+  /* Secondary Colors */
+  --secondary-brown: #9b7961;
+  --dark-gray: #4f4f4f;
+  --light-cream: #efebe8;
+  --dark-gray-alt: #585859;
+
+  /* Legacy Colors (keeping for compatibility) */
   --background-brown: #e3d9d2;
   --brown: #9b7961;
-  --secondary-brown: #e3d9d2;
-
-  /* Text Colors */
   --text-primary: #262626;
   --text-secondary: #4e4c51;
   --text-muted: #585859;
-
-  /* Background Colors */
   --bg-primary: #ffffff;
   --bg-secondary: #f5f5f5;
   --bg-tertiary: #fbfbfe;
   --bg-accent: #f1f2f9;
-
-  /* Gray Scale */
   --gray-100: #f5f5f5;
   --gray-200: #ededed;
   --gray-300: #d9d9d9;
@@ -213,18 +215,11 @@
   --gray-700: #262626;
   --gray-800: #201f1d;
   --gray-900: #1e1e1e;
-
-  /* Neutral Colors */
   --neutral-light: #efebe8;
   --neutral-medium: #f3f4f6;
-
-  /* Base Colors */
   --white: #ffffff;
   --white-alt: #fffffe;
-  --black: #000000;
-}
 
-@theme inline {
   /* Brand Colors */
   --color-primary: var(--primary-brown);
   --color-secondary: var(--background-brown);
@@ -302,6 +297,16 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* Custom banner gradient */
+.banner-gradient {
+  background: linear-gradient(
+    89.94deg,
+    rgba(0, 0, 0, 0) -0.46%,
+    rgba(0, 0, 0, 0.9) 130.2%
+  );
+}
+
 .text-primary-brown {
   color: var(--primary-brown) !important;
 }
@@ -309,7 +314,6 @@ body {
 .bg-primary-brown {
   background-color: var(--primary-brown) !important;
 }
-
 
 @keyframes marquee {
   0% {
@@ -323,7 +327,6 @@ body {
 .animate-marquee {
   animation: marquee 15s linear infinite;
 }
-
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
