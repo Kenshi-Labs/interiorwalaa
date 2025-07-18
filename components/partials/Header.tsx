@@ -10,9 +10,9 @@ const menuItems = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about-us" },
   { label: "Our Services", href: "/our-services" },
-  { label: "Projects", href: "/our-projects" },
-  { label: "Career", href: "/career" },
-  { label: "Blogs", href: "/blogs" },
+  { label: "Projects", href: "/about-us" },
+  { label: "Career", href: "/about-us" },
+  { label: "Blogs", href: "/about-us" },
 ];
 
 export const Header = () => {

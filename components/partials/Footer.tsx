@@ -13,8 +13,8 @@ export const FooterSubsection = (): JSX.Element => {
   const quickLinks = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about-us" },
-    { name: "Blog", href: "/blogs" },
-    { name: "Our Projects", href: "/our-projects" },
+    { name: "Blog", href: "/about-us" },
+    { name: "Our Projects", href: "/about-us" },
     { name: "Our Services", href: "/our-services" },
   ];
 
