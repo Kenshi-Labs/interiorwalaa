@@ -10,9 +10,9 @@ const menuItems = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about-us" },
   { label: "Our Services", href: "/our-services" },
-  { label: "Projects", href: "/about-us" },
-  { label: "Career", href: "/about-us" },
-  { label: "Blogs", href: "/about-us" },
+  { label: "Projects", href: "/our-projects" },
+  { label: "Career", href: "/career" },
+  { label: "Blogs", href: "/blogs" },
 ];
 
 export const Header = () => {
@@ -87,7 +87,7 @@ export const Header = () => {
                 <Image
                   width={188}
                   height={49}
-                  className="w-[120px] h-[31px] sm:w-[140px] sm:h-[36px] md:w-[160px] md:h-[42px] lg:w-[188px] lg:h-[49px]"
+                  className="w-[120px] h-[31px] sm:w-[140px] sm:h-[36px] md:w-[160px] md:h-[42px] lg:w-[200px] lg:h-[52px]"
                   alt="Interiorwalaa Logo"
                   src="https://interiorwalaa.smepulse.in/Logo.png"
                 />
