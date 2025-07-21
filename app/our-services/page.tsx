@@ -9,18 +9,18 @@ import React from 'react'
 const page = () => {
   return (
     <div>
-       <InternalBanner
+      <InternalBanner
         title="Our Services"
         subtitle="Interiorwala stands at the forefront of commercial interior designers in Bangalore"
-        backgroundImage="https://interiorwalaa.smepulse.in/warm%20tone%20interior%20design%20hall.png"
+        backgroundImage="https://interiorwalaa.smepulse.in/servicebannerimg.png"
         gradientDirection="left"
       />
-         <WhatWeOffer />
-         <ScrollWrapper />
-         <ServicesPortfolio />
+      <WhatWeOffer />
+      <ScrollWrapper />
+      <ServicesPortfolio />
 
-         <FAQSection />
-         <ContactSection />
+      <FAQSection />
+      <ContactSection />
     </div>
   )
 }
