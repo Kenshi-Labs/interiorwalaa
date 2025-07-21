@@ -13,8 +13,8 @@ export const FooterSubsection = (): JSX.Element => {
   const quickLinks = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about-us" },
-    { name: "Blog", href: "/about-us" },
-    { name: "Our Projects", href: "/about-us" },
+    { name: "Blog", href: "#" },
+    { name: "Our Projects", href: "#" },
     { name: "Our Services", href: "/our-services" },
   ];
 
@@ -22,27 +22,27 @@ export const FooterSubsection = (): JSX.Element => {
     {
       name: "Instagram",
       src: "https://interiorwalaa.smepulse.in/Instagram.svg",
-      link:"https://www.instagram.com/interiorwalaa/"
+      link: "https://www.instagram.com/interiorwalaa/"
     },
     {
       name: "Facebook",
       src: "https://interiorwalaa.smepulse.in/Facebook.svg",
-        link:"https://www.facebook.com/rrenterprisejpnagar"
+      link: "https://www.facebook.com/rrenterprisejpnagar"
     },
     {
       name: "LinkedIn",
       src: "https://interiorwalaa.smepulse.in/LinkedIn%20-%20Negative.svg",
-      link:"https://www.linkedin.com/company/interiorwalaa"
+      link: "https://www.linkedin.com/company/interiorwalaa"
     },
     {
       name: "Twitter",
       src: "https://interiorwalaa.smepulse.in/Vector.svg",
-      link:"https://x.com/Interiorwalaa"
+      link: "https://x.com/Interiorwalaa"
     },
     {
       name: "YouTube",
       src: "https://interiorwalaa.smepulse.in/Youtube.svg",
-      link:""
+      link: ""
     },
   ];
 
