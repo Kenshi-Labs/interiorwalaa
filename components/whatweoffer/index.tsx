@@ -48,33 +48,47 @@ const WhatWeOffer = () => {
                 }}
               >
                 <div
-                  className="group rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-4xl p-4 sm:p-6 md:p-8 lg:p-10 border border-gray-100 h-full flex flex-col items-center text-center bg-[var(--bg-secondary)] hover:shadow-lg transition-shadow duration-300"
+                  className="group relative rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-4xl border border-gray-100 h-full flex flex-col items-center text-center bg-[var(--bg-secondary)] transition-shadow duration-300 overflow-hidden"
                 >
-                  {/* Icon Container */}
-                  <div
-                    className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-lg sm:rounded-xl md:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 md:mb-6 lg:mb-8"
-                  >
-                    <Image
-                      src={service.icon}
-                      alt={service.title}
-                      className="w-6 h-6 sm:w-8 sm:h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 object-contain"
-                      width={100}
-                      height={100}
-                      unoptimized={true}
-                      loading='lazy'
-                    />
+                  {/* Theater Screen Background Animation - Icon size only */}
+                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-32 lg:h-32 bg-primary-brown -translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-out rounded-b-lg sm:rounded-b-xl md:rounded-b-xl"></div>
+
+                  {/* Content Container with Padding */}
+                  <div className="relative z-10 p-2 sm:p-4 md:p-5 lg:p-6 flex flex-col items-center h-full">
+                    {/* Icon Container */}
+                    <div
+                      className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-lg sm:rounded-xl md:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 md:mb-4 lg:mb-8"
+                    >
+                      {/* Icon */}
+                      <Image
+                        src={service.icon}
+                        alt={service.title}
+                        className="w-6 h-6 sm:w-8 sm:h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 object-contain transition-all duration-300 group-hover:hidden"
+                        width={100}
+                        height={100}
+                        unoptimized={true}
+                        loading='lazy'
+                      />
+                      <Image
+                        src={service.whiteicon}
+                        alt={service.title}
+                        className="w-6 h-6 sm:w-8 sm:h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 object-contain transition-all duration-300 hidden group-hover:block"
+                        width={100}
+                        height={100}
+                        unoptimized={true}
+                        loading='lazy'
+                      />
+                    </div>
+
+                    {/* Content */}
+                    <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 sm:mb-3 md:mb-4 text-gray-900 font-manrope leading-tight">
+                      {service.title}
+                    </h3>
+
+                    <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed flex-grow px-1 sm:px-2 md:px-0 font-manrope">
+                      {service.description}
+                    </p>
                   </div>
-
-                  {/* Content */}
-                  <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 sm:mb-3 md:mb-4 text-gray-900 font-manrope leading-tight">
-                    {service.title}
-                  </h3>
-
-                  <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed flex-grow px-1 sm:px-2 md:px-0 font-manrope">
-                    {service.description}
-                  </p>
-
-
                 </div>
               </div>
             );
