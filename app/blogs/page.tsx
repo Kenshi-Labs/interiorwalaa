@@ -1,5 +1,4 @@
 import BlogSection from '@/components/blogsPost'
-import ContactSection from '@/components/contact'
 import InternalBanner from '@/components/internalbanner'
 import NewsletterSection from '@/components/projectContact'
 
@@ -16,7 +15,6 @@ const page = () => {
       />
       <BlogSection />
       <NewsletterSection />
-      <ContactSection />
     </div>
   )
 }
