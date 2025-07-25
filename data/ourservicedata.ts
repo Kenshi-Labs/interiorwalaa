@@ -111,3 +111,32 @@ export const serviceProjects: ServiceProject[] = [
         category: 'hotel'
     }
 ];
+
+// Service Planning Data
+export interface ServicePlanningItem {
+    image: string;
+    title: string;
+    description: string;
+    alt: string;
+}
+
+export const servicePlanningData: ServicePlanningItem[] = [
+    {
+        image: "https://interiorwalaa.smepulse.in/ourserviceimg1.jpg",
+        title: "Interior Planning",
+        description: "Our experienced team is well-versed in creating dynamic environments for cafes, pubs, restaurants, and hotels, each designed to enhance functionality and style.",
+        alt: "Interior Planning"
+    },
+    {
+        image: "https://interiorwalaa.smepulse.in/ourserviceimg2.jpg",
+        title: "Architecture",
+        description: "Our experienced team is well-versed in creating dynamic environments for cafes, pubs, restaurants, and hotels, each designed to enhance functionality and style.",
+        alt: "Architecture"
+    },
+    {
+        image: "https://interiorwalaa.smepulse.in/ourserviceimg3.jpg",
+        title: "Exterior",
+        description: "Our experienced team is well-versed in creating dynamic environments for cafes, pubs, restaurants, and hotels, each designed to enhance functionality and style.",
+        alt: "Exterior"
+    }
+];
