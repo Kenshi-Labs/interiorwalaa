@@ -1,10 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
-
-interface ContentCard {
-  title: string
-  description: string
-}
+import type { ContentCard } from '@/data/aboutuswelcome'
+import { Button } from './ui/button'
 
 interface WelcomeSectionProps {
   backgroundImage: string
@@ -15,11 +12,12 @@ interface WelcomeSectionProps {
 }
 
 const ContentCard = ({ title, description }: ContentCard) => (
-  <div className='bg-white/95 max-w-2xl backdrop-blur-sm rounded-br-2xl rounded-tr-2xl p-4 sm:p-5 lg:p-6 shadow-lg hover:shadow-xl transition-shadow duration-300'>
-    <h3 className='text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 font-work-sans'>
-      {title}
+  <div className='bg-white max-w-xl backdrop-blur-sm rounded-br-4xl rounded-tr-4xl p-4 sm:p-5 lg:px-6 lg:py-4 transition-all duration-300 hover:bg-[var(--primary-brown)] hover:shadow-xl cursor-pointer group'>
+    <h3 className='text-base sm:text-lg lg:text-2xl mb-3 sm:mb-2 font-work-sans transition-colors duration-300'>
+      <span className='text-black font-medium group-hover:text-white'>{title.split(' ')[0]}</span>
+      <span className='text-[var(--primary-brown)] font-extrabold group-hover:text-white'> {title.split(' ').slice(1).join(' ')}</span>
     </h3>
-    <p className='text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed font-manrope'>
+    <p className='text-xs sm:text-sm lg:text-sm text-gray-700 leading-relaxed font-manrope transition-colors duration-300 group-hover:text-white'>
       {description}
     </p>
   </div>
@@ -33,24 +31,31 @@ const WelcomeSection: React.FC<WelcomeSectionProps> = ({
   className = ''
 }) => {
   return (
-    <section className={`py-12 sm:py-16 lg:py-20 ${className}`}>
-      <div className=' '>
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-start'>
-          
+    <section className={`${className}`}>
+      <div className=''>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-stretch min-h-[600px]'>
+
           {/* Left Column - Main Content (Clean Background) */}
-          <div className='bg-white lg:pl-32 md:pl-12 pl-0 mx-5'>
-              <h1 className='text-2xl sm:text-3xl md:text-start text-center text-nowrap lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 font-work-sans leading-tight'>
+          <div className='bg-white lg:pl-32 md:pl-12 pl-0 mx-5 flex flex-col justify-center py-12 sm:py-16 lg:py-20'>
+            <h1 className='text-xl sm:text-2xl md:text-start text-center lg:text-3xl xl:text-4xl font-bold text-black mb-4 sm:mb-4 font-work-sans leading-tight'>
               {mainTitle}
             </h1>
-            <p className='text-base sm:text-lg lg:text-xl text-gray-700 leading-relaxed font-manrope md:text-start text-center text-wrap'>
+            <p className='text-sm sm:text-base lg:text-base text-gray-700 leading-relaxed font-manrope font-medium md:text-start text-left text-pretty break-words hyphens-auto mb-8 whitespace-pre-line'>
               {mainDescription}
             </p>
+            {/* Get In Touch Button */}
+            <Button
+              variant="interior"
+              className="w-fit md:self-start self-center"
+            >
+              Get In Touch
+            </Button>
           </div>
 
           {/* Right Column - Content Cards with Background */}
-          <div className='relative'>
+          <div className='relative h-full min-h-[500px]'>
             {/* Background Image for Cards Section Only */}
-            <div className='absolute inset-0 z-0 rounded-bl-2xl rounded-tl-2xl overflow-hidden'>
+            <div className='absolute inset-0 z-0 overflow-hidden h-full'>
               <Image
                 src={backgroundImage}
                 alt="Interior design background"
@@ -58,12 +63,14 @@ const WelcomeSection: React.FC<WelcomeSectionProps> = ({
                 className='object-cover'
                 priority
               />
-              {/* Overlay for better card readability */}
+              {/* Gradient Overlay for better visual appeal */}
+              <div className='absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/10' />
+              {/* Additional overlay for better card readability */}
               <div className='absolute inset-0 bg-black/20' />
             </div>
-            
+
             {/* Cards Container */}
-            <div className='relative z-10 py-6 sm:py-8 pr-6 sm:pr-8 space-y-4 sm:space-y-6'>
+            <div className='relative z-10 py-6 sm:py-8 pr-6 sm:pr-8 space-y-4 sm:space-y-10 h-full flex flex-col justify-center'>
               {cards.map((card, index) => (
                 <ContentCard
                   key={index}
@@ -78,7 +85,5 @@ const WelcomeSection: React.FC<WelcomeSectionProps> = ({
     </section>
   )
 }
-
-
 
 export default WelcomeSection
