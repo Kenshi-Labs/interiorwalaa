@@ -15,11 +15,10 @@ const page = () => {
         backgroundImage="https://interiorwalaa.smepulse.in/Rectangle%2034626854.png"
         gradientDirection="left"
       />
-       <Serviceplanning />
-         <ScrollWrapper />
-         <ServicesPortfolio />
-
-         <ServiceContact />
+      <Serviceplanning />
+      <ScrollWrapper />
+      <ServicesPortfolio />
+      <ServiceContact />
     </div>
   )
 }
