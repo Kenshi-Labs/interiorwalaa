@@ -36,11 +36,11 @@ const WelcomeSection: React.FC<WelcomeSectionProps> = ({
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-stretch min-h-[600px]'>
 
           {/* Left Column - Main Content (Clean Background) */}
-          <div className='bg-white lg:pl-32 md:pl-12 pl-0 mx-5 flex flex-col justify-center py-12 sm:py-16 lg:py-20'>
-            <h1 className='text-xl sm:text-2xl md:text-start text-center lg:text-3xl xl:text-4xl font-bold text-black mb-4 sm:mb-4 font-work-sans leading-tight'>
+          <div className='bg-white lg:pl-20 md:pl-12 pl-0 mx-5 flex flex-col justify-center pt-12 sm:py-16 lg:py-20'>
+            <h1 className='text-2xl sm:text-2xl lg:text-left text-center lg:text-3xl xl:text-4xl font-bold text-black mb-4 sm:mb-4 font-work-sans leading-tight'>
               {mainTitle}
             </h1>
-            <p className='text-sm sm:text-base lg:text-base text-gray-700 leading-relaxed font-manrope font-medium md:text-start text-left text-pretty break-words hyphens-auto mb-8 whitespace-pre-line'>
+            <p className='max-w-xl text-sm sm:text-base text-center lg:text-left text-gray-700 leading-relaxed font-manrope font-medium text-pretty break-words hyphens-auto mb-8 whitespace-pre-line'>
               {mainDescription}
             </p>
             {/* Get In Touch Button */}
