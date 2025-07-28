@@ -2,106 +2,25 @@
 import Image from 'next/image';
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import { projects } from '@/data/projects';
 
 const GallerySection = () => {
   const router = useRouter();
 
-  // Gallery images data with client cards
-  const topRowImages = [
-    {
-      id: 1,
-      src: "https://interiorwalaa.smepulse.in/643d0a12c41f409f8b9ad632431f1f7e02deeb6f.jpg",
-      alt: "Modern corridor with industrial design elements",
-      category: "Commercial",
-      clientName: "Tech Startup Hub",
-      slug: "tech-startup-hub",
-      description: "We've designed and curated pieces that are a cut above your average home goods."
-    },
-    {
-      id: 2,
-      src: "https://interiorwalaa.smepulse.in/21aac1dbc99e33d922b13dc7d7677367fa7d906d.jpg",
-      alt: "Cozy cafe interior with warm lighting",
-      category: "Hospitality",
-      clientName: "Urban Coffee Co",
-      slug: "urban-coffee-co",
-      description: "We've designed and curated pieces that are a cut above your average home goods."
-    },
-    {
-      id: 3,
-      src: "https://interiorwalaa.smepulse.in/a506b29235acd804840bf8e65834cdc504afc47f.jpg",
-      alt: "Minimalist dining room with wooden furniture",
-      category: "Residential",
-      clientName: "The Hendersons",
-      slug: "the-hendersons",
-      description: "We've designed and curated pieces that are a cut above your average home goods."
-    },
-    {
-      id: 4,
-      src: "https://interiorwalaa.smepulse.in/bfac9f222d64991bc5cea91fdacd015c3717b851.jpg",
-      alt: "Bright workspace with modern furniture",
-      category: "Office",
-      clientName: "Creative Agency",
-      slug: "creative-agency",
-      description: "We've designed and curated pieces that are a cut above your average home goods."
-    },
-    {
-      id: 5,
-      src: "https://interiorwalaa.smepulse.in/e853760eeddaf4327b3e5b027b7957b9bf39d601.jpg",
-      alt: "Elegant living room with red accent wall",
-      category: "Residential",
-      clientName: "Villa Moderna",
-      slug: "villa-moderna",
-      description: "We've designed and curated pieces that are a cut above your average home goods."
-    }
-  ];
+  // Generate image data from projects
+  const galleryImages = projects.map((project) => ({
+    id: project.id,
+    src: project.image,
+    alt: project.title,
+    category: project.category,
+    clientName: project.clientName,
+    slug: project.slug,
+    description: project.description,
+  }));
 
-  const bottomRowImages = [
-    {
-      id: 6,
-      src: "https://interiorwalaa.smepulse.in/643d0a12c41f409f8b9ad632431f1f7e02deeb6f.jpg",
-      alt: "Industrial style interior with exposed elements",
-      category: "Commercial",
-      clientName: "Factory Loft",
-      slug: "factory-loft",
-      description: "We've designed and curated pieces that are a cut above your average home goods."
-    },
-    {
-      id: 7,
-      src: "https://interiorwalaa.smepulse.in/21aac1dbc99e33d922b13dc7d7677367fa7d906d.jpg",
-      alt: "Contemporary seating area with unique lighting",
-      category: "Hospitality",
-      clientName: "Boutique Hotel",
-      slug: "boutique-hotel",
-      description: "We've designed and curated pieces that are a cut above your average home goods."
-    },
-    {
-      id: 8,
-      src: "https://interiorwalaa.smepulse.in/a506b29235acd804840bf8e65834cdc504afc47f.jpg",
-      alt: "Modern dining space with sleek design",
-      category: "Residential",
-      clientName: "Penthouse Suite",
-      slug: "penthouse-suite",
-      description: "We've designed and curated pieces that are a cut above your average home goods."
-    },
-    {
-      id: 9,
-      src: "https://interiorwalaa.smepulse.in/bfac9f222d64991bc5cea91fdacd015c3717b851.jpg",
-      alt: "Creative workspace with natural elements",
-      category: "Office",
-      clientName: "Design Studio",
-      slug: "design-studio",
-      description: "We've designed and curated pieces that are a cut above your average home goods."
-    },
-    {
-      id: 10,
-      src: "https://interiorwalaa.smepulse.in/e853760eeddaf4327b3e5b027b7957b9bf39d601.jpg",
-      alt: "Warm restaurant interior with rich colors",
-      category: "Hospitality",
-      clientName: "Gourmet Bistro",
-      slug: "gourmet-bistro",
-      description: "We've designed and curated pieces that are a cut above your average home goods."
-    }
-  ];
+  // Optionally split for top/bottom rows, or use all for both
+  const topRowImages = galleryImages.slice(0, Math.ceil(galleryImages.length / 2));
+  const bottomRowImages = galleryImages.slice(Math.ceil(galleryImages.length / 2));
 
   interface ImageProps {
     src: string;
@@ -113,12 +32,12 @@ const GallerySection = () => {
   }
 
   const handleCardClick = (slug: string) => {
-    router.push(`/projects/${slug}`);
+    router.push(`/our-projects/${slug}`);
   };
 
   const handleButtonClick = (e: React.MouseEvent, slug: string) => {
     e.stopPropagation(); // Prevent card click when button is clicked
-    router.push(`/projects/${slug}`);
+    router.push(`/our-projects/${slug}`);
   };
 
   const ClientCard = ({ image }: { image: ImageProps }) => (
