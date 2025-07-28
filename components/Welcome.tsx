@@ -14,7 +14,7 @@ interface WelcomeSectionProps {
 const ContentCard = ({ title, description }: ContentCard) => (
   <div className='bg-white max-w-xl backdrop-blur-sm rounded-br-4xl rounded-tr-4xl p-4 sm:p-5 lg:px-6 lg:py-4 transition-all duration-300 hover:bg-[var(--primary-brown)] hover:shadow-xl cursor-pointer group'>
     <h3 className='text-base sm:text-lg lg:text-2xl mb-3 sm:mb-2 font-work-sans transition-colors duration-300'>
-      <span className='text-black font-medium group-hover:text-white'>{title.split(' ')[0]}</span>
+      <span className='text-black font-medium  group-hover:text-white'>{title.split(' ')[0]}</span>
       <span className='text-[var(--primary-brown)] font-extrabold group-hover:text-white'> {title.split(' ').slice(1).join(' ')}</span>
     </h3>
     <p className='text-xs sm:text-sm lg:text-sm text-gray-700 leading-relaxed font-manrope transition-colors duration-300 group-hover:text-white'>

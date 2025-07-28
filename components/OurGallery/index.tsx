@@ -10,10 +10,10 @@ const OurGallery = () => {
           <div className="flex flex-col gap-[8px] sm:gap-[12px] md:gap-[14px] lg:gap-[16px] justify-start items-center w-full mt-[2px] sm:mt-[3px] md:mt-[3px] lg:mt-[4px]">
             {/* Gallery Header */}
             <div className="flex flex-col gap-[2px] sm:gap-[3px] md:gap-[3px] lg:gap-[4px] justify-start items-center">
-              <p className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[14px] font-work-sans  font-semibold leading-[14px] sm:leading-[15px] md:leading-[16px] lg:leading-[18px] text-center text-[#616161]">
+              <p className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[14px] font-['WorkSans']  font-semibold leading-[14px] sm:leading-[15px] md:leading-[16px] lg:leading-[18px] text-center text-[#616161]">
                 Our Recent Projects
               </p>
-              <h2 className="text-[15px] sm:text-[22px] md:text-[26px] lg:text-[30px] font-work-sans font-extrabold leading-[18px] sm:leading-[27px] md:leading-[31px] lg:leading-[36px] text-center text-primary-brown">
+              <h2 className="text-[15px] sm:text-[22px] md:text-[26px] lg:text-[30px] font-['WorkSans'] font-semibold leading-[18px] sm:leading-[27px] md:leading-[31px] lg:leading-[36px] text-center text-primary-brown">
                 #OurGallery
               </h2>
             </div>

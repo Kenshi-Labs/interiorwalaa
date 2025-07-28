@@ -109,7 +109,7 @@ export const FooterSubsection = (): JSX.Element => {
             </div>
 
             {/* Enhanced description with better typography */}
-            <p className="text-white/90 text-sm sm:text-base md:text-base lg:text-base leading-relaxed font-['Work_Sans'] max-w-xl mx-auto md:mx-0 mb-6 md:mb-6 lg:mb-6">
+            <p className="text-white/90 text-sm sm:text-base md:text-base lg:text-base leading-relaxed font-['WorkSans'] max-w-xl mx-auto md:mx-0 mb-6 md:mb-6 lg:mb-6">
               Interiorwalaa offers end to end interior design, fit-outs, and
               turnkey execution services pan India.
             </p>
@@ -118,7 +118,7 @@ export const FooterSubsection = (): JSX.Element => {
             <div className="flex items-center justify-center md:justify-start gap-4 sm:gap-4 md:gap-4 lg:gap-4 mb-6 md:mb-6 lg:mb-6">
               {socialIcons.map((icon, index) => (
                 icon.link ? (
-                  <a
+                  <Link
                     key={index}
                     href={icon.link}
                     target="_blank"
@@ -133,7 +133,7 @@ export const FooterSubsection = (): JSX.Element => {
                       alt={icon.name}
                       src={icon.src}
                     />
-                  </a>
+                  </Link>
                 ) : (
                   <span
                     key={index}
@@ -158,14 +158,14 @@ export const FooterSubsection = (): JSX.Element => {
             <div className="grid grid-cols-2 gap-8 md:gap-10 lg:gap-10">
               {/* Services */}
               <div className="flex-1">
-                <h3 className="text-white text-lg sm:text-lg md:text-lg lg:text-lg font-['Work_Sans'] font-semibold mb-4 sm:mb-4 md:mb-4 lg:mb-4 text-center md:text-left">
+                <h3 className="text-white text-lg sm:text-lg md:text-lg lg:text-lg font-['WorkSans'] font-semibold mb-4 sm:mb-4 md:mb-4 lg:mb-4 text-center md:text-left">
                   Services
                 </h3>
                 <ul className="space-y-3 sm:space-y-3 md:space-y-3 lg:space-y-3">
                   {services.map((service, index) => (
                     <li
                       key={index}
-                      className="text-white/80 text-sm sm:text-sm md:text-sm lg:text-sm font-['Work_Sans'] font-normal text-center md:text-left hover:text-white transition-colors duration-300 cursor-pointer"
+                      className="text-white/80 text-sm sm:text-sm md:text-sm lg:text-sm font-['WorkSans'] font-normal text-center md:text-left hover:text-white transition-colors duration-300 cursor-pointer"
                     >
                       {service.name}
                     </li>
@@ -175,7 +175,7 @@ export const FooterSubsection = (): JSX.Element => {
 
               {/* Quick Links */}
               <div className="flex-1">
-                <h3 className="text-white text-lg sm:text-lg md:text-lg lg:text-lg font-['Work_Sans'] font-semibold mb-4 sm:mb-4 md:mb-4 lg:mb-4 text-center md:text-left">
+                <h3 className="text-white text-lg sm:text-lg md:text-lg lg:text-lg font-['WorkSans'] font-semibold mb-4 sm:mb-4 md:mb-4 lg:mb-4 text-center md:text-left">
                   Quick Links
                 </h3>
                 <ul className="space-y-3 sm:space-y-3 md:space-y-3 lg:space-y-3">
@@ -184,7 +184,7 @@ export const FooterSubsection = (): JSX.Element => {
                       <Link
                         key={index}
                         href={link.href}
-                        className="text-white/80 text-sm sm:text-sm md:text-sm lg:text-sm font-['Work_Sans'] font-normal text-center md:text-left hover:text-white transition-colors duration-300 cursor-pointer"
+                        className="text-white/80 text-sm sm:text-sm md:text-sm lg:text-sm font-['WorkSans'] font-normal text-center md:text-left hover:text-white transition-colors duration-300 cursor-pointer"
                       >
                         {link.name}
                       </Link>
@@ -197,7 +197,7 @@ export const FooterSubsection = (): JSX.Element => {
 
           {/* Recent Work - Enhanced Mobile Grid */}
           <div className="flex flex-col order-3 md:order-3 lg:order-3 md:col-span-2 lg:col-span-1">
-            <h3 className="text-white text-lg sm:text-lg md:text-lg lg:text-lg font-['Work_Sans'] font-semibold mb-4 sm:mb-4 md:mb-4 lg:mb-4 text-center md:text-left">
+            <h3 className="text-white text-lg sm:text-lg md:text-lg lg:text-lg font-['WorkSans'] font-semibold mb-4 sm:mb-4 md:mb-4 lg:mb-4 text-center md:text-left">
               Recent Work
             </h3>
             <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-3 sm:gap-3 md:gap-3 lg:gap-5">
@@ -222,10 +222,10 @@ export const FooterSubsection = (): JSX.Element => {
         {/* Enhanced Footer Bottom */}
         <div className="mt-8 sm:mt-8 md:mt-8 lg:mt-8 pt-6 sm:pt-6 md:pt-6 lg:pt-6 border-t border-white/20">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-4 md:gap-4 lg:gap-4">
-            <div className="text-white/70 text-sm sm:text-sm md:text-sm lg:text-sm font-['Work_Sans'] text-center sm:text-left">
+            <div className="text-white/70 text-sm sm:text-sm md:text-sm lg:text-sm font-['WorkSans'] text-center sm:text-left">
               Copyright @ 2025 | All rights reserved
             </div>
-            <div className="text-white/70 text-sm sm:text-sm md:text-sm lg:text-sm font-['Work_Sans'] text-center sm:text-right">
+            <div className="text-white/70 text-sm sm:text-sm md:text-sm lg:text-sm font-['WorkSans'] text-center sm:text-right">
               Created with love by{" "}
               <span className="font-semibold text-white hover:text-white/80 transition-colors duration-300 cursor-pointer">
                 Kenshi Labs

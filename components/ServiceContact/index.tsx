@@ -45,7 +45,7 @@ const ServiceContact = () => {
           <div className="flex flex-col justify-start items-start w-full lg:w-[50%] p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12">
             {/* Header */}
             <div className="mb-4 sm:mb-6 md:mb-8 w-full">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-work-sans font-semibold leading-tight text-white mb-2 sm:mb-3">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-['WorkSans'] font-semibold leading-tight text-white mb-2 sm:mb-3">
                 Let&apos;s Connect
               </h2>
               <p className="text-sm sm:text-base md:text-lg lg:text-lg font-manrope font-normal leading-relaxed text-white/90">

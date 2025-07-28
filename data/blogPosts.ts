@@ -5,6 +5,7 @@ export interface BlogPost {
   category: string;
   content: string;
   image: string;
+  imagebanner: string;
   slug: string;
 }
 
@@ -12,7 +13,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: "1",
     title: "Before-and-After",
-    excerpt: "Complete makeover of a contemporary restaurant space with stunning results",
+    excerpt: "Restaurant Interior Design That Boosts Customer Experience",
     category: "Interior Design",
     content: `
         <p className="py-4">A restaurant's interior design is crucial for creating customers' total experience. It's not just about aesthetics - it's about creating a space that makes people want to stay longer and return. Great interior design can significantly boost your restaurant's profitability, customer satisfaction, and overall success.</p>
@@ -34,7 +35,7 @@ export const blogPosts: BlogPost[] = [
           <li><strong>Brand consistency builds recognition:</strong> Cohesive design elements reinforce your restaurant's identity</li>
         </ul>
   
-        <img src="https://interiorwalaa.smepulse.in/blogpost1.jpg" alt="Restaurant before and after design transformation" className="w-full h-64 object-cover rounded-lg my-6" />
+        <img src="https://interiorwalaa.smepulse.in/blogpostbanner.jpg" alt="Restaurant before and after design transformation" className="w-full h-64 object-cover rounded-lg my-6" />
   
         <h3>Focus on dining experience design that delights customers</h3>
         <p>Creating an exceptional dining experience goes beyond just good food. The physical environment plays a crucial role in how customers perceive and enjoy their meal. Consider these key elements when designing your restaurant space:</p>
@@ -55,12 +56,13 @@ export const blogPosts: BlogPost[] = [
         <p>Investing in professional restaurant interior design is an investment in your business's future. The right design can transform your space into a destination that customers love to visit and recommend to others.</p>
       `,
     image: "https://interiorwalaa.smepulse.in/blogpost1.jpg",
+    imagebanner: "https://interiorwalaa.smepulse.in/blogpostbanner.jpg",
     slug: "modern-restaurant-interior-design",
   },
   {
     id: "2",
     title: "Before-and-After",
-    excerpt: "How strategic design increased customer satisfaction by 40% in this café makeover",
+    excerpt: "Restaurant Interior Design That Boosts Customer Experience",
     category: "Restaurant Design",
     content: `
         <p>A restaurant's interior design is crucial for creating customers' total experience. It's not just about aesthetics - it's about creating a space that makes people want to stay longer and return. Great interior design can significantly boost your restaurant's profitability, customer satisfaction, and overall success.</p>
@@ -84,7 +86,7 @@ export const blogPosts: BlogPost[] = [
           <li>Local cultural elements that reflect the restaurant's heritage</li>
         </ul>
   
-        <img src="https://interiorwalaa.smepulse.in/blogpost2.jpg" alt="Bangalore restaurant with local cultural design elements" className="w-full h-64 object-cover rounded-lg my-6" />
+        <img src="https://interiorwalaa.smepulse.in/blogpostbanner.jpg" alt="Bangalore restaurant with local cultural design elements" className="w-full h-64 object-cover rounded-lg my-6" />
   
         <h3>Real café redesign: before and after results</h3>
         <p>We recently completed a comprehensive redesign of a popular café in Bangalore. The transformation demonstrates how strategic interior design can dramatically improve both customer experience and business performance.</p>
@@ -96,17 +98,18 @@ export const blogPosts: BlogPost[] = [
         <p>Investing in professional restaurant interior design is an investment in your business's future. The right design can transform your space into a destination that customers love to visit and recommend to others.</p>
       `,
     image: "https://interiorwalaa.smepulse.in/blogpost2.jpg",
+    imagebanner: "https://interiorwalaa.smepulse.in/blogpostbanner.jpg",
     slug: "cozy-cafe-renovation-success",
   },
   {
     id: "3",
     title: "Before-and-After",
-    excerpt: "Professional lighting strategies that enhance ambiance and boost customer experience",
+    excerpt: "Restaurant Interior Design That Boosts Customer Experience",
     category: "Interior Design",
     content: `
         <p>A restaurant's interior design is crucial for creating customers' total experience. It's not just about aesthetics - it's about creating a space that makes people want to stay longer and return. Great interior design can significantly boost your restaurant's profitability, customer satisfaction, and overall success.</p>
   
-        <img src="https://interiorwalaa.smepulse.in/blogpost3.jpg" alt="Restaurant with sophisticated lighting design" className="w-full h-64 object-cover rounded-lg my-6" />
+        <img src="https://interiorwalaa.smepulse.in/blogpostbanner.jpg" alt="Restaurant with sophisticated lighting design" className="w-full h-64 object-cover rounded-lg my-6" />
   
         <h2>Transform your space with restaurant interior design</h2>
         <p>Thinking about transforming your restaurant space? Here's what you need to know about restaurant interior design and how it can revolutionize your customer experience.</p>
@@ -120,7 +123,7 @@ export const blogPosts: BlogPost[] = [
   
         <p><strong>Acoustic considerations:</strong> Manage noise levels to ensure comfortable conversation while maintaining an energetic atmosphere.</p>
   
-        <img src="https://interiorwalaa.smepulse.in/blogpost3.jpg" alt="Restaurant dining area with layered lighting" className="w-full h-64 object-cover rounded-lg my-6" />
+        <img src="https://interiorwalaa.smepulse.in/blogpostbanner.jpg" alt="Restaurant dining area with layered lighting" className="w-full h-64 object-cover rounded-lg my-6" />
   
         <h3>Combine efficiency and beauty with restaurant interior design</h3>
         <p>The best restaurant interior designs seamlessly blend functionality with aesthetics. Every design element should serve both practical and visual purposes, creating a space that's both beautiful and efficient.</p>
@@ -136,12 +139,13 @@ export const blogPosts: BlogPost[] = [
         <p>Investing in professional restaurant interior design is an investment in your business's future. The right design can transform your space into a destination that customers love to visit and recommend to others.</p>
       `,
     image: "https://interiorwalaa.smepulse.in/blogpost3.jpg",
+    imagebanner: "https://interiorwalaa.smepulse.in/blogpostbanner.jpg",
     slug: "lighting-design-transforms-dining",
   },
   {
     id: "4",
     title: "Before-and-After",
-    excerpt: "How smart spatial planning improves workflow efficiency and customer flow",
+    excerpt: "Restaurant Interior Design That Boosts Customer Experience",
     category: "Restaurant Design",
     content: `
         <p>A restaurant's interior design is crucial for creating customers' total experience. It's not just about aesthetics - it's about creating a space that makes people want to stay longer and return. Great interior design can significantly boost your restaurant's profitability, customer satisfaction, and overall success.</p>
@@ -161,7 +165,7 @@ export const blogPosts: BlogPost[] = [
           <li><strong>Brand consistency builds recognition:</strong> Cohesive design elements reinforce your restaurant's identity</li>
         </ul>
   
-        <img src="https://interiorwalaa.smepulse.in/blogpost4.jpg" alt="Efficient restaurant layout with clear traffic flow" className="w-full h-64 object-cover rounded-lg my-6" />
+        <img src="https://interiorwalaa.smepulse.in/blogpostbanner.jpg" alt="Efficient restaurant layout with clear traffic flow" className="w-full h-64 object-cover rounded-lg my-6" />
   
         <h3>Combine efficiency and beauty with restaurant interior design</h3>
         <p>The best restaurant interior designs seamlessly blend functionality with aesthetics. Every design element should serve both practical and visual purposes, creating a space that's both beautiful and efficient.</p>
@@ -177,12 +181,13 @@ export const blogPosts: BlogPost[] = [
         <p>Investing in professional restaurant interior design is an investment in your business's future. The right design can transform your space into a destination that customers love to visit and recommend to others.</p>
       `,
     image: "https://interiorwalaa.smepulse.in/blogpost4.jpg",
+    imagebanner: "https://interiorwalaa.smepulse.in/blogpostbanner.jpg",
     slug: "strategic-layout-restaurant-success",
   },
   {
     id: "5",
     title: "Before-and-After",
-    excerpt: "Design elements that influence customer behavior and encourage repeat visits",
+    excerpt: "Restaurant Interior Design That Boosts Customer Experience",
     category: "Experience Design",
     content: `
         <p>A restaurant's interior design is crucial for creating customers' total experience. It's not just about aesthetics - it's about creating a space that makes people want to stay longer and return. Great interior design can significantly boost your restaurant's profitability, customer satisfaction, and overall success.</p>
@@ -203,7 +208,7 @@ export const blogPosts: BlogPost[] = [
           <li><strong>Branding integration:</strong> Consistent design elements reinforce your restaurant's identity</li>
         </ul>
   
-        <img src="https://interiorwalaa.smepulse.in/blogpost5.jpg" alt="Restaurant design elements that enhance customer experience" className="w-full h-64 object-cover rounded-lg my-6" />
+        <img src="https://interiorwalaa.smepulse.in/blogpostbanner.jpg" alt="Restaurant design elements that enhance customer experience" className="w-full h-64 object-cover rounded-lg my-6" />
   
         <h3>Real café redesign: before and after results</h3>
         <p>We recently completed a comprehensive redesign of a popular café in Bangalore. The transformation demonstrates how strategic interior design can dramatically improve both customer experience and business performance.</p>
@@ -215,12 +220,13 @@ export const blogPosts: BlogPost[] = [
         <p>Investing in professional restaurant interior design is an investment in your business's future. The right design can transform your space into a destination that customers love to visit and recommend to others.</p>
       `,
     image: "https://interiorwalaa.smepulse.in/blogpost5.jpg",
+    imagebanner: "https://interiorwalaa.smepulse.in/blogpostbanner.jpg",
     slug: "memorable-customer-experiences",
   },
   {
     id: "6",
     title: "Before-and-After",
-    excerpt: "Eco-friendly materials and biophilic design elements that customers love",
+    excerpt: "Restaurant Interior Design That Boosts Customer Experience",
     category: "Interior Design",
     content: `
         <p>A restaurant's interior design is crucial for creating customers' total experience. It's not just about aesthetics - it's about creating a space that makes people want to stay longer and return. Great interior design can significantly boost your restaurant's profitability, customer satisfaction, and overall success.</p>
@@ -242,7 +248,7 @@ export const blogPosts: BlogPost[] = [
           <li>Local cultural elements that reflect the restaurant's heritage</li>
         </ul>
   
-        <img src="https://interiorwalaa.smepulse.in/blogpost6.jpg" alt="Restaurant with biophilic design and greenery" className="w-full h-64 object-cover rounded-lg my-6" />
+        <img src="https://interiorwalaa.smepulse.in/blogpostbanner.jpg" alt="Restaurant with biophilic design and greenery" className="w-full h-64 object-cover rounded-lg my-6" />
   
         <h3>Combine efficiency and beauty with restaurant interior design</h3>
         <p>The best restaurant interior designs seamlessly blend functionality with aesthetics. Every design element should serve both practical and visual purposes, creating a space that's both beautiful and efficient.</p>
@@ -258,12 +264,13 @@ export const blogPosts: BlogPost[] = [
         <p>Investing in professional restaurant interior design is an investment in your business's future. The right design can transform your space into a destination that customers love to visit and recommend to others.</p>
       `,
     image: "https://interiorwalaa.smepulse.in/blogpost6.jpg",
+    imagebanner: "https://interiorwalaa.smepulse.in/blogpostbanner.jpg",
     slug: "sustainable-restaurant-design-trends",
   },
   {
     id: "7",
     title: "Before-and-After",
-    excerpt: "Clean, functional spaces that focus on essential elements and customer comfort",
+    excerpt: "Restaurant Interior Design That Boosts Customer Experience",
     category: "Minimalist Design",
     content: `
         <p>A restaurant's interior design is crucial for creating customers' total experience. It's not just about aesthetics - it's about creating a space that makes people want to stay longer and return. Great interior design can significantly boost your restaurant's profitability, customer satisfaction, and overall success.</p>
@@ -282,7 +289,7 @@ export const blogPosts: BlogPost[] = [
   
         <p><strong>Acoustic considerations:</strong> Manage noise levels to ensure comfortable conversation while maintaining an energetic atmosphere.</p>
   
-        <img src="https://interiorwalaa.smepulse.in/blogpost7.jpg" alt="Minimalist restaurant with focus on essential elements" className="w-full h-64 object-cover rounded-lg my-6" />
+        <img src="https://interiorwalaa.smepulse.in/blogpostbanner.jpg" alt="Minimalist restaurant with focus on essential elements" className="w-full h-64 object-cover rounded-lg my-6" />
   
         <h3>Combine efficiency and beauty with restaurant interior design</h3>
         <p>The best restaurant interior designs seamlessly blend functionality with aesthetics. Every design element should serve both practical and visual purposes, creating a space that's both beautiful and efficient.</p>
@@ -298,12 +305,13 @@ export const blogPosts: BlogPost[] = [
         <p>Investing in professional restaurant interior design is an investment in your business's future. The right design can transform your space into a destination that customers love to visit and recommend to others.</p>
       `,
     image: "https://interiorwalaa.smepulse.in/blogpost7.jpg",
+    imagebanner: "https://interiorwalaa.smepulse.in/blogpostbanner.jpg",
     slug: "minimalist-design-principles",
   },
   {
     id: "8",
     title: "Before-and-After",
-    excerpt: "High-end design elements that create luxury dining experiences and justify premium pricing",
+    excerpt: "Restaurant Interior Design That Boosts Customer Experience",
     category: "Premium Design",
     content: `
         <p>A restaurant's interior design is crucial for creating customers' total experience. It's not just about aesthetics - it's about creating a space that makes people want to stay longer and return. Great interior design can significantly boost your restaurant's profitability, customer satisfaction, and overall success.</p>
@@ -339,6 +347,7 @@ export const blogPosts: BlogPost[] = [
         <p>Investing in professional restaurant interior design is an investment in your business's future. The right design can transform your space into a destination that customers love to visit and recommend to others.</p>
       `,
     image: "https://interiorwalaa.smepulse.in/blogpost8.jpg",
+    imagebanner: "https://interiorwalaa.smepulse.in/blogpostbanner.jpg",
     slug: "premium-restaurant-design-solutions",
   },
 ];
