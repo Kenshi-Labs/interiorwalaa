@@ -21,7 +21,7 @@ const WhatWeOffer = () => {
           className={`text-center mb-8 sm:mb-12 md:mb-16 lg:mb-16 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-5 opacity-0'
             }`}
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold mb-2 sm:mb-3 md:mb-2 font-work-sans text-black leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-semibold mb-2 sm:mb-3 md:mb-2 font-['WorkSans'] text-black leading-tight">
             What We{' '}
             <span className="text-primary-brown">
               Offer
@@ -81,7 +81,7 @@ const WhatWeOffer = () => {
                     </div>
 
                     {/* Content */}
-                    <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 sm:mb-3 md:mb-4 text-gray-900 font-manrope leading-tight">
+                    <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold mb-2 sm:mb-3 md:mb-4 text-gray-900 font-['WorkSans'] leading-tight">
                       {service.title}
                     </h3>
 

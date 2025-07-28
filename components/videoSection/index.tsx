@@ -57,9 +57,9 @@ const VideoGallerySection = () => {
       <div className="lg:hidden">
         {/* Section Header for Mobile */}
         <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-4xl font-bold mb-4 font-work-sans">
+          <h2 className="text-2xl md:text-4xl font-semibold mb-4 font-['WorkSans']">
             Explore<br />
-            <span className="text-[var(--primary-brown)] text-4xl font-work-sans">Our Videos</span>
+            <span className="text-[var(--primary-brown)] font-bold text-4xl font-['WorkSans']">Our Videos</span>
           </h2>
           <p className="text-base md:text-lg text-[var(--dark-gray)] font-manrope max-w-md mx-auto">
             Get an insight of our projects
@@ -111,9 +111,9 @@ const VideoGallerySection = () => {
 
           {/* Text overlay positioned at bottom left */}
           <div className="absolute bottom-5 left-8 text-white max-w-md z-20">
-            <h2 className="text-3xl lg:text-4xl text-black xl:text-3xl font-bold mb-4 leading-tight drop-shadow-2xl">
+            <h2 className="text-3xl lg:text-4xl text-black xl:text-3xl font-medium mb-4 leading-tight drop-shadow-2xl font-['WorkSans']">
               Explore<br />
-              <span className="text-[var(--primary-brown)] text-5xl drop-shadow-2xl">Our Videos</span>
+              <span className="text-[var(--primary-brown)] font-bold text-5xl drop-shadow-2xl">Our Videos</span>
             </h2>
             <p className="text-base lg:text-lg mb-6 max-w-sm text-[var(--dark-gray)]">
               Get an insight of our projects

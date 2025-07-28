@@ -29,19 +29,19 @@ export const servicesData: ServicesData = {
             {
                 id: 1,
                 title: "Belgian Waffle Factory",
-                image: "https://interiorwalaa.smepulse.in/ourserviceimg1.jpg",
+                image: "https://interiorwalaa.smepulse.in/servicecafeimg1.jpg",
                 description: "Modern cafe design with warm ambiance"
             },
             {
                 id: 2,
                 title: "Wow Momo",
-                image: "https://interiorwalaa.smepulse.in/ourserviceimg2.jpg",
+                image: "https://interiorwalaa.smepulse.in/servicecafeimg2.jpg",
                 description: "Contemporary momo cafe with vibrant interiors"
             },
             {
                 id: 3,
                 title: "Eleven Bakehouse",
-                image: "https://interiorwalaa.smepulse.in/ourserviceimg3.jpg",
+                image: "https://interiorwalaa.smepulse.in/servicecafeimg3.jpg",
                 description: "Artisanal bakehouse with rustic charm"
             },
             {
@@ -61,19 +61,19 @@ export const servicesData: ServicesData = {
             {
                 id: 6,
                 title: "The Urban Tap",
-                image: "https://interiorwalaa.smepulse.in/ourserviceimg1.jpg",
+                image: "https://interiorwalaa.smepulse.in/servicepubimg1.jpg",
                 description: "Industrial pub design with exposed brick"
             },
             {
                 id: 7,
                 title: "Brewmaster's Den",
-                image: "https://interiorwalaa.smepulse.in/ourserviceimg2.jpg",
+                image: "https://interiorwalaa.smepulse.in/servicepubimg2.jpg",
                 description: "Traditional pub with modern touches"
             },
             {
                 id: 8,
                 title: "Craft & Draft",
-                image: "https://interiorwalaa.smepulse.in/ourserviceimg3.jpg",
+                image: "https://interiorwalaa.smepulse.in/servicepubimg3.jpg",
                 description: "Craft beer pub with wooden aesthetics"
             },
             {
@@ -93,7 +93,7 @@ export const servicesData: ServicesData = {
             {
                 id: 11,
                 title: "Spice Garden",
-                image: "https://interiorwalaa.smepulse.in/ourserviceimg1.jpg",
+                image: "https://interiorwalaa.smepulse.in/servicecafeimg1.jpg",
                 description: "Fine dining with elegant ambiance"
             },
             {
@@ -125,19 +125,19 @@ export const servicesData: ServicesData = {
             {
                 id: 16,
                 title: "Grand Plaza Lobby",
-                image: "https://interiorwalaa.smepulse.in/ourserviceimg1.jpg",
+                image: "https://interiorwalaa.smepulse.in/servicepubimg1.jpg",
                 description: "Luxury hotel lobby with marble finishes"
             },
             {
                 id: 17,
                 title: "Boutique Suites",
-                image: "https://interiorwalaa.smepulse.in/ourserviceimg2.jpg",
+                image: "https://interiorwalaa.smepulse.in/servicepubimg2.jpg",
                 description: "Boutique hotel with personalized comfort"
             },
             {
                 id: 18,
                 title: "Resort Paradise",
-                image: "https://interiorwalaa.smepulse.in/ourserviceimg3.jpg",
+                image: "https://interiorwalaa.smepulse.in/servicepubimg3.jpg",
                 description: "Tropical resort with natural elements"
             },
             {

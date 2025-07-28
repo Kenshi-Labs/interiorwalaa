@@ -16,9 +16,9 @@ const ServicesPortfolio = () => {
         {/* Header Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start lg:items-center mb-8 lg:mb-12">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-['WorkSans'] text-gray-900 leading-tight">
-            <span className="text-[var(--primary-brown)] font-semibold">Services</span>
+            <span className="text-[var(--primary-brown)] font-bold">Services</span>
             <br />
-            <span className="text-black font-normal">that we offer</span>
+            <span className="text-black font-medium">that we offer</span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed">
             We are <span className="font-semibold font-manrope text-[var(--primary-brown)]">INTERIORWALAA</span>, emphasizing professionalism and expertise in commercial interior design

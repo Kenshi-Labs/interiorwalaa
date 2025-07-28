@@ -103,11 +103,11 @@ const TestimonialCarousel = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-start">
         {/* Left Column - Header and Navigation */}
         <div className="space-y-4 sm:space-y-5 text-center lg:text-left">
-          <div className="space-y-2 sm:space-y-3">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl text-black leading-tight font-work-sans font-semibold animate-fade-in">
+          <div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl text-black leading-tight font-['WorkSans'] font-medium animate-fade-in">
               What Our Clients Say
             </h2>
-            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[var(--primary-brown)] leading-tight font-work-sans font-bold animate-fade-in-delay">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[var(--primary-brown)] leading-tight font-['WorkSans'] font-bold animate-fade-in-delay">
               About Us
             </h3>
           </div>
@@ -173,7 +173,7 @@ const TestimonialCarousel = () => {
                       size={typeof window !== 'undefined' && window.innerWidth < 640 ? 24 : 30}
                     />
                     <div className="animate-fade-in-up">
-                      <h4 className={`font-bold font-work-sans text-sm sm:text-base md:text-xl transition-all duration-500 ${isFirstCard
+                      <h4 className={`font-semibold font-['WorkSans'] text-sm sm:text-base md:text-xl transition-all duration-500 ${isFirstCard
                         ? 'text-[var(--primary-brown)]'
                         : 'text-[var(--primary-brown)]'
                         }`}>
