@@ -418,3 +418,11 @@ body {
   animation: fadeInUp 0.8s ease-out 0.4s forwards;
   opacity: 0;
 }
+
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}

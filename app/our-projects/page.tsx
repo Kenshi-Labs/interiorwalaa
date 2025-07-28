@@ -1,8 +1,11 @@
 import ContactSection from '@/components/contact'
 import GallerySection from '@/components/gallerySection/page'
+
+
 import InternalBanner from '@/components/internalbanner'
 import LatestProjectsSection from '@/components/projectcarsoul/page'
 import HappyHomesSection from '@/components/projectsBanner/page'
+
 import React from 'react'
 
 const page = () => {
@@ -16,7 +19,7 @@ const page = () => {
       />
       <LatestProjectsSection/>
       <HappyHomesSection />
-      <GallerySection />
+<GallerySection />
       <ContactSection />
     </div>
   )
