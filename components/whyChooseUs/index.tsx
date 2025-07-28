@@ -21,7 +21,7 @@ const Card = ({ title, description, isBrown = false, isRotated = false }: {
                 boxShadow: '5px 5px 10px 0px rgba(155, 121, 97, 0.4)',
             }}
         >
-            <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 font-work-sans">
+            <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 font-['WorkSans']">
                 {title}
             </h3>
             <p className="text-sm sm:text-base leading-relaxed font-manrope flex-grow">
@@ -54,12 +54,12 @@ const WhyChooseUs = () => {
                         <div className="mb-6 sm:mb-8 lg:mb-8 text-center lg:text-left">
                             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl leading-tight">
                                 <span
-                                    className="block font-work-sans text-text-primary"
+                                    className="block font-['WorkSans'] font-medium text-text-primary"
                                 >
                                     Why
                                 </span>
                                 <span
-                                    className="block font-work-sans font-bold text-primary-brown"
+                                    className="block font-['WorkSans'] font-bold text-primary-brown"
                                 >
                                     Choose Us?
                                 </span>

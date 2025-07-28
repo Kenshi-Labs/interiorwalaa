@@ -13,8 +13,8 @@ export const FooterSubsection = (): JSX.Element => {
   const quickLinks = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about-us" },
-    { name: "Blog", href: "#" },
-    { name: "Our Projects", href: "#" },
+    { name: "Blog", href: "/blogs" },
+    { name: "Projects", href: "#" },
     { name: "Our Services", href: "/our-services" },
   ];
 
@@ -158,14 +158,14 @@ export const FooterSubsection = (): JSX.Element => {
             <div className="grid grid-cols-2 gap-8 md:gap-10 lg:gap-10">
               {/* Services */}
               <div className="flex-1">
-                <h3 className="text-white text-lg sm:text-lg md:text-lg lg:text-lg font-['WorkSans'] font-semibold mb-4 sm:mb-4 md:mb-4 lg:mb-4 text-center md:text-left">
+                <h3 className="text-white text-lg sm:text-lg md:text-lg lg:text-lg font-['WorkSans'] font-semibold mb-4 sm:mb-4 md:mb-4 lg:mb-4 text-left">
                   Services
                 </h3>
                 <ul className="space-y-3 sm:space-y-3 md:space-y-3 lg:space-y-3">
                   {services.map((service, index) => (
                     <li
                       key={index}
-                      className="text-white/80 text-sm sm:text-sm md:text-sm lg:text-sm font-['WorkSans'] font-normal text-center md:text-left hover:text-white transition-colors duration-300 cursor-pointer"
+                      className="text-white/80 text-sm sm:text-sm md:text-sm lg:text-sm font-['WorkSans'] font-normal text-left hover:text-white transition-colors duration-300 cursor-pointer"
                     >
                       {service.name}
                     </li>
@@ -175,7 +175,7 @@ export const FooterSubsection = (): JSX.Element => {
 
               {/* Quick Links */}
               <div className="flex-1">
-                <h3 className="text-white text-lg sm:text-lg md:text-lg lg:text-lg font-['WorkSans'] font-semibold mb-4 sm:mb-4 md:mb-4 lg:mb-4 text-center md:text-left">
+                <h3 className="text-white text-lg sm:text-lg md:text-lg lg:text-lg font-['WorkSans'] font-semibold mb-4 sm:mb-4 md:mb-4 lg:mb-4 text-left">
                   Quick Links
                 </h3>
                 <ul className="space-y-3 sm:space-y-3 md:space-y-3 lg:space-y-3">
@@ -184,7 +184,7 @@ export const FooterSubsection = (): JSX.Element => {
                       <Link
                         key={index}
                         href={link.href}
-                        className="text-white/80 text-sm sm:text-sm md:text-sm lg:text-sm font-['WorkSans'] font-normal text-center md:text-left hover:text-white transition-colors duration-300 cursor-pointer"
+                        className="text-white/80 text-sm sm:text-sm md:text-sm lg:text-sm font-['WorkSans'] font-normal text-left hover:text-white transition-colors duration-300 cursor-pointer"
                       >
                         {link.name}
                       </Link>

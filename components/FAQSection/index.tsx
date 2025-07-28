@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { faqData } from '@/data/faqdata';
+import Image from 'next/image';
 
 const FAQSection = () => {
   const [openItems, setOpenItems] = useState(new Set([3])); // FAQ at index 3 is open by default
@@ -17,23 +18,28 @@ const FAQSection = () => {
     setOpenItems(newOpenItems);
   };
 
+  const faqBg = "https://interiorwalaa.smepulse.in/faqbg.jpg"
+
   return (
     <section className="py-16 lg:py-16 bg-[var(--light-cream)] relative overflow-hidden">
       {/* Background Image */}
-      <div className="absolute inset-0 opacity-10">
-        <img
-          src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1920&h=1080&fit=crop"
+      <div className="absolute inset-0 z-0">
+        <Image
+          src={faqBg}
           alt="Interior Design Background"
           className="w-full h-full object-cover"
           width={100}
           height={100}
         />
+
+        {/* Overlay for better text readability */}
+        <div className="absolute inset-0 bg-white/60"></div>
       </div>
 
       <div className="container mx-auto max-w-[1400px] px-6 relative z-10">
         {/* Section Title */}
         <div className="text-center mb-16">
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-normal font-work-sans leading-tight mb-4">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-normal font-['WorkSans'] leading-tight mb-4">
             <span className="text-[var(--primary-brown)] font-semibold">F</span>requently{' '}
             <span className="text-[var(--primary-brown)] font-semibold">A</span>sked{' '}
             <span className="text-[var(--primary-brown)] font-semibold">Q</span>uestions
@@ -63,7 +69,7 @@ const FAQSection = () => {
                   {/* Question Button */}
                   <button
                     onClick={() => toggleItem(faq.id)}
-                    className="w-full p-6 text-left focus:outline-none rounded-2xl transition-all duration-300"
+                    className="w-full p-6 text-left focus:outline-none rounded-2xl transition-all duration-300 cursor-pointer"
                     aria-expanded={isOpen}
                     aria-controls={`faq-answer-${faq.id}`}
                   >
