@@ -1,7 +1,5 @@
 import ContactSection from '@/components/contact'
 import GallerySection from '@/components/gallerySection/page'
-
-
 import InternalBanner from '@/components/internalbanner'
 import LatestProjectsSection from '@/components/projectcarsoul/page'
 import HappyHomesSection from '@/components/projectsBanner/page'
