@@ -79,7 +79,7 @@ const NewsletterSection: React.FC<NewsletterSectionProps> = ({
             transition={{ duration: 0.6 }}
             className="text-center lg:text-left"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-5xl font-semibold text-white mb-4 sm:mb-6 leading-tight font-['WorkSans']">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl font-semibold text-white mb-4 sm:mb-6 leading-tight font-['WorkSans']">
               {title}
             </h2>
             {subtitle && (
