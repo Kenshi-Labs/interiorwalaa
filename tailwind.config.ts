@@ -12,7 +12,7 @@ const config: Config = {
                 'alexandria': ['Alexandria', 'sans-serif'],
                 'urbanist': ['Urbanist', 'sans-serif'],
                 'manrope': ['Manrope', 'sans-serif'],
-                'work-sans': ['Work Sans', 'sans-serif'],
+                'work-sans': ['WorkSans', 'sans-serif'],
             },
             colors: {
                 // Primary Colors

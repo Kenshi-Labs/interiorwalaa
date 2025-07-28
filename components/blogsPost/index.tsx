@@ -6,8 +6,6 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { BlogPost, blogPosts } from "@/data/blogPosts";
 
-
-
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -28,7 +26,6 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.5
-      // remove ease
     },
   },
 };
@@ -37,19 +34,15 @@ const itemVariants = {
 const BlogImage: React.FC<{
   post: BlogPost;
   index: number;
-  onCardClick: () => void;
-}> = ({ post, index, onCardClick }) => {
+}> = ({ post, index }) => {
   return (
-    <div
-      className="relative h-[180px] sm:h-[250px] overflow-hidden cursor-pointer group rounded-3xl"
-      onClick={onCardClick}
-    >
+    <div className="relative h-[180px] sm:h-[220px] lg:h-[250px] overflow-hidden group rounded-t-[20px] sm:rounded-t-[25px] lg:rounded-t-[30px]">
       <Image
         src={post.image}
         alt={post.title}
         fill
-        className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-110 group-hover:shadow-xl"
-        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
+        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 50vw, 33vw"
         priority={index < 2}
       />
     </div>
@@ -59,10 +52,10 @@ const BlogImage: React.FC<{
 // Separate Content Component
 const BlogContent: React.FC<{ post: BlogPost }> = ({ post }) => {
   return (
-    <div className="bg-transparent p-2 sm:p-3 space-y-2 sm:space-y-4 text-center">
-      {/* Title - Prominently displayed like reference */}
-      <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-primary-brown leading-tight font-work-sans">
-        {post.title}: <span className="text-[var(--dark-gray)] text-sm sm:text-base font-normal font-manrope">{post.excerpt}</span>
+    <div className="bg-[#F3F3F3] p-3 sm:p-4 lg:py-3 lg:px-6 space-y-2 sm:space-y-3 lg:space-y-3 rounded-b-[20px] sm:rounded-b-[25px] lg:rounded-b-[30px] text-center">
+      {/* Title - Responsive text sizing */}
+      <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-primary-brown leading-tight font-['WorkSans']">
+        {post.title}: <span className="text-[var(--dark-gray)] text-xs sm:text-sm lg:text-base font-normal font-manrope">{post.excerpt}</span>
       </h3>
     </div>
   );
@@ -72,34 +65,23 @@ const BlogContent: React.FC<{ post: BlogPost }> = ({ post }) => {
 const BlogCard: React.FC<{ post: BlogPost; index: number }> = ({ post, index }) => {
   const router = useRouter();
 
-  const handleCardClick = () => {
-    try {
-      // Navigate to the blog post page
-      router.push(`/blogs/${post.slug}`);
-    } catch (error) {
-      console.error('Navigation error:', error);
-      // Fallback: You could show a toast notification or handle error
-    }
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    console.log('Blog card clicked:', post.slug);
+    router.push(`/blogs/${post.slug}`);
   };
-
-  const handleCardHover = () => {
-    // Optional: Prefetch the blog post page for better performance
-    router.prefetch(`/blog/${post.slug}`);
-  };
-
-
 
   return (
     <motion.article
       variants={itemVariants}
-      className="overflow-hidden cursor-pointer group"
-      onClick={handleCardClick}
-      onMouseEnter={handleCardHover}
+      className="overflow-hidden group bg-white rounded-[20px] sm:rounded-[25px] lg:rounded-[30px] hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+      style={{ boxShadow: '0px 2px 25px 0px #00000040' }}
+      onClick={handleClick}
     >
-      {/* Image Section - Top section */}
-      <BlogImage post={post} index={index} onCardClick={handleCardClick} />
+      {/* Image Section */}
+      <BlogImage post={post} index={index} />
 
-      {/* Content Section - Bottom section, clearly separated */}
+      {/* Content Section */}
       <BlogContent post={post} />
     </motion.article>
   );
@@ -111,50 +93,77 @@ const BlogSection: React.FC = () => {
   const thirdRowPosts = blogPosts.slice(5, 8);
 
   return (
-    <section className="py-10 sm:py-16">
-      <div className="max-w-[1400px] mx-auto px-2 sm:px-4 md:px-6 lg:px-8">
+    <section className="py-8 sm:py-12 lg:py-16">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-10 sm:mb-16"
+          className="text-center mb-8 sm:mb-12 lg:mb-16"
         >
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-black mb-2 sm:mb-4 font-work-sans">
+          <h2 className="text-2xl sm:text-3xl lg:text-5xl font-semibold text-black mb-2 sm:mb-3 lg:mb-4 font-['WorkSans']">
             Our Latest Blogs
           </h2>
-          <p className="text-sm sm:text-lg text-[var(--dark-gray)] max-w-3xl mx-auto font-manrope">
+          <p className="text-sm sm:text-base lg:text-lg text-[var(--dark-gray)] max-w-3xl mx-auto font-manrope  px-2">
             We are designers and content creators living it up in downtown New
             York, creating beautiful images when you need them in your design.
           </p>
         </motion.div>
 
-        {/* Blog Grid */}
+        {/* Blog Grid - Mobile/Tablet: Single column, Desktop: Original 3-row layout */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="space-y-6 sm:space-y-8"
+          className="space-y-6 sm:space-y-8 lg:space-y-8"
         >
-          {/* First Row - 2 Columns */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
-            {firstRowPosts.map((post, index) => (
+          {/* Mobile/Tablet: Single column layout */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:hidden gap-4 sm:gap-6">
+            {blogPosts.map((post, index) => (
               <BlogCard key={post.id} post={post} index={index} />
             ))}
           </div>
 
-          {/* Second Row - 3 Columns */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {secondRowPosts.map((post, index) => (
-              <BlogCard key={post.id} post={post} index={index + 2} />
-            ))}
-          </div>
+          {/* Desktop: Original 3-row layout with dividers */}
+          <div className="hidden lg:block space-y-8">
+            {/* First Row - 2 Columns */}
+            <div className="grid grid-cols-2 gap-12 relative">
+              {firstRowPosts.map((post, index) => (
+                <BlogCard key={post.id} post={post} index={index} />
+              ))}
+              {/* Vertical divider between first row cards */}
+              <div className="absolute top-0 h-[250px] left-1/2 transform -translate-x-1/2 w-px border-l border-black"></div>
+            </div>
 
-          {/* Third Row - 3 Columns */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {thirdRowPosts.map((post, index) => (
-              <BlogCard key={post.id} post={post} index={index + 5} />
-            ))}
+            {/* Horizontal divider */}
+            <div className="border-t border-black w-[80%] mx-auto"></div>
+
+            {/* Second Row - 3 Columns */}
+            <div className="grid grid-cols-3 gap-12 relative">
+              {secondRowPosts.map((post, index) => (
+                <BlogCard key={post.id} post={post} index={index + 2} />
+              ))}
+              {/* Vertical dividers between second row cards */}
+              <div className="absolute top-0 h-[250px] left-[32.7%] transform -translate-x-1/2 w-px border-l border-black"></div>
+              <div className="absolute top-0 h-[250px] left-[67.3%] transform -translate-x-1/2 w-px border-l border-black"></div>
+            </div>
+
+            {/* Horizontal divider */}
+            <div className="border-t border-black w-[80%] mx-auto"></div>
+
+            {/* Third Row - 3 Columns */}
+            <div className="grid grid-cols-3 gap-12 relative">
+              {thirdRowPosts.map((post, index) => (
+                <BlogCard key={post.id} post={post} index={index + 5} />
+              ))}
+              {/* Vertical dividers between third row cards */}
+              <div className="absolute top-0 h-[250px] left-[32.7%] transform -translate-x-1/2 w-px border-l border-black"></div>
+              <div className="absolute top-0 h-[250px] left-[67.3%] transform -translate-x-1/2 w-px border-l border-black"></div>
+            </div>
+
+            {/* Horizontal divider */}
+            <div className="border-t border-black w-[80%] mx-auto"></div>
           </div>
         </motion.div>
       </div>

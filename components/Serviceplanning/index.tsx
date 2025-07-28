@@ -40,7 +40,7 @@ const Serviceplanning = () => {
                 />
 
 
-                <h2 className={`relative z-10 text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-work-sans font-semibold leading-tight ${isEven ? 'text-left lg:text-right' : 'text-left'} text-[#201f1d] group-hover:text-white transition-colors duration-500`}>
+                <h2 className={`relative z-10 text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-['WorkSans'] font-semibold leading-tight ${isEven ? 'text-left lg:text-right' : 'text-left'} text-[#201f1d] group-hover:text-white transition-colors duration-500`}>
                   {item.title}
                 </h2>
                 <p className={`relative z-10 text-sm sm:text-base lg:text-lg font-manrope font-normal leading-relaxed ${isEven ? 'text-left lg:text-right' : 'text-left'} text-[#000000] group-hover:text-white transition-colors duration-500 max-w-none lg:max-w-[70%]`}>

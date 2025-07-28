@@ -10,7 +10,31 @@ const STATUS = {
   ERROR: 'error',
 };
 
-const NewsletterSection = () => {
+interface NewsletterSectionProps {
+  // Content props (dynamic)
+  title: string;
+  subtitle?: string;
+  placeholder?: string;
+  submitText?: string;
+  loadingText?: string;
+  loadingTextMobile?: string;
+  successMessage?: string;
+  errorMessage?: string;
+  invalidEmailMessage?: string;
+}
+
+const NewsletterSection: React.FC<NewsletterSectionProps> = ({
+  // Content defaults
+  title,
+  subtitle,
+  placeholder = "Email ID",
+  submitText = "Submit",
+  loadingText = "Submitting...",
+  loadingTextMobile = "...",
+  successMessage = "Thanks for subscribing! Check your inbox for confirmation.",
+  errorMessage = "Something went wrong. Please try again.",
+  invalidEmailMessage = "Please enter a valid email address",
+}) => {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState(STATUS.IDLE);
   const [message, setMessage] = useState('');
@@ -20,18 +44,18 @@ const NewsletterSection = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       setStatus(STATUS.ERROR);
-      setMessage('Please enter a valid email address');
+      setMessage(invalidEmailMessage);
       return;
     }
     setStatus(STATUS.LOADING);
     try {
       await new Promise(resolve => setTimeout(resolve, 1500));
       setStatus(STATUS.SUCCESS);
-      setMessage('Thanks for subscribing! Check your inbox for confirmation.');
+      setMessage(successMessage);
       setEmail('');
     } catch {
       setStatus(STATUS.ERROR);
-      setMessage('Something went wrong. Please try again.');
+      setMessage(errorMessage);
     }
   };
 
@@ -55,10 +79,14 @@ const NewsletterSection = () => {
             transition={{ duration: 0.6 }}
             className="text-center lg:text-left"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-5xl font-semibold text-white mb-4 sm:mb-6 leading-tight font-work-sans">
-              Get the latest blog<br />
-              <span className="text-white/90">in your inbox</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl font-semibold text-white mb-4 sm:mb-6 leading-tight font-['WorkSans']">
+              {title}
             </h2>
+            {subtitle && (
+              <p className="text-lg sm:text-xl text-white/90 mb-6 font-manrope">
+                {subtitle}
+              </p>
+            )}
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -74,8 +102,8 @@ const NewsletterSection = () => {
                       type="email"
                       value={email}
                       onChange={e => setEmail(e.target.value)}
-                      placeholder="Email ID"
-                      className="w-full px-4 py-3 sm:py-3.5 md:py-4 bg-white/90 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent placeholder-gray-600 text-gray-900 shadow-sm transition-all duration-200 text-sm sm:text-base md:text-base font-manrope min-h-[48px]"
+                      placeholder={placeholder}
+                      className="w-full px-4 py-3 sm:py-3.5 md:py-4 bg-white/40 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent placeholder-white text-white shadow-sm transition-all duration-200 text-sm sm:text-base md:text-base font-manrope min-h-[48px]"
                       style={{ backdropFilter: 'blur(15px)' }}
                       disabled={status === STATUS.LOADING}
                     />
@@ -91,11 +119,11 @@ const NewsletterSection = () => {
                     {status === STATUS.LOADING ? (
                       <>
                         <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                        <span className="hidden sm:inline">Submitting...</span>
-                        <span className="sm:hidden">...</span>
+                        <span className="hidden sm:inline">{loadingText}</span>
+                        <span className="sm:hidden">{loadingTextMobile}</span>
                       </>
                     ) : (
-                      <span>Submit</span>
+                      <span>{submitText}</span>
                     )}
                   </motion.button>
                 </div>
