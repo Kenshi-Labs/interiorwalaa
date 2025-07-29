@@ -14,7 +14,7 @@ export const FooterSubsection = (): JSX.Element => {
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about-us" },
     { name: "Blog", href: "/blogs" },
-    { name: "Projects", href: "#" },
+    { name: "Projects", href: "/our-projects" },
     { name: "Our Services", href: "/our-services" },
   ];
 

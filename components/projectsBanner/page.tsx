@@ -24,7 +24,7 @@ const HappyHomesSection = () => (
             className="object-cover"
             priority={index === 0}
           />
-          <div className="absolute bottom-6 right-6 z-10 text-white px-4 py-2 rounded-md text-4xl font-medium">
+          <div className="absolute bottom-8 right-4 sm:bottom-12 sm:right-8 md:bottom-16 md:right-10 lg:bottom-20 lg:right-12 z-10 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-md text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-medium font-['WorkSans']">
             {item.title}
           </div>
         </div>
