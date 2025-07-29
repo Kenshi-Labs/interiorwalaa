@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { MoveUpRightIcon, MoveRightIcon } from 'lucide-react';
 import Image from 'next/image';
 import { servicesData, TabKey } from '../../data/service';
+import Link from 'next/link';
 
 const ServicesPortfolio = () => {
   const [activeTab, setActiveTab] = useState<TabKey>('cafe');
@@ -78,10 +79,10 @@ const ServicesPortfolio = () => {
                 <h3 className="text-white text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 sm:mb-3 leading-tight">
                   {currentProjects[0].title}
                 </h3>
-                <button className="inline-flex items-center text-white/90 hover:text-white font-medium text-sm sm:text-base transition-colors duration-200 group/link">
+                <Link href={`/our-projects`} className="inline-flex items-center text-white/90 hover:text-white font-medium text-sm sm:text-base transition-colors duration-200 group/link">
                   <span>See this Project</span>
                   <MoveRightIcon className="w-4 h-4 sm:w-5 sm:h-5 ml-2 transition-transform duration-200 group-hover/link:translate-x-1" />
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -114,10 +115,10 @@ const ServicesPortfolio = () => {
                 <h3 className="text-white text-base sm:text-lg md:text-xl font-bold mb-2 leading-tight">
                   {currentProjects[1].title}
                 </h3>
-                <button className="inline-flex items-center text-white/90 hover:text-white font-medium text-xs sm:text-sm transition-colors duration-200 group/link">
+                <Link href={`/our-projects`} className="inline-flex items-center text-white/90 hover:text-white font-medium text-xs sm:text-sm transition-colors duration-200 group/link">
                   <span>See this Project</span>
                   <MoveRightIcon className="w-3 h-3 sm:w-4 sm:h-4 ml-2 transition-transform duration-200 group-hover/link:translate-x-1" />
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -150,10 +151,10 @@ const ServicesPortfolio = () => {
                 <h3 className="text-white text-base sm:text-lg md:text-xl font-bold mb-2 leading-tight">
                   {currentProjects[2].title}
                 </h3>
-                <button className="inline-flex items-center text-white/90 hover:text-white font-medium text-xs sm:text-sm transition-colors duration-200 group/link">
+                <Link href={`/our-projects`} className="inline-flex items-center text-white/90 hover:text-white font-medium text-xs sm:text-sm transition-colors duration-200 group/link">
                   <span>See this Project</span>
                   <MoveRightIcon className="w-3 h-3 sm:w-4 sm:h-4 ml-2 transition-transform duration-200 group-hover/link:translate-x-1" />
-                </button>
+                </Link>
               </div>
             </div>
           </div>

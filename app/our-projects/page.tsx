@@ -9,15 +9,15 @@ import React from 'react'
 const page = () => {
   return (
     <div>
-       <InternalBanner
+      <InternalBanner
         title="Our Projects"
         subtitle="Interiorwala stands at the forefront of commercial interior designers in Bangalore"
         backgroundImage="https://interiorwalaa.smepulse.in/Group%20118.png"
         gradientDirection="left"
       />
-      <LatestProjectsSection/>
+      <LatestProjectsSection />
       <HappyHomesSection />
-<GallerySection />
+      <GallerySection />
       <ContactSection />
     </div>
   )

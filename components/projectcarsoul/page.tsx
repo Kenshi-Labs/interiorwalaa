@@ -1,9 +1,7 @@
 'use client'
-import React, { useCallback, useEffect, useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { motion } from 'framer-motion';
-import useEmblaCarousel from 'embla-carousel-react';
+import React, { useCallback, useRef, useState } from 'react';
 import Image from 'next/image';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 // Product data structure
 const products = [
@@ -39,7 +37,7 @@ const products = [
     id: 5,
     title: "Side Table",
     price: "$28.50",
-    image: "https://interiorwalaa.smepulse.in/Rectangle%20202%20(1).png",
+    image: "https://interiorwalaa.smepulse.in/Rectangle%20202.png",
     category: "tables"
   },
   {
@@ -80,236 +78,125 @@ const products = [
 ];
 
 const LatestProjectsSection = () => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Embla carousel configuration
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    align: 'start',
-    slidesToScroll: 1,
-    breakpoints: {
-      '(min-width: 768px)': { slidesToScroll: 2 },
-      '(min-width: 1024px)': { slidesToScroll: 3 }
+  const onViewAllTextClick = useCallback(() => {
+    // Add your code here
+  }, []);
+
+  const scrollLeft = useCallback(() => {
+    if (scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      // Responsive scroll amount based on screen size
+      const isMobile = window.innerWidth < 768;
+      const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+      const scrollAmount = isMobile ? 284 : isTablet ? 326 : 380; // card width + gap
+      container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      setCurrentIndex(prev => Math.max(0, prev - 1));
     }
-  });
+  }, []);
 
-  // Navigation handlers
-  const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev();
-  }, [emblaApi]);
-
-  const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
-  }, [emblaApi]);
-
-  const scrollTo = useCallback((index: number) => {
-    if (emblaApi) emblaApi.scrollTo(index);
-  }, [emblaApi]);
-
-  // Update selected index and scroll snaps
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setSelectedIndex(emblaApi.selectedScrollSnap());
-  }, [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    
-    setScrollSnaps(emblaApi.scrollSnapList());
-    emblaApi.on('select', onSelect);
-    onSelect();
-    
-    return () => {
-      emblaApi.off('select', onSelect);
-    };
-  }, [emblaApi, onSelect]);
-
-  // Check if navigation buttons should be disabled
-  const canScrollPrev = emblaApi?.canScrollPrev() ?? false;
-  const canScrollNext = emblaApi?.canScrollNext() ?? false;
-
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        staggerChildren: 0.1
-      }
+  const scrollRight = useCallback(() => {
+    if (scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      // Responsive scroll amount based on screen size
+      const isMobile = window.innerWidth < 768;
+      const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+      const scrollAmount = isMobile ? 284 : isTablet ? 326 : 380; // card width + gap
+      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      setCurrentIndex(prev => Math.min(products.length - 4, prev + 1));
     }
-  };
+  }, [products.length]);
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.4 }
-    }
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.3 }
-    },
-    hover: {
-      scale: 1.02,
-      transition: { duration: 0.2 }
-    }
-  };
+  // Calculate indicator position and width
+  const maxIndex = products.length - 4;
+  const indicatorWidth = maxIndex > 0 ? 820 / (maxIndex + 1) : 820; // 820px is the line width
+  const indicatorPosition = currentIndex * indicatorWidth;
 
   return (
-    <motion.section
-      className="w-full py-16 bg-white"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
-      variants={containerVariants}
-    >
-      <div className="py-8 pl-4 sm:py-12 lg:py-16 sm:pl-8 lg:pl-10 xl:pl-40">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Left Column - Content */}
-          <motion.div className="space-y-6" variants={itemVariants}>
-            {/* Header with count */}
-            <div className="flex items-center justify-between">
-              <motion.h2 
-                className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight"
-                variants={itemVariants}
-              >
-                Latest Projects
-              </motion.h2>
-             
-            </div>
-            
-            {/* Description */}
-            <motion.p 
-              className="text-gray-600 text-lg leading-relaxed max-w-md"
-              variants={itemVariants}
-            >
-              We have designed and curated pieces that are a cut above your average home goods, 
-              because when you level up your everyday objects, you elevate your daily rituals.
-            </motion.p>
-            
-            {/* View All Button */}
-            <motion.button
-              className="group inline-flex items-center space-x-2 text-gray-900 font-bold text-sm tracking-wide uppercase border-b-2 border-gray-900 pb-1 hover:border-gray-600 transition-colors duration-200"
-              variants={itemVariants}
-              whileHover={{ y: -2 }}
-              whileTap={{ y: 0 }}
-            >
-              <span>VIEW ALL</span>
-              <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
-            </motion.button>
-          </motion.div>
-          
-          {/* Right Column - Product Carousel */}
-          <motion.div className="relative" variants={itemVariants}>
-            {/* Embla Carousel Container */}
-            <div className="overflow-hidden" ref={emblaRef}>
-              <div className="flex">
-                {products.map((product) => (
-                  <motion.div
-                    key={product.id}
-                    className="flex-shrink-0 px-3 basis-full md:basis-1/2 lg:basis-[40%]"
-                    variants={cardVariants}
-                    whileHover="hover"
-                    layout
-                  >
-                    <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
-                      {/* Product Image */}
-                      <div className="relative h-96 bg-gray-100 overflow-hidden">
-                        <Image
-                          src={product.image}
-                          alt={product.title}
-                          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                          loading="lazy"
-                          width={100}
-                          height={100}
-                        />
-                        {/* Hover Overlay */}
-                        {/* <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-10 transition-all duration-300" /> */}
-                      </div>
-                      
-                      {/* Product Info */}
-                      <div className="p-4 space-y-2 flex justify-between">
-                        <h3 className="font-semibold text-gray-900 text-lg">
-                          {product.title}
-                        </h3>
-                        <p className="text-gray-900 font-bold text-lg">
-                          {product.price}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+    <div className="w-full relative text-right text-base text-black font-inter py-16 h-auto lg:h-[650px] px-4 md:px-6 lg:px-0">
+      <div className="">
 
-         
-            
-            <div className="flex items-center justify-between mt-8">
-              {/* Pagination Line */}
-              <div className="flex-1 relative">
-                {/* Background line */}
-                <div className="w-full h-px bg-gray-300"></div>
-                {/* Active line indicator */}
-                <motion.div
-                  className="absolute top-0 h-px bg-gray-900"
-                  style={{
-                    width: `${100 / scrollSnaps.length}%`,
-                    left: `${(selectedIndex * 100) / scrollSnaps.length}%`
-                  }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                />
-                {/* Invisible clickable areas */}
-                {scrollSnaps.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => scrollTo(index)}
-                    className="absolute top-0 h-4 -mt-2"
-                    style={{
-                      width: `${100 / scrollSnaps.length}%`,
-                      left: `${(index * 100) / scrollSnaps.length}%`
-                    }}
-                    aria-label={`Go to slide ${index + 1}`}
-                  />
-                ))}
-              </div>
-
-              {/* Navigation Controls */}
-              <div className="flex items-center space-x-3 ml-8">
-                <motion.button
-                  onClick={scrollPrev}
-                  disabled={!canScrollPrev}
-                  className="w-8 h-8 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed transition-opacity duration-200"
-                  whileHover={{ scale: canScrollPrev ? 1.1 : 1 }}
-                  whileTap={{ scale: canScrollPrev ? 0.95 : 1 }}
-                  aria-label="Previous products"
-                >
-                  <ChevronLeft className="w-4 h-4 text-gray-600" strokeWidth={1.5} />
-                </motion.button>
-                
-                <motion.button
-                  onClick={scrollNext}
-                  disabled={!canScrollNext}
-                  className="w-8 h-8 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed transition-opacity duration-200"
-                  whileHover={{ scale: canScrollNext ? 1.1 : 1 }}
-                  whileTap={{ scale: canScrollNext ? 0.95 : 1 }}
-                  aria-label="Next products"
-                >
-                  <ChevronRight className="w-4 h-4 text-gray-600" strokeWidth={1.5} />
-                </motion.button>
-              </div>
-            </div>
-          </motion.div>
+        {/* Details Section - Moved to top for mobile/tablet */}
+        <div className="w-full lg:absolute lg:top-[120px] lg:left-[90px] lg:w-[405px] lg:h-[289px] text-left mb-8 lg:mb-0">
+          <div className="text-3xl md:text-4xl lg:text-5xl font-semibold font-['WorkSans'] lg:absolute lg:top-[39.75px] lg:left-0 mb-4 lg:mb-0">Latest Projects</div>
+          <div className="leading-[24px] md:leading-[28px] text-[#797979] inline-block w-full lg:absolute lg:top-[112px] lg:left-[3px] lg:w-[402px] font-['Manrope'] text-sm md:text-base mb-6 lg:mb-0">
+            We&apos;ve designed and curated pieces that are a cut above your average home goods, because when you level up your everyday objects, you elevate your daily rituals.
+          </div>
+          <div className="tracking-[0.05em] text-transform-uppercase font-['Manrope'] font-semibold inline-block w-[79px] h-[18px] cursor-pointer mb-4 lg:absolute lg:top-[264px] lg:left-[3px] lg:mb-0 hidden lg:inline-block" onClick={onViewAllTextClick}>
+            View all
+          </div>
         </div>
+
+        {/* Product Cards Container */}
+        <div className="w-full lg:absolute lg:right-0 lg:w-[880px] lg:h-[500px] mt-8 lg:mt-0">
+          <div
+            ref={scrollContainerRef}
+            className="flex gap-4 md:gap-6 lg:gap-10 h-full overflow-x-auto lg:overflow-hidden scrollbar-hide"
+          >
+            {products.map((product) => (
+              <div
+                key={product.id}
+                className="w-[280px] md:w-[320px] lg:w-[340px] h-auto lg:h-[462px] font-poppins flex-shrink-0"
+              >
+                <Image
+                  className="h-auto w-full max-w-full overflow-hidden max-h-full object-cover"
+                  width={340}
+                  height={420}
+                  sizes="(max-width: 768px) 280px, (max-width: 1024px) 320px, 340px"
+                  alt={product.title}
+                  src={product.image}
+                />
+                <div className="mt-2 flex justify-between items-center font-['WorkSans']">
+                  <div className="text-base md:text-lg font-medium">{product.title}</div>
+                  <div className="text-transform-uppercase text-sm md:text-base">{product.price}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Navigation Icons - Hidden on mobile, visible on tablet and desktop */}
+          <div className="hidden md:flex lg:absolute lg:-bottom-1 lg:right-0 items-center mt-6 lg:mt-0 gap-2">
+            {/* horizontal line with indicator */}
+            <div className="relative w-[400px] md:w-[600px] lg:w-[805px] h-[1.5px] bg-[#797979]">
+              {/* Indicator bar */}
+              <div
+                className="absolute top-0 left-0 h-full bg-black transition-all duration-300 ease-in-out"
+                style={{
+                  width: `${indicatorWidth}px`,
+                  transform: `translateX(${indicatorPosition}px)`
+                }}
+              ></div>
+            </div>
+            <div className="flex">
+              <button
+                onClick={scrollLeft}
+                disabled={currentIndex === 0}
+                className={`${currentIndex === 0
+                  ? 'text-[#797979] cursor-not-allowed'
+                  : 'text-black hover:text-gray-600 cursor-pointer'
+                  }`}
+              >
+                <ChevronLeft size={32} />
+              </button>
+              <button
+                onClick={scrollRight}
+                disabled={currentIndex >= products.length - 4}
+                className={`${currentIndex >= products.length - 4
+                  ? 'text-[#797979] cursor-not-allowed'
+                  : 'text-black hover:text-gray-600 cursor-pointer'
+                  }`}
+              >
+                <ChevronRight size={32} />
+              </button>
+            </div>
+          </div>
+
+        </div>
+
       </div>
-    </motion.section>
+    </div>
   );
 };
 
