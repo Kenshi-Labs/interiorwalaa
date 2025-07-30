@@ -12,9 +12,12 @@ const page = () => {
       <InternalBanner
         title="Our Services"
         subtitle="Interiorwala stands at the forefront of commercial interior designers in Bangalore"
-        backgroundImage="https://interiorwalaa.smepulse.in/Rectangle%2034626854.png"
-        gradientDirection="left"
-      />
+        backgroundImages={[
+          "https://interiorwalaa.smepulse.in/bannercarouselimg1.png",
+          "https://interiorwalaa.smepulse.in/bannercarouselimg2.png",
+          "https://interiorwalaa.smepulse.in/bannercarouselimg3.png"
+        ]}
+        autoSlideInterval={4000} />
       <Serviceplanning />
       <ScrollWrapper />
       <ServicesPortfolio />
