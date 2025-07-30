@@ -1,5 +1,6 @@
 
 import React from "react";
+import Link from "next/link";
 
 /**
  * Reusable Button Component
@@ -10,6 +11,9 @@ import React from "react";
  * 
  * // Interior style button (brown theme)
  * <Button variant="interior">Get In Touch</Button>
+ * 
+ * // Button with link
+ * <Button variant="interior" href="/get-in-touch">Get In Touch</Button>
  * 
  * // Default blue button (fully rounded)
  * <Button variant="default">Submit</Button>
@@ -65,10 +69,11 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "default" | "outline" | "ghost" | "interior";
   size?: "default" | "sm" | "lg";
   children: React.ReactNode;
+  href?: string;
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = "default", size = "default", children, ...props }, ref) => {
+  ({ className, variant = "default", size = "default", children, href, ...props }, ref) => {
     const baseClasses = "inline-flex items-center justify-center rounded-full text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-white active:scale-95";
 
     const variants = {
@@ -92,12 +97,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       return sizes[size];
     };
 
-    return (
-      <button
-        ref={ref}
-        className={cn(baseClasses, variants[variant], getSizeClasses(), className)}
-        {...props}
-      >
+    const buttonContent = (
+      <>
         {variant === "interior" && (
           <>
             {/* Background that slides from bottom to top - same size as button */}
@@ -109,6 +110,32 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           </>
         )}
         {variant !== "interior" && children}
+      </>
+    );
+
+    // If href is provided, render as Link
+    if (href) {
+      return (
+        <Link href={href}>
+          <button
+            ref={ref}
+            className={cn(baseClasses, variants[variant], getSizeClasses(), className)}
+            {...props}
+          >
+            {buttonContent}
+          </button>
+        </Link>
+      );
+    }
+
+    // Otherwise render as regular button
+    return (
+      <button
+        ref={ref}
+        className={cn(baseClasses, variants[variant], getSizeClasses(), className)}
+        {...props}
+      >
+        {buttonContent}
       </button>
     );
   }

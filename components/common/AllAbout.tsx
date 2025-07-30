@@ -91,6 +91,7 @@ const TextSection = ({ title, subtitle, description, buttonText }: {
     <Button
       variant="interior"
       className="w-full sm:w-auto"
+      href="/get-in-touch"
     >
       {buttonText}
     </Button>

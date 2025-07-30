@@ -25,19 +25,26 @@ export const HeroBanner = ({
           <div className={`absolute inset-0 ${overlayOpacity}`} />
         )}
 
+        {/* Centered Text Overlay */}
+        <div className="absolute inset-0 flex flex-col items-center mt-28 text-center px-4">
+          <h2 className="text-[#FDFEFF] font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[70px] font-extralight text-center">
+            Bring Serenity <br />To Your Place With
+          </h2>
+        </div>
+
         {/* INTERIORWALAA Text */}
-        <div className="absolute bottom-0 left-0 right-0 flex justify-center items-end">
+        <div className="absolute -bottom-2 lg:-bottom-5 left-0 right-0 flex justify-center items-end">
           <h1
-            className="text-center leading-none tracking-normal drop-shadow-lg sm:drop-shadow-xl md:drop-shadow-2xl font-alexandria text-[38px] sm:text-[64px] md:text-[70px] lg:text-[100px] xl:text-[117.17px] font-bold text-gradient"
-            style={{ lineHeight: '0.7' }}
+            className="text-center font-['Alexandria'] text-[40px] 2xl:text-[120px] font-bold text-gradient"
+            style={{ lineHeight: '100%' }}
           >
             INTERIORWALAA
           </h1>
         </div>
 
         {/* Decorative Elements */}
-        <div className="absolute top-0 right-0 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 bg-gradient-to-br from-cyan-400/20 to-transparent rounded-full blur-lg sm:blur-xl md:blur-2xl"></div>
-        <div className="absolute bottom-0 left-0 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-gradient-to-tr from-cyan-400/20 to-transparent rounded-full blur-md sm:blur-lg md:blur-xl"></div>
+        {/* <div className="absolute top-0 right-0 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 bg-gradient-to-br from-cyan-400/20 to-transparent rounded-full blur-lg sm:blur-xl md:blur-2xl"></div>
+        <div className="absolute bottom-0 left-0 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-gradient-to-tr from-cyan-400/20 to-transparent rounded-full blur-md sm:blur-lg md:blur-xl"></div> */}
       </div>
     </div>
   );
