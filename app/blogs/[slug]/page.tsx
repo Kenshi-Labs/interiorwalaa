@@ -90,8 +90,12 @@ export default function Page({ params }: PageProps) {
       <InternalBanner
         title={blogPost.title}
         subtitle={blogPost.excerpt}
-        backgroundImage={blogPost.image}
-        gradientDirection="left"
+        backgroundImages={[
+          "https://interiorwalaa.smepulse.in/bannercarouselimg1.png",
+          "https://interiorwalaa.smepulse.in/bannercarouselimg2.png",
+          "https://interiorwalaa.smepulse.in/bannercarouselimg3.png"
+        ]}
+        autoSlideInterval={4000}
       />
 
       <BlogsDetails blogPost={blogPost} />

@@ -1,6 +1,6 @@
 import ContactSection from '@/components/contact'
 import GallerySection from '@/components/gallerySection/page'
-import InternalBanner from '@/components/internalbanner'
+import ProjectBanner from '@/components/internalbanner/ProjectBanner'
 import LatestProjectsSection from '@/components/projectcarsoul/page'
 import HappyHomesSection from '@/components/projectsBanner/page'
 
@@ -9,12 +9,7 @@ import React from 'react'
 const page = () => {
   return (
     <div>
-      <InternalBanner
-        title="Our Projects"
-        subtitle="Interiorwala stands at the forefront of commercial interior designers in Bangalore"
-        backgroundImage="https://interiorwalaa.smepulse.in/Group%20118.png"
-        gradientDirection="left"
-      />
+      <ProjectBanner />
       <LatestProjectsSection />
       <HappyHomesSection />
       <GallerySection />

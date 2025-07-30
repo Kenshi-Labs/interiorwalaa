@@ -15,8 +15,12 @@ const ProductDetails = ({ project, remainingProjects }) => {
       <InternalBanner
         title={project.title}
         subtitle={project.description}
-        backgroundImage={project.image}
-        gradientDirection="left"
+        backgroundImages={[
+          "https://interiorwalaa.smepulse.in/bannercarouselimg1.png",
+          "https://interiorwalaa.smepulse.in/bannercarouselimg2.png",
+          "https://interiorwalaa.smepulse.in/bannercarouselimg3.png",
+        ]}
+        autoSlideInterval={4000}
       />
 
       {/* Render content sections */}
