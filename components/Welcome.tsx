@@ -47,6 +47,7 @@ const WelcomeSection: React.FC<WelcomeSectionProps> = ({
             <Button
               variant="interior"
               className="w-fit md:self-start self-center"
+              href="/get-in-touch"
             >
               Get In Touch
             </Button>

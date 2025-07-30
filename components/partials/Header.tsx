@@ -148,6 +148,7 @@ export const Header = () => {
               <Button
                 variant="interior"
                 className="hidden md:flex"
+                href="/get-in-touch"
               >
                 Get In Touch
               </Button>
