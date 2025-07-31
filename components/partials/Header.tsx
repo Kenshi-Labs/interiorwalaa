@@ -93,10 +93,10 @@ export const Header = () => {
               </Link>
             </div>
 
-            {/* Right side container with navigation and buttons */}
-            <div className="flex items-center gap-6 sm:gap-8 md:gap-10 lg:gap-14">
+            {/* Navigation and Actions Container */}
+            <nav className="flex items-center gap-6 sm:gap-8 md:gap-10 lg:gap-14">
               {/* Desktop Navigation - Right side */}
-              <nav className="hidden lg:flex items-center gap-8">
+              <div className="hidden lg:flex items-center gap-8">
                 {menuItems.map((item, index) => (
                   <Link
                     key={index}
@@ -109,10 +109,10 @@ export const Header = () => {
                     {item.label}
                   </Link>
                 ))}
-              </nav>
+              </div>
 
               {/* Tablet Navigation - Visible on md screens */}
-              <nav className="hidden md:flex lg:hidden items-center gap-4">
+              <div className="hidden md:flex lg:hidden items-center gap-4">
                 {menuItems.slice(0, 3).map((item, index) => (
                   <Link
                     key={index}
@@ -142,7 +142,7 @@ export const Header = () => {
                     ))}
                   </div>
                 </div>
-              </nav>
+              </div>
 
               {/* Get In Touch Button - Hidden on mobile, visible on tablet+ */}
               <Button
@@ -153,7 +153,7 @@ export const Header = () => {
                 Get In Touch
               </Button>
 
-              {/* Mobile menu button */}
+              {/* Mobile menu button - Inside nav container */}
               <Button
                 className="md:hidden p-2 bg-transparent border-none hover:bg-gray-100 mobile-menu-container rounded-full"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -164,7 +164,7 @@ export const Header = () => {
                   <Menu size={18} className="text-gray-700" />
                 )}
               </Button>
-            </div>
+            </nav>
           </div>
         </div>
       </div>

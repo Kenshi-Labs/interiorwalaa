@@ -1,8 +1,13 @@
+'use client'
 import React, { JSX } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { projects } from "@/data/projects";
 
 export const FooterSubsection = (): JSX.Element => {
+  const router = useRouter();
+  
   const services = [
     { name: "Cafe Interiors" },
     { name: "Pub Interiors" },
@@ -46,34 +51,17 @@ export const FooterSubsection = (): JSX.Element => {
     },
   ];
 
-  const recentWorkImages = [
-    {
-      name: "footer-1",
-      src: "https://interiorwalaa.smepulse.in/footerImg1.png",
-    },
-    {
-      name: "footer-2",
-      src: "https://interiorwalaa.smepulse.in/footerImg2.png",
-    },
+  // Use projects data for recent work images
+  const recentWorkImages = projects.slice(0, 6).map((project) => ({
+    name: project.title,
+    src: project.image,
+    slug: project.slug,
+  }));
 
-    {
-      name: "footer-3",
-      src: "https://interiorwalaa.smepulse.in/footerImg3.png",
-    },
-    {
-      name: "footer-4",
-      src: "https://interiorwalaa.smepulse.in/footerImg4.png",
-    },
-
-    {
-      name: "footer-5",
-      src: "https://interiorwalaa.smepulse.in/footerImg5.png",
-    },
-    {
-      name: "footer-6",
-      src: "https://interiorwalaa.smepulse.in/footerImg6.png",
-    },
-  ];
+  // Handle navigation to project detail page
+  const handleProjectClick = (slug: string) => {
+    router.push(`/our-projects/${slug}`);
+  };
 
   return (
     <footer className="w-full bg-black py-8 sm:py-10 md:py-12 lg:py-14 relative overflow-hidden">
@@ -205,6 +193,7 @@ export const FooterSubsection = (): JSX.Element => {
                 <div
                   key={index}
                   className="group cursor-pointer transition-all duration-300 hover:scale-105"
+                  onClick={() => handleProjectClick(image.slug)}
                 >
                   <Image
                     width={120}
