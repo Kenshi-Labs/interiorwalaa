@@ -1,29 +1,41 @@
+import InternalBanner from "@/components/internalbanner";
+import ScrollWrapper from "@/components/scrollWrapper";
+import ServiceContact from "@/components/ServiceContact";
+import Serviceplanning from "@/components/Serviceplanning";
+import ServicesPortfolio from "@/components/servicesPortfolio";
+import { getOurServicesBanner, getOurServicesList } from "@/api/ourservices";
+import React from "react";
 
-import InternalBanner from '@/components/internalbanner'
-import ScrollWrapper from '@/components/scrollWrapper'
-import ServiceContact from '@/components/ServiceContact'
-import Serviceplanning from '@/components/Serviceplanning'
-import ServicesPortfolio from '@/components/servicesPortfolio'
-import React from 'react'
+const page = async () => {
+  let bannerData = null;
+  let servicesData = null;
 
-const page = () => {
+  try {
+    bannerData = await getOurServicesBanner();
+  } catch (error) {
+    console.error("Failed to fetch banner data:", error);
+  }
+
+  try {
+    servicesData = await getOurServicesList();
+  } catch (error) {
+    console.error("Failed to fetch services data:", error);
+  }
+
   return (
     <div>
       <InternalBanner
-        title="Our Services"
-        subtitle="Interiorwala stands at the forefront of commercial interior designers in Bangalore"
-        backgroundImages={[
-          "https://interiorwalaa.smepulse.in/bannercarouselimg1.png",
-          "https://interiorwalaa.smepulse.in/bannercarouselimg2.png",
-          "https://interiorwalaa.smepulse.in/bannercarouselimg3.png"
-        ]}
-        autoSlideInterval={4000} />
-      <Serviceplanning />
+        title={bannerData?.data?.title || ""}
+        subtitle={bannerData?.data?.description || ""}
+        backgroundImages={bannerData?.data?.backgroundImage || ["", "", ""]}
+        autoSlideInterval={4000}
+      />
+      <Serviceplanning servicesData={servicesData?.data || []} />
       <ScrollWrapper />
       <ServicesPortfolio />
       <ServiceContact />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;
