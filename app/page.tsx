@@ -66,7 +66,7 @@ export default async function Home() {
       <HeroBanner
         backgroundImage={heroData?.data?.backgroundImage || ""}
         headlineText={heroData?.data?.headlineText || ""}
-        brandName={heroData?.data?.brandName || ""}
+        brandName={heroData?.data?.brandName || "No Brand Name"}
         isLoading={!heroData?.data}
       />
 
