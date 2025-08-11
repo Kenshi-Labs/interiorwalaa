@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "interiorwalaa.smepulse.in",
       },
+      {
+        protocol: "https",
+        hostname: "dev-api-interiorwala.smeexclusive.com",
+      },
     ],
   },
 };

@@ -1,11 +1,19 @@
 'use client'
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { faqData } from '@/data/faqdata';
 import Image from 'next/image';
 
-const FAQSection = () => {
-  const [openItems, setOpenItems] = useState(new Set([3])); // FAQ at index 3 is open by default
+interface FAQSectionProps {
+  title: string;
+  items: Array<{
+    question: string;
+    answer: string;
+  }>;
+  isLoading?: boolean;
+}
+
+const FAQSection = ({ title, items, isLoading = false }: FAQSectionProps) => {
+  const [openItems, setOpenItems] = useState(new Set([0])); // First FAQ is open by default
 
   const toggleItem = (id: number) => {
     const newOpenItems = new Set(openItems);
@@ -19,6 +27,28 @@ const FAQSection = () => {
   };
 
   const faqBg = "https://interiorwalaa.smepulse.in/faqbg.jpg"
+
+  if (isLoading) {
+    return (
+      <section className="py-16 lg:py-16 bg-[var(--light-cream)] relative overflow-hidden">
+        <div className="container mx-auto max-w-[1400px] px-6 relative z-10">
+          <div className="text-center mb-16">
+            <div className="animate-pulse">
+              <div className="h-12 bg-gray-200 rounded mb-4"></div>
+              <div className="h-6 bg-gray-200 rounded w-3/4 mx-auto"></div>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {[1, 2, 3, 4, 5].map((i) => (
+              <div key={i} className="animate-pulse">
+                <div className="h-24 bg-gray-200 rounded mb-4"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-16 lg:py-16 bg-[var(--light-cream)] relative overflow-hidden">
@@ -40,25 +70,32 @@ const FAQSection = () => {
         {/* Section Title */}
         <div className="text-center mb-16">
           <h2 className="text-2xl md:text-4xl lg:text-5xl font-normal font-['WorkSans'] leading-tight mb-4">
-            <span className="text-[var(--primary-brown)] font-semibold">F</span>requently{' '}
-            <span className="text-[var(--primary-brown)] font-semibold">A</span>sked{' '}
-            <span className="text-[var(--primary-brown)] font-semibold">Q</span>uestions
+            {title.split(' ').map((word, index) => (
+              <span key={index}>
+                {word.length > 0 ? (
+                  <>
+                    <span className="text-[var(--primary-brown)] font-semibold">{word.charAt(0)}</span>
+                    {word.slice(1)}
+                  </>
+                ) : (
+                  word
+                )}
+                {index < title.split(' ').length - 1 ? ' ' : ''}
+              </span>
+            ))}
           </h2>
-          <p className="text-lg md:text-xl font-manrope text-[var(--dark-gray)] max-w-3xl mx-auto">
-            Find answers to common questions about our interior design services and process
-          </p>
         </div>
 
         {/* FAQ Layout - Split into two independent columns */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full mx-auto">
           {/* Left Column */}
           <div className="space-y-6">
-            {faqData.slice(0, Math.ceil(faqData.length / 2)).map((faq) => {
-              const isOpen = openItems.has(faq.id);
+            {items.slice(0, Math.ceil(items.length / 2)).map((faq, index) => {
+              const isOpen = openItems.has(index);
 
               return (
                 <div
-                  key={faq.id}
+                  key={index}
                   className={`
                     rounded-2xl shadow-md hover:shadow-lg transition-all duration-500 ease-in-out transform cursor-pointer
                     ${isOpen ? 'bg-[var(--background-brown)] scale-[1.02]' : 'bg-white hover:scale-[1.01]'}
@@ -68,10 +105,10 @@ const FAQSection = () => {
                 >
                   {/* Question Button */}
                   <button
-                    onClick={() => toggleItem(faq.id)}
+                    onClick={() => toggleItem(index)}
                     className="w-full p-6 text-left focus:outline-none rounded-2xl transition-all duration-300 cursor-pointer"
                     aria-expanded={isOpen}
-                    aria-controls={`faq-answer-${faq.id}`}
+                    aria-controls={`faq-answer-${index}`}
                   >
                     <div className="flex items-center">
                       {/* Arrow Icon - Left Side */}
@@ -100,7 +137,7 @@ const FAQSection = () => {
 
                   {/* Answer */}
                   <div
-                    id={`faq-answer-${faq.id}`}
+                    id={`faq-answer-${index}`}
                     className={`
                       overflow-hidden transition-all duration-700 ease-in-out
                       ${isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}
@@ -124,12 +161,13 @@ const FAQSection = () => {
 
           {/* Right Column */}
           <div className="space-y-6">
-            {faqData.slice(Math.ceil(faqData.length / 2)).map((faq) => {
-              const isOpen = openItems.has(faq.id);
+            {items.slice(Math.ceil(items.length / 2)).map((faq, index) => {
+              const actualIndex = Math.ceil(items.length / 2) + index;
+              const isOpen = openItems.has(actualIndex);
 
               return (
                 <div
-                  key={faq.id}
+                  key={actualIndex}
                   className={`
                     rounded-2xl shadow-md hover:shadow-lg transition-all duration-500 ease-in-out transform cursor-pointer
                     ${isOpen ? 'bg-[var(--background-brown)] scale-[1.02]' : 'bg-white hover:scale-[1.01]'}
@@ -139,10 +177,10 @@ const FAQSection = () => {
                 >
                   {/* Question Button */}
                   <button
-                    onClick={() => toggleItem(faq.id)}
+                    onClick={() => toggleItem(actualIndex)}
                     className="w-full p-6 text-left focus:outline-none rounded-2xl transition-all duration-300"
                     aria-expanded={isOpen}
-                    aria-controls={`faq-answer-${faq.id}`}
+                    aria-controls={`faq-answer-${actualIndex}`}
                   >
                     <div className="flex items-center">
                       {/* Arrow Icon - Left Side */}
@@ -160,7 +198,7 @@ const FAQSection = () => {
                       </div>
 
                       <h3 className={`
-                        text-lg md:text-xl font-semibold font-manrope leading-tight flex-1
+                        text-lg md:text-xl font-semibold font-semibold font-manrope leading-tight flex-1
                         ${isOpen ? 'text-[var(--primary-brown)]' : 'text-[var(--dark-gray)]'}
                         transition-all duration-300 ease-in-out
                       `}>
@@ -171,7 +209,7 @@ const FAQSection = () => {
 
                   {/* Answer */}
                   <div
-                    id={`faq-answer-${faq.id}`}
+                    id={`faq-answer-${actualIndex}`}
                     className={`
                       overflow-hidden transition-all duration-700 ease-in-out
                       ${isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}

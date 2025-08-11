@@ -3,27 +3,33 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
+interface ProjectBannerProps {
+    title: string;
+    subtitle: string;
+    backgroundImages: string[];
+}
+
 const projectbanner = [
     {
         id: 1,
         title: "Eleven Bakehouse",
-        image: "https://interiorwalaa.smepulse.in/Rectangle%20202.png",
     },
     {
         id: 2,
         title: "Belgian Waffle Factory",
-        image: "https://interiorwalaa.smepulse.in/Rectangle%20202%20(1).png",
     },
     {
         id: 3,
         title: "Wow Momo",
-        image: "https://interiorwalaa.smepulse.in/Rectangle%20202%20(3).png",
     },
 ]
 
 const projectbannerbg = "https://interiorwalaa.smepulse.in/projectbannerbg.png"
 
-const ProjectBanner = () => {
+// Fallback image for when backgroundImages array is empty
+const fallbackImage = "https://interiorwalaa.smepulse.in/Rectangle%20202.png"
+
+const ProjectBanner: React.FC<ProjectBannerProps> = ({ title, subtitle, backgroundImages }) => {
     const [currentSlide, setCurrentSlide] = useState(0) // Changed to 0-based index
 
     const nextSlide = () => {
@@ -40,9 +46,17 @@ const ProjectBanner = () => {
         return ((currentSlide + offset + totalSlides) % totalSlides)
     }
 
+    // Helper function to get image source with proper fallback
+    const getImageSource = (slideIndex: number) => {
+        if (backgroundImages && backgroundImages.length > 0) {
+            return backgroundImages[slideIndex % backgroundImages.length]
+        }
+        return fallbackImage
+    }
+
     return (
         <div className="relative w-full min-h-screen bg-cover bg-center bg-no-repeat -mt-[72px] sm:-mt-[80px] md:-mt-[88px] lg:-mt-[88px]">
-            {/* Background Image */}
+            {/* Background Image - Keep the static projectbannerbg */}
             <Image
                 src={projectbannerbg}
                 alt="Project Banner Background"
@@ -59,19 +73,19 @@ const ProjectBanner = () => {
                 {/* Header Section */}
                 <div className="flex flex-col items-center text-center space-y-4 sm:space-y-6 mb-8 sm:mb-12">
                     <h1 className="text-[#FDFEFF] text-3xl sm:text-4xl md:text-5xl font-medium leading-tight font-serif">
-                        Projects
+                        {title || "Projects"}
                     </h1>
                     <p className="text-[#FDFEFF] font-light text-base sm:text-lg md:text-xl leading-relaxed opacity-95 font-['manrope'] max-w-sm sm:max-w-md">
-                        Interiorwalaa stands at the forefront of commercial interior designers in Bangalore
+                        {subtitle || "Interiorwalaa stands at the forefront of commercial interior designers in Bangalore"}
                     </p>
                 </div>
 
-                {/* Mobile Carousel */}
+                {/* Mobile Carousel - Use backgroundImages array for project cards */}
                 <div className="flex-1 flex flex-col items-center justify-center space-y-6 sm:space-y-8">
                     {/* Main Project Card */}
                     <div className="relative w-full max-w-sm sm:max-w-md h-[400px] sm:h-[450px] md:h-[500px] overflow-hidden rounded-lg shadow-2xl">
                         <Image
-                            src={projectbanner[currentSlide].image}
+                            src={getImageSource(currentSlide)}
                             alt={projectbanner[currentSlide].title}
                             fill
                             className="object-cover"
@@ -136,21 +150,21 @@ const ProjectBanner = () => {
                 {/* Left Content */}
                 <div className="flex flex-col space-y-8 w-auto text-left">
                     <h1 className="text-[#FDFEFF] text-5xl xl:text-6xl font-medium mb-4 leading-tight font-serif">
-                        Projects
+                        {title || "Projects"}
                     </h1>
                     <p className="text-[#FDFEFF] font-light text-xl xl:text-xl leading-relaxed opacity-95 font-['manrope'] max-w-lg xl:max-w-xl">
-                        Interiorwalaa stands at the forefront of commercial interior designers in Bangalore
+                        {subtitle || "Interiorwalaa stands at the forefront of commercial interior designers in Bangalore"}
                     </p>
                 </div>
 
-                {/* Right Content - Carousel */}
+                {/* Right Content - Carousel - Use backgroundImages array */}
                 <div className="relative flex flex-col items-center space-y-3 w-auto mt-28">
                     {/* Carousel Cards */}
                     <div className="flex items-center justify-center space-x-6 w-full">
                         {/* Previous Project (Partially Visible) */}
                         <div className="relative w-[200px] h-[320px] xl:w-[250px] xl:h-[400px] overflow-hidden opacity-70 transition-opacity duration-300">
                             <Image
-                                src={projectbanner[getSlideIndex(-1)].image}
+                                src={getImageSource(getSlideIndex(-1))}
                                 alt={projectbanner[getSlideIndex(-1)].title}
                                 fill
                                 className="object-cover"
@@ -164,7 +178,7 @@ const ProjectBanner = () => {
                         {/* Current Project (Main) - Highlighted */}
                         <div className="relative w-[370px] h-[500px] xl:w-[400px] xl:h-[550px] overflow-hidden shadow-2xl transform scale-105 transition-all duration-300">
                             <Image
-                                src={projectbanner[currentSlide].image}
+                                src={getImageSource(currentSlide)}
                                 alt={projectbanner[currentSlide].title}
                                 fill
                                 className="object-cover"
@@ -178,7 +192,7 @@ const ProjectBanner = () => {
                         {/* Next Project (Partially Visible) */}
                         <div className="relative w-[200px] h-[320px] xl:w-[250px] xl:h-[400px] overflow-hidden opacity-70 transition-opacity duration-300">
                             <Image
-                                src={projectbanner[getSlideIndex(1)].image}
+                                src={getImageSource(getSlideIndex(1))}
                                 alt={projectbanner[getSlideIndex(1)].title}
                                 fill
                                 className="object-cover"

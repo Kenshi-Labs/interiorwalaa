@@ -1,12 +1,16 @@
 import React from 'react'
 import Image from 'next/image'
-import type { ContentCard } from '@/data/aboutuswelcome'
-import { Button } from './ui/button'
+import { Button } from '../ui/button'
+
+interface ContentCard {
+  title: string;
+  description: string;
+}
 
 interface WelcomeSectionProps {
   backgroundImage: string
   mainTitle: string
-  mainDescription: string
+  mainDescription: string[]
   cards: ContentCard[]
   className?: string
 }
@@ -40,9 +44,13 @@ const WelcomeSection: React.FC<WelcomeSectionProps> = ({
             <h1 className='text-2xl sm:text-2xl lg:text-left text-center lg:text-3xl xl:text-4xl font-bold text-black mb-4 sm:mb-4 font-work-sans leading-tight'>
               {mainTitle}
             </h1>
-            <p className='max-w-xl text-sm sm:text-base text-center lg:text-left text-gray-700 leading-relaxed font-manrope font-medium text-pretty break-words hyphens-auto mb-8 whitespace-pre-line'>
-              {mainDescription}
-            </p>
+            <div className='max-w-xl text-sm sm:text-base text-center lg:text-left text-gray-700 leading-relaxed font-manrope font-medium text-pretty break-words hyphens-auto mb-8'>
+              {mainDescription.map((desc, index) => (
+                <p key={index} className="mb-4 last:mb-0">
+                  {desc}
+                </p>
+              ))}
+            </div>
             {/* Get In Touch Button */}
             <Button
               variant="interior"

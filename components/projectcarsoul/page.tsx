@@ -1,83 +1,20 @@
 'use client'
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { LatestProject } from '@/types/project';
 
-// Product data structure
-const products = [
-  {
-    id: 1,
-    title: "Arm Sofas",
-    price: "$45.80",
-    image: "https://interiorwalaa.smepulse.in/Rectangle%20202.png",
-    category: "seating"
-  },
-  {
-    id: 2,
-    title: "Living table",
-    price: "$45.80",
-    image: "https://interiorwalaa.smepulse.in/Rectangle%20202%20(1).png",
-    category: "tables"
-  },
-  {
-    id: 3,
-    title: "Floor lamp",
-    price: "$45.80",
-    image: "https://interiorwalaa.smepulse.in/Rectangle%20202%20(3).png",
-    category: "lighting"
-  },
-  {
-    id: 4,
-    title: "Dining Chair",
-    price: "$35.90",
-    image: "https://interiorwalaa.smepulse.in/Rectangle%20202.png",
-    category: "seating"
-  },
-  {
-    id: 5,
-    title: "Side Table",
-    price: "$28.50",
-    image: "https://interiorwalaa.smepulse.in/Rectangle%20202.png",
-    category: "tables"
-  },
-  {
-    id: 6,
-    title: "Arm Sofas",
-    price: "$45.80",
-    image: "https://interiorwalaa.smepulse.in/Rectangle%20202%20(3).png",
-    category: "seating"
-  },
-  {
-    id: 7,
-    title: "Living table",
-    price: "$45.80",
-    image: "https://interiorwalaa.smepulse.in/Rectangle%20202.png",
-    category: "tables"
-  },
-  {
-    id: 8,
-    title: "Floor lamp",
-    price: "$45.80",
-    image: "https://interiorwalaa.smepulse.in/Rectangle%20202%20(1).png",
-    category: "lighting"
-  },
-  {
-    id: 9,
-    title: "Dining Chair",
-    price: "$35.90",
-    image: "https://interiorwalaa.smepulse.in/Rectangle%20202%20(3).png",
-    category: "seating"
-  },
-  {
-    id: 10,
-    title: "Side Table",
-    price: "$28.50",
-    image: "https://interiorwalaa.smepulse.in/Rectangle%20202.png",
-    category: "tables"
-  }
-];
+interface LatestProjectsSectionProps {
+  title: string;
+  description: string;
+  projects: LatestProject[];
+}
 
-const LatestProjectsSection = () => {
+const LatestProjectsSection: React.FC<LatestProjectsSectionProps> = ({
+  title,
+  description,
+  projects
+}) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -85,32 +22,49 @@ const LatestProjectsSection = () => {
     // Add your code here
   }, []);
 
+  // Update currentIndex based on scroll position
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const scrollLeft = container.scrollLeft;
+      const cardWidth = window.innerWidth < 768 ? 284 : window.innerWidth >= 768 && window.innerWidth < 1024 ? 326 : 380;
+      const gap = window.innerWidth < 768 ? 16 : window.innerWidth >= 768 && window.innerWidth < 1024 ? 24 : 40;
+      const totalCardWidth = cardWidth + gap;
+
+      const newIndex = Math.round(scrollLeft / totalCardWidth);
+      setCurrentIndex(Math.max(0, Math.min(newIndex, projects.length - 1)));
+    };
+
+    container.addEventListener('scroll', handleScroll);
+    return () => container.removeEventListener('scroll', handleScroll);
+  }, [projects.length]);
+
   const scrollLeft = useCallback(() => {
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current;
-      // Responsive scroll amount based on screen size
-      const isMobile = window.innerWidth < 768;
-      const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
-      const scrollAmount = isMobile ? 284 : isTablet ? 326 : 380; // card width + gap
+      const cardWidth = window.innerWidth < 768 ? 280 : window.innerWidth >= 768 && window.innerWidth < 1024 ? 320 : 340;
+      const gap = window.innerWidth < 768 ? 16 : window.innerWidth >= 768 && window.innerWidth < 1024 ? 24 : 40;
+      const scrollAmount = cardWidth + gap;
+
       container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-      setCurrentIndex(prev => Math.max(0, prev - 1));
     }
   }, []);
 
   const scrollRight = useCallback(() => {
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current;
-      // Responsive scroll amount based on screen size
-      const isMobile = window.innerWidth < 768;
-      const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
-      const scrollAmount = isMobile ? 284 : isTablet ? 326 : 380; // card width + gap
+      const cardWidth = window.innerWidth < 768 ? 280 : window.innerWidth >= 768 && window.innerWidth < 1024 ? 320 : 340;
+      const gap = window.innerWidth < 768 ? 16 : window.innerWidth >= 768 && window.innerWidth < 1024 ? 24 : 40;
+      const scrollAmount = cardWidth + gap;
+
       container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-      setCurrentIndex(prev => Math.min(products.length - 4, prev + 1));
     }
-  }, [products.length]);
+  }, []);
 
   // Calculate indicator position and width
-  const maxIndex = products.length - 4;
+  const maxIndex = Math.max(0, projects.length - 1);
   const indicatorWidth = maxIndex > 0 ? 820 / (maxIndex + 1) : 820; // 820px is the line width
   const indicatorPosition = currentIndex * indicatorWidth;
 
@@ -120,9 +74,9 @@ const LatestProjectsSection = () => {
 
         {/* Details Section - Moved to top for mobile/tablet */}
         <div className="w-full lg:absolute lg:top-[120px] lg:left-[90px] lg:w-[405px] lg:h-[289px] text-left mb-8 lg:mb-0">
-          <div className="text-3xl md:text-4xl lg:text-5xl font-semibold font-['WorkSans'] lg:absolute lg:top-[39.75px] lg:left-0 mb-4 lg:mb-0">Latest Projects</div>
+          <div className="text-3xl md:text-4xl lg:text-5xl font-semibold font-['WorkSans'] lg:absolute lg:top-[39.75px] lg:left-0 mb-4 lg:mb-0">{title}</div>
           <div className="leading-[24px] md:leading-[28px] text-[#797979] inline-block w-full lg:absolute lg:top-[112px] lg:left-[3px] lg:w-[402px] font-['Manrope'] text-sm md:text-base mb-6 lg:mb-0">
-            We&apos;ve designed and curated pieces that are a cut above your average home goods, because when you level up your everyday objects, you elevate your daily rituals.
+            {description}
           </div>
           <div className="tracking-[0.05em] text-transform-uppercase font-['Manrope'] font-semibold inline-block w-[79px] h-[18px] cursor-pointer mb-4 lg:absolute lg:top-[264px] lg:left-[3px] lg:mb-0 hidden lg:inline-block" onClick={onViewAllTextClick}>
             View all
@@ -135,9 +89,9 @@ const LatestProjectsSection = () => {
             ref={scrollContainerRef}
             className="flex gap-4 md:gap-6 lg:gap-10 h-full overflow-x-auto lg:overflow-hidden scrollbar-hide"
           >
-            {products.map((product) => (
+            {projects.map((project, index) => (
               <div
-                key={product.id}
+                key={index}
                 className="w-[280px] md:w-[320px] lg:w-[340px] h-auto lg:h-[462px] font-poppins flex-shrink-0"
               >
                 <Image
@@ -145,12 +99,12 @@ const LatestProjectsSection = () => {
                   width={340}
                   height={420}
                   sizes="(max-width: 768px) 280px, (max-width: 1024px) 320px, 340px"
-                  alt={product.title}
-                  src={product.image}
+                  alt={project.title}
+                  src={project.image}
                 />
                 <div className="mt-2 flex justify-between items-center font-['WorkSans']">
-                  <div className="text-base md:text-lg font-medium">{product.title}</div>
-                  <div className="text-transform-uppercase text-sm md:text-base">{product.price}</div>
+                  <div className="text-base md:text-lg font-medium">{project.title}</div>
+                  <div className="text-transform-uppercase text-sm md:text-base">{project.price}</div>
                 </div>
               </div>
             ))}
@@ -177,16 +131,18 @@ const LatestProjectsSection = () => {
                   ? 'text-[#797979] cursor-not-allowed'
                   : 'text-black hover:text-gray-600 cursor-pointer'
                   }`}
+                aria-label="Scroll left"
               >
                 <ChevronLeft size={32} />
               </button>
               <button
                 onClick={scrollRight}
-                disabled={currentIndex >= products.length - 4}
-                className={`${currentIndex >= products.length - 4
+                disabled={currentIndex >= maxIndex}
+                className={`${currentIndex >= maxIndex
                   ? 'text-[#797979] cursor-not-allowed'
                   : 'text-black hover:text-gray-600 cursor-pointer'
                   }`}
+                aria-label="Scroll right"
               >
                 <ChevronRight size={32} />
               </button>

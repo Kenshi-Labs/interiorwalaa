@@ -3,9 +3,14 @@ import { Play, MoveRightIcon } from 'lucide-react';
 import { Button } from '../ui/button';
 import { videos } from '@/data/videos';
 
-const VideoGallerySection = () => {
+interface VideoGallerySectionProps {
+  title: string;
+  subtitle: string;
+  description: string;
+  isLoading?: boolean;
+}
 
-
+const VideoGallerySection = ({ title, subtitle, description, isLoading = false }: VideoGallerySectionProps) => {
   interface Video {
     id: number;
     title: string;
@@ -51,6 +56,70 @@ const VideoGallerySection = () => {
     </div>
   );
 
+  if (isLoading) {
+    return (
+      <section className="py-8 lg:py-20 px-6 max-w-[1340px] mx-auto">
+        {/* Mobile/Tablet Layout */}
+        <div className="lg:hidden">
+          {/* Section Header for Mobile */}
+          <div className="text-center mb-12">
+            <div className="animate-pulse">
+              <div className="h-8 bg-gray-200 rounded mb-2"></div>
+              <div className="h-10 bg-gray-200 rounded mb-4"></div>
+              <div className="h-6 bg-gray-200 rounded w-3/4 mx-auto"></div>
+            </div>
+          </div>
+
+          {/* Mobile Video Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="animate-pulse">
+                <div className="h-[250px] md:h-[280px] bg-gray-200 rounded-4xl"></div>
+              </div>
+            ))}
+          </div>
+
+          {/* Mobile CTA Button */}
+          <div className="text-center mt-8">
+            <div className="animate-pulse">
+              <div className="h-12 bg-gray-200 rounded w-32 mx-auto"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop Layout */}
+        <div className="hidden lg:grid lg:grid-cols-12 gap-8">
+          {/* First Column - Large video with text overlay */}
+          <div className="lg:col-span-6 relative">
+            <div className="animate-pulse">
+              <div className="h-[500px] lg:h-[600px] bg-gray-200 rounded-4xl"></div>
+            </div>
+          </div>
+
+          {/* Second Column - Small then Large */}
+          <div className="lg:col-span-3 flex flex-col gap-6">
+            <div className="animate-pulse">
+              <div className="h-[180px] lg:h-[220px] bg-gray-200 rounded-4xl"></div>
+            </div>
+            <div className="animate-pulse">
+              <div className="h-[280px] lg:h-[350px] bg-gray-200 rounded-4xl"></div>
+            </div>
+          </div>
+
+          {/* Third Column - Large then Small */}
+          <div className="lg:col-span-3 flex flex-col gap-6">
+            <div className="animate-pulse">
+              <div className="h-[280px] lg:h-[350px] bg-gray-200 rounded-4xl"></div>
+            </div>
+            <div className="animate-pulse">
+              <div className="h-[180px] lg:h-[220px] bg-gray-200 rounded-4xl"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="py-8 lg:py-20 px-6 max-w-[1340px] mx-auto">
       {/* Mobile/Tablet Layout */}
@@ -58,11 +127,11 @@ const VideoGallerySection = () => {
         {/* Section Header for Mobile */}
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-4xl font-semibold mb-4 font-['WorkSans']">
-            Explore<br />
-            <span className="text-[var(--primary-brown)] font-bold text-4xl font-['WorkSans']">Our Videos</span>
+            {title}<br />
+            <span className="text-[var(--primary-brown)] font-bold text-4xl font-['WorkSans']">{subtitle}</span>
           </h2>
           <p className="text-base md:text-lg text-[var(--dark-gray)] font-manrope max-w-md mx-auto">
-            Get an insight of our projects
+            {description}
           </p>
         </div>
 
@@ -112,11 +181,11 @@ const VideoGallerySection = () => {
           {/* Text overlay positioned at bottom left */}
           <div className="absolute bottom-5 left-8 text-white max-w-md z-20">
             <h2 className="text-3xl lg:text-4xl text-black xl:text-3xl font-medium mb-4 leading-tight drop-shadow-2xl font-['WorkSans']">
-              Explore<br />
-              <span className="text-[var(--primary-brown)] font-bold text-5xl drop-shadow-2xl">Our Videos</span>
+              {title}<br />
+              <span className="text-[var(--primary-brown)] font-bold text-5xl drop-shadow-2xl">{subtitle}</span>
             </h2>
             <p className="text-base lg:text-lg mb-6 max-w-sm text-[var(--dark-gray)]">
-              Get an insight of our projects
+              {description}
             </p>
             <Button
               variant="interior"

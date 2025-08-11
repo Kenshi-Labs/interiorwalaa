@@ -1,9 +1,10 @@
 'use client'
-import { projects, Project } from '@/data/projects';
-import { notFound } from 'next/navigation'; // For 404 handling
+import { Project } from '@/types/project';
+import { notFound } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import ProductDetails from '@/components/gallerySection/ProductDetails';
 import NewsletterSection from '@/components/projectContact';
+import { getProjectsMain } from '@/api/project';
 
 type ProjectPageProps = {
   params: Promise<{ slug: string }>
@@ -18,6 +19,11 @@ const ProjectPage = ({ params }: ProjectPageProps) => {
     const loadProject = async () => {
       try {
         const { slug } = await params;
+
+        // Fetch projects data from API
+        const projectsResponse = await getProjectsMain();
+        const projects = projectsResponse.data.projects;
+
         const foundProject = projects.find((p) => p.slug === slug);
 
         if (!foundProject) {
@@ -57,7 +63,8 @@ const ProjectPage = ({ params }: ProjectPageProps) => {
         successMessage="Thanks for submitting! Check your inbox for confirmation."
         errorMessage="Something went wrong. Please try again."
         invalidEmailMessage="Please enter a valid email address"
-      />    </>
+      />
+    </>
   );
 };
 

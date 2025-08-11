@@ -1,7 +1,17 @@
 import React from 'react';
-import { whyChooseUsData } from '../../data/whychooseusdata';
 
 const bgImage = "https://interiorwalaa.smepulse.in/whychooseus.jpg";
+
+interface WhyChooseUsProps {
+    title: string;
+    subtitle: string;
+    description: string;
+    items: Array<{
+        title: string;
+        description: string;
+    }>;
+    isLoading?: boolean;
+}
 
 // Card component for reusability
 const Card = ({ title, description, isBrown = false, isRotated = false }: {
@@ -31,7 +41,22 @@ const Card = ({ title, description, isBrown = false, isRotated = false }: {
     );
 };
 
-const WhyChooseUs = () => {
+const WhyChooseUs = ({ title, subtitle, description, items, isLoading = false }: WhyChooseUsProps) => {
+    if (isLoading) {
+        return (
+            <section className="relative py-12 sm:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-10 overflow-hidden">
+                <div className="relative z-10 max-w-7xl mx-auto">
+                    <div className="text-center">
+                        <div className="animate-pulse">
+                            <div className="h-12 bg-gray-200 rounded mb-4"></div>
+                            <div className="h-6 bg-gray-200 rounded w-3/4 mx-auto"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
     return (
         <section className="relative py-12 sm:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-10 overflow-hidden">
             {/* Background Image with Opacity */}
@@ -56,18 +81,18 @@ const WhyChooseUs = () => {
                                 <span
                                     className="block font-['WorkSans'] font-medium text-text-primary"
                                 >
-                                    Why
+                                    {title}
                                 </span>
                                 <span
                                     className="block font-['WorkSans'] font-bold text-primary-brown"
                                 >
-                                    Choose Us?
+                                    {subtitle}
                                 </span>
                             </h2>
                             <p
                                 className="text-base sm:text-lg lg:text-lg mt-3 sm:mt-4 lg:mt-4 text-text-secondary font-manrope"
                             >
-                                {whyChooseUsData.intro.subheading}
+                                {description}
                             </p>
                         </div>
                     </div>
@@ -77,16 +102,16 @@ const WhyChooseUs = () => {
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-6">
                             {/* Card 1 - Brown Background with rotation */}
                             <Card
-                                title={whyChooseUsData.row1[0].title}
-                                description={whyChooseUsData.row1[0].description}
+                                title={items[0]?.title || ""}
+                                description={items[0]?.description || ""}
                                 isBrown={true}
                                 isRotated={true}
                             />
 
                             {/* Card 2 - White Background */}
                             <Card
-                                title={whyChooseUsData.row1[1].title}
-                                description={whyChooseUsData.row1[1].description}
+                                title={items[1]?.title || ""}
+                                description={items[1]?.description || ""}
                             />
                         </div>
                     </div>
@@ -94,7 +119,7 @@ const WhyChooseUs = () => {
 
                 {/* Second Row - 3 Cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-6 lg:col-start-2 lg:col-span-2">
-                    {whyChooseUsData.row2.map((card, index) => (
+                    {items.slice(2, 5).map((card, index) => (
                         <Card
                             key={index}
                             title={card.title}

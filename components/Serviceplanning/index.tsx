@@ -1,24 +1,31 @@
 import Image from 'next/image'
 import React from 'react'
-import { servicePlanningData } from '../../data/ourservicedata'
+import { ServiceItem } from '@/types/ourservices'
 
-const Serviceplanning = () => {
+interface ServiceplanningProps {
+  servicesData?: ServiceItem[];
+}
+
+const Serviceplanning: React.FC<ServiceplanningProps> = ({ servicesData = [] }) => {
+  // Fallback to empty array if no data
+  const serviceItems = servicesData || [];
+
   return (
     <div className="w-full md:my-10 my-4 px-4 sm:px-6 lg:px-0">
       <div className="flex flex-col gap-8 sm:gap-12 lg:gap-16 xl:gap-20 justify-start items-center w-full">
-        {servicePlanningData.map((item, idx) => {
+        {serviceItems.map((item, idx) => {
           const isEven = idx % 2 === 0;
           return (
             <div
-              key={item.title}
+              key={item.id}
               className={`flex flex-col lg:flex-row justify-start items-center w-full gap-4 lg:gap-0`}
             >
               {/* Image Section */}
               {isEven ? (
                 <div className="w-full lg:w-[45%] xl:w-[42%] flex lg:justify-start">
                   <Image
-                    src={item.image}
-                    alt={item.alt}
+                    src={item.imageUrl}
+                    alt={item.imageAlt}
                     width={622}
                     height={344}
                     className="shadow-[0_8px_32px_0_rgba(143,94,61,0.25),0_1.5px_8px_0_rgba(32,31,29,0.10)] w-full h-48 sm:h-64 md:h-72 lg:h-80 xl:h-[344px] object-cover rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-none border-r-8 border-[#201f1d] lg:border-r-8 lg:border-l-0"
@@ -39,7 +46,6 @@ const Serviceplanning = () => {
                     }`}
                 />
 
-
                 <h2 className={`relative z-10 text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-['WorkSans'] font-semibold leading-tight ${isEven ? 'text-left lg:text-right' : 'text-left'} text-[#201f1d] group-hover:text-white transition-colors duration-500`}>
                   {item.title}
                 </h2>
@@ -52,8 +58,8 @@ const Serviceplanning = () => {
               {!isEven ? (
                 <div className="w-full lg:w-[45%] xl:w-[42%] flex lg:justify-end order-1 lg:order-2">
                   <Image
-                    src={item.image}
-                    alt={item.alt}
+                    src={item.imageUrl}
+                    alt={item.imageAlt}
                     width={622}
                     height={344}
                     className="shadow-[0_8px_32px_0_rgba(143,94,61,0.25),0_1.5px_8px_0_rgba(32,31,29,0.10)] w-full h-48 sm:h-64 md:h-72 lg:h-80 xl:h-[344px] object-cover rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-none border-l-8 border-[#201f1d] lg:border-l-8 lg:border-r-0"

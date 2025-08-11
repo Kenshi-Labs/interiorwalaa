@@ -9,9 +9,9 @@ interface AllAboutProps {
   description: string[]
   buttonText: string
   images: {
-    img1: string
-    img2: string
-    img3: string
+    image1: string
+    image2: string
+    image3: string
   }
   stats: {
     number: string
@@ -26,7 +26,7 @@ const ImageSection = ({ images, stats }: { images: AllAboutProps['images'], stat
       <Image
         width={500}
         height={500}
-        src={images.img1}
+        src={images.image1}
         alt="Interior design showcase"
         className='w-full max-w-[400px] sm:max-w-[500px] h-24 sm:h-32 lg:h-36 object-cover rounded-lg sm:rounded-xl'
       />
@@ -37,7 +37,7 @@ const ImageSection = ({ images, stats }: { images: AllAboutProps['images'], stat
       <Image
         width={500}
         height={500}
-        src={images.img2}
+        src={images.image2}
         alt="Interior design showcase"
         className='w-full max-w-[400px] sm:max-w-[500px] h-48 sm:h-60 lg:h-72 object-cover rounded-lg sm:rounded-xl'
       />
@@ -48,7 +48,7 @@ const ImageSection = ({ images, stats }: { images: AllAboutProps['images'], stat
       <Image
         width={500}
         height={500}
-        src={images.img3}
+        src={images.image3}
         alt="Interior design showcase"
         className='w-[140px] sm:w-[180px] lg:w-[215px] h-32 sm:h-44 lg:h-52 object-cover rounded-lg sm:rounded-xl'
       />

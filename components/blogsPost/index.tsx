@@ -1,10 +1,9 @@
-"use client";
-
+'use client'
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { BlogPost, blogPosts } from "@/data/blogPosts";
+import { BlogPost } from "@/types/blogs";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -38,7 +37,7 @@ const BlogImage: React.FC<{
   return (
     <div className="relative h-[180px] sm:h-[220px] lg:h-[250px] overflow-hidden group rounded-t-[20px] sm:rounded-t-[25px] lg:rounded-t-[30px]">
       <Image
-        src={post.image}
+        src={post.featuredImage}
         alt={post.title}
         fill
         className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
@@ -52,7 +51,7 @@ const BlogImage: React.FC<{
 // Separate Content Component
 const BlogContent: React.FC<{ post: BlogPost }> = ({ post }) => {
   return (
-    <div className="bg-[#F3F3F3] p-3 sm:p-4 lg:py-3 lg:px-6 space-y-2 sm:space-y-3 lg:space-y-3 rounded-b-[20px] sm:rounded-b-[25px] lg:rounded-b-[30px] text-center">
+    <div className="bg-[#F3F3F3] p-3 sm:p-4 lg:py-3 lg:px-6 space-y-2 sm:space-y-3 lg:space-y-3 rounded-b-[20px] sm:rounded-t-[25px] lg:rounded-t-[30px] text-center">
       {/* Title - Responsive text sizing */}
       <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-primary-brown leading-tight font-['WorkSans']">
         {post.title}: <span className="text-[var(--dark-gray)] text-xs sm:text-sm lg:text-base font-normal font-manrope">{post.excerpt}</span>
@@ -67,7 +66,6 @@ const BlogCard: React.FC<{ post: BlogPost; index: number }> = ({ post, index }) 
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    console.log('Blog card clicked:', post.slug);
     router.push(`/blogs/${post.slug}`);
   };
 
@@ -87,10 +85,16 @@ const BlogCard: React.FC<{ post: BlogPost; index: number }> = ({ post, index }) 
   );
 };
 
-const BlogSection: React.FC = () => {
-  const firstRowPosts = blogPosts.slice(0, 2);
-  const secondRowPosts = blogPosts.slice(2, 5);
-  const thirdRowPosts = blogPosts.slice(5, 8);
+interface BlogSectionProps {
+  blogsData: BlogPost[];
+  title?: string;
+  description?: string;
+}
+
+const BlogSection: React.FC<BlogSectionProps> = ({ blogsData, title, description }) => {
+  const firstRowPosts = blogsData.slice(0, 2);
+  const secondRowPosts = blogsData.slice(2, 5);
+  const thirdRowPosts = blogsData.slice(5, 8);
 
   return (
     <section className="py-8 sm:py-12 lg:py-16">
@@ -103,11 +107,10 @@ const BlogSection: React.FC = () => {
           className="text-center mb-8 sm:mb-12 lg:mb-16"
         >
           <h2 className="text-2xl sm:text-3xl lg:text-5xl font-semibold text-black mb-2 sm:mb-3 lg:mb-4 font-['WorkSans']">
-            Our Latest Blogs
+            {title || ""}
           </h2>
           <p className="text-sm sm:text-base lg:text-lg text-[var(--dark-gray)] max-w-3xl mx-auto font-manrope  px-2">
-            We are designers and content creators living it up in downtown New
-            York, creating beautiful images when you need them in your design.
+            {description || ""}
           </p>
         </motion.div>
 
@@ -120,7 +123,7 @@ const BlogSection: React.FC = () => {
         >
           {/* Mobile/Tablet: Single column layout */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:hidden gap-4 sm:gap-6">
-            {blogPosts.map((post, index) => (
+            {blogsData.map((post, index) => (
               <BlogCard key={post.id} post={post} index={index} />
             ))}
           </div>

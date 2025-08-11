@@ -2,24 +2,29 @@
 import Image from 'next/image';
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { projects } from '@/data/projects';
+import { Project } from '@/types/project';
 
-const GallerySection = () => {
+interface GallerySectionProps {
+  title: string;
+  projects: Project[];
+}
+
+const GallerySection: React.FC<GallerySectionProps> = ({ title, projects }) => {
   const router = useRouter();
 
   // Generate image data from projects
   const galleryImages = projects.map((project) => ({
     id: project.id,
-    src: project.image,
+    src: project.featuredImage,
     alt: project.title,
     category: project.category,
-    clientName: project.clientName,
+    clientName: project.title,
     slug: project.slug,
     description: project.description,
   }));
 
-  // Use all 7 projects for continuous scroll
-  const displayProjects = galleryImages.slice(0, 7);
+  // Use all projects for continuous scroll
+  const displayProjects = galleryImages;
 
   interface ImageProps {
     src: string;
@@ -79,7 +84,7 @@ const GallerySection = () => {
     <section className="w-full relative bg-[var(--secondary-brown)] h-[680px] overflow-hidden text-left text-[12px]">
       {/* Section Header */}
       <div className="absolute top-[61px] left-1/2 transform -translate-x-1/2 text-[48px] md:text-[48px] font-semibold font-['WorkSans'] text-white text-center w-full px-4">
-        Our Projects
+        {title}
       </div>
 
       {/* Top Row - Scroll Left */}
@@ -108,13 +113,13 @@ const GallerySection = () => {
             transform: translateX(0); 
           }
           100% { 
-            transform: translateX(calc(-500px * 7)); 
+            transform: translateX(calc(-500px * ${displayProjects.length})); 
           }
         }
         
         @keyframes scroll-right {
           0% { 
-            transform: translateX(calc(-500px * 7)); 
+            transform: translateX(calc(-500px * ${displayProjects.length})); 
           }
           100% { 
             transform: translateX(0); 

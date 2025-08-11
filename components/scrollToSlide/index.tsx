@@ -2,38 +2,23 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 
-const TestimonialCarousel = () => {
+interface TestimonialCarouselProps {
+  title: string;
+  subtitle: string;
+  description: string;
+  testimonials: Array<{
+    clientName: string;
+    clientRole: string;
+    testimonial: string;
+  }>;
+  isLoading?: boolean;
+}
+
+const TestimonialCarousel = ({ title, subtitle, description, testimonials, isLoading = false }: TestimonialCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsPerView, setCardsPerView] = useState(2);
   const [isAnimating, setIsAnimating] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
-
-  const testimonials = [
-    {
-      id: 1,
-      name: "Eran Gowda",
-      role: "Customer",
-      text: "Thanks a lot to Interiorwalaa team to have transformed the house into dream house. Appreciate your care and customer centricity."
-    },
-    {
-      id: 2,
-      name: "Raveendra Holla",
-      role: "Customer",
-      text: "They are one stop shop for all my renovation needs. Finished work on budget, on time with highest quality."
-    },
-    {
-      id: 3,
-      name: "Priya Sharma",
-      role: "Customer",
-      text: "Exceptional service and attention to detail. The team understood our vision perfectly and delivered beyond expectations."
-    },
-    {
-      id: 4,
-      name: "Rajesh Kumar",
-      role: "Customer",
-      text: "Professional approach and quality work. Highly recommend for anyone looking for interior design solutions."
-    }
-  ];
 
   // Handle responsive cards per view
   useEffect(() => {
@@ -98,6 +83,37 @@ const TestimonialCarousel = () => {
     return visible;
   };
 
+  if (isLoading) {
+    return (
+      <section className="py-6 px-4 sm:py-8 sm:px-6 md:py-12 md:px-8 lg:py-16 lg:pl-10 xl:pl-20 overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-start">
+          {/* Left Column - Header and Navigation */}
+          <div className="space-y-4 sm:space-y-5 text-center lg:text-left">
+            <div className="animate-pulse">
+              <div className="h-8 bg-gray-200 rounded mb-2"></div>
+              <div className="h-10 bg-gray-200 rounded mb-4"></div>
+              <div className="h-6 bg-gray-200 rounded w-3/4"></div>
+            </div>
+            <div className="flex gap-3 sm:gap-4 pt-2 sm:pt-4 justify-center lg:justify-start">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-200 rounded-full"></div>
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-200 rounded-full"></div>
+            </div>
+          </div>
+          {/* Right Column - Testimonial Carousel */}
+          <div className="mt-6 lg:mt-0">
+            <div className="flex gap-3 sm:gap-4 md:gap-6">
+              {[1, 2].map((i) => (
+                <div key={i} className="animate-pulse">
+                  <div className="w-[280px] sm:w-[320px] md:w-[360px] lg:w-[380px] h-48 bg-gray-200 rounded-2xl"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="py-6 px-4 sm:py-8 sm:px-6 md:py-12 md:px-8 lg:py-16 lg:pl-10 xl:pl-20 overflow-hidden">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-start">
@@ -105,15 +121,15 @@ const TestimonialCarousel = () => {
         <div className="space-y-4 sm:space-y-5 text-center lg:text-left">
           <div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl text-black leading-tight font-['WorkSans'] font-medium animate-fade-in">
-              What Our Clients Say
+              {title}
             </h2>
             <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[var(--primary-brown)] leading-tight font-['WorkSans'] font-bold animate-fade-in-delay">
-              About Us
+              {subtitle}
             </h3>
           </div>
 
-          <p className="text-[var(--dark-gray)] text-sm sm:text-base md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 font-manrope animate-fade-in-delay-2">
-            Get an insight on what our clients say about us
+          <p className="text-[var(--dark-gray)] text-sm sm:text-base md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 font-['Manrope'] animate-fade-in-delay-2">
+            {description}
           </p>
 
           {/* Navigation Arrows */}
@@ -152,7 +168,7 @@ const TestimonialCarousel = () => {
 
               return (
                 <div
-                  key={`${testimonial.id}-${currentIndex}`}
+                  key={`${testimonial.clientName}-${currentIndex}-${index}`}
                   className={`flex-shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[380px] p-4 sm:p-6 md:p-8 lg:p-10 rounded-2xl sm:rounded-3xl md:rounded-4xl transition-all duration-500 ease-out transform ${isFirstCard
                     ? 'bg-[var(--light-cream)] shadow-xl scale-105 z-20'
                     : isSecondCard
@@ -177,13 +193,13 @@ const TestimonialCarousel = () => {
                         ? 'text-[var(--primary-brown)]'
                         : 'text-[var(--primary-brown)]'
                         }`}>
-                        {testimonial.name}
+                        {testimonial.clientName}
                       </h4>
                       <p className={`text-xs font-manrope font-semibold sm:text-sm transition-all duration-500 ${isFirstCard
                         ? 'text-black'
                         : 'text-black'
                         }`}>
-                        {testimonial.role}
+                        {testimonial.clientRole}
                       </p>
                     </div>
                   </div>
@@ -193,7 +209,7 @@ const TestimonialCarousel = () => {
                     ? 'text-[var(--dark-gray)]'
                     : 'text-[var(--dark-gray)]'
                     }`}>
-                    {testimonial.text}
+                    {testimonial.testimonial}
                   </p>
                 </div>
               );

@@ -1,33 +1,50 @@
-'use client'
 import InternalBanner from "@/components/internalbanner";
 import OurGallery from "@/components/OurGallery";
-import WelcomeSection from "@/components/Welcome";
-import { aboutUsWelcomeData } from "@/data/aboutuswelcome";
-import React from "react";
+import WelcomeSection from "@/components/AboutUsWelcome/Welcome";
+import { getAboutUsBanner, getAboutUsMain, getAboutUsGallery } from "@/api/aboutus";
 
+export default async function AboutUsPage() {
+  let bannerData = null;
+  let mainData = null;
+  let galleryData = null;
 
-const page = () => {
+  try {
+    bannerData = await getAboutUsBanner();
+  } catch (error) {
+    console.error("Failed to fetch banner data:", error);
+  }
+
+  try {
+    mainData = await getAboutUsMain();
+  } catch (error) {
+    console.error("Failed to fetch main data:", error);
+  }
+
+  try {
+    galleryData = await getAboutUsGallery();
+  } catch (error) {
+    console.error("Failed to fetch gallery data:", error);
+  }
+
   return (
     <div>
       <InternalBanner
-        title="About Us"
-        subtitle="Interiorwala stands at the forefront of commercial interior designers in Bangalore"
-        backgroundImages={[
-          "https://interiorwalaa.smepulse.in/bannercarouselimg1.png",
-          "https://interiorwalaa.smepulse.in/bannercarouselimg2.png",
-          "https://interiorwalaa.smepulse.in/bannercarouselimg3.png"
-        ]}
+        title={bannerData?.data?.title || ""}
+        subtitle={bannerData?.data?.description || ""}
+        backgroundImages={bannerData?.data?.backgroundImage || ["", "", ""]}
         autoSlideInterval={4000}
       />
       <WelcomeSection
-        cards={aboutUsWelcomeData.cards}
-        backgroundImage={aboutUsWelcomeData.backgroundImage}
-        mainTitle={aboutUsWelcomeData.mainTitle}
-        mainDescription={aboutUsWelcomeData.mainDescription}
+        backgroundImage={mainData?.data?.content?.rightPanel?.backgroundImage || ""}
+        mainTitle={mainData?.data?.content?.leftPanel?.title || ""}
+        mainDescription={mainData?.data?.content?.leftPanel?.description || [""]}
+        cards={mainData?.data?.content?.rightPanel?.contentCards || []}
       />
-      <OurGallery />
+      <OurGallery
+        title={galleryData?.data?.title || ""}
+        subtitle={galleryData?.data?.subtitle || ""}
+        isLoading={!galleryData?.data}
+      />
     </div>
   );
-};
-
-export default page;
+}

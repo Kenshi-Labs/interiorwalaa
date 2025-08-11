@@ -1,17 +1,50 @@
 'use client'
-import { services } from '@/data/data';
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
+import { ServiceItem } from '@/types/homepage';
 
+interface WhatWeOfferProps {
+  title: string;
+  subtitle: string;
+  description: string;
+  services: ServiceItem[];
+  isLoading: boolean;
+}
 
-const WhatWeOffer = () => {
+const WhatWeOffer: React.FC<WhatWeOfferProps> = ({
+  title,
+  subtitle,
+  description,
+  services,
+  isLoading
+}) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
-
+  if (isLoading) {
+    return (
+      <section className="py-8 sm:py-12 md:py-16 lg:py-16 px-4 sm:px-6 md:px-8 lg:px-12 bg-white-alt">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center">
+            <div className="animate-pulse">
+              <div className="h-8 bg-gray-300 rounded mb-4 mx-auto max-w-md"></div>
+              <div className="h-4 bg-gray-300 rounded mb-8 mx-auto max-w-sm"></div>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="animate-pulse">
+                  <div className="h-64 bg-gray-300 rounded-lg"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-8 sm:py-12 md:py-16 lg:py-16 px-4 sm:px-6 md:px-8 lg:px-12 bg-white-alt">
@@ -22,20 +55,19 @@ const WhatWeOffer = () => {
             }`}
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-semibold mb-2 sm:mb-3 md:mb-2 font-['WorkSans'] text-black leading-tight">
-            What We{' '}
+            {title}{' '}
             <span className="text-primary-brown">
-              Offer
+              {subtitle}
             </span>
           </h2>
           <p className="text-dark-gray-alt text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-3xl mx-auto leading-relaxed px-2 sm:px-4 font-manrope">
-            Experience the transformative power of design with us today
+            {description}
           </p>
         </div>
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-10">
           {services.map((service, index) => {
-
             return (
               <div
                 key={index}
@@ -44,7 +76,7 @@ const WhatWeOffer = () => {
                   : 'translate-y-8 opacity-0 scale-95'
                   }`}
                 style={{
-                  transitionDelay: `${service.delay}ms`
+                  transitionDelay: `${(index + 1) * 100}ms`
                 }}
               >
                 <div
@@ -70,7 +102,7 @@ const WhatWeOffer = () => {
                         loading='lazy'
                       />
                       <Image
-                        src={service.whiteicon}
+                        src={service.hoverIcon}
                         alt={service.title}
                         className="w-6 h-6 sm:w-8 sm:h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 object-contain transition-all duration-300 hidden group-hover:block"
                         width={100}
@@ -94,8 +126,6 @@ const WhatWeOffer = () => {
             );
           })}
         </div>
-
-
       </div>
     </section>
   );
