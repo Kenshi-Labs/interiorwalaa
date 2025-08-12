@@ -7,6 +7,7 @@
   font-weight: 100;
   font-style: normal;
   font-display: swap;
+  font-feature-settings: "liga" 1, "kern" 1;
 }
 
 @font-face {
@@ -15,6 +16,7 @@
   font-weight: 300;
   font-style: normal;
   font-display: swap;
+  font-feature-settings: "liga" 1, "kern" 1;
 }
 
 @font-face {
@@ -23,6 +25,7 @@
   font-weight: 400;
   font-style: normal;
   font-display: swap;
+  font-feature-settings: "liga" 1, "kern" 1;
 }
 
 @font-face {
@@ -31,6 +34,7 @@
   font-weight: 500;
   font-style: normal;
   font-display: swap;
+  font-feature-settings: "liga" 1, "kern" 1;
 }
 
 @font-face {
@@ -39,6 +43,7 @@
   font-weight: 600;
   font-style: normal;
   font-display: swap;
+  font-feature-settings: "liga" 1, "kern" 1;
 }
 
 @font-face {
@@ -47,6 +52,7 @@
   font-weight: 700;
   font-style: normal;
   font-display: swap;
+  font-feature-settings: "liga" 1, "kern" 1;
 }
 
 @font-face {
@@ -420,4 +426,88 @@ body {
 }
 .hide-scrollbar::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
+}
+
+/* Ensure consistent brand name text sizing across browsers */
+.brand-name-text {
+  font-size: 40px !important;
+  line-height: 70% !important;
+  font-weight: 700 !important;
+  /* Force font size for Edge */
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@media (min-width: 1536px) {
+  .brand-name-text {
+    font-size: 120px !important;
+  }
+}
+
+/* Edge-specific fixes */
+@supports (-ms-ime-align: auto) {
+  .brand-name-text {
+    font-size: 120px !important;
+    line-height: 70% !important;
+    font-weight: 700 !important;
+  }
+
+  @media (min-width: 1536px) {
+    .brand-name-text {
+      font-size: 120px !important;
+    }
+  }
+}
+
+/* Force font rendering consistency */
+.text-gradient {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /* Additional Edge compatibility */
+  -ms-font-feature-settings: "liga" 1, "kern" 1;
+  font-feature-settings: "liga" 1, "kern" 1;
+}
+
+/* Additional Edge compatibility fixes */
+@supports (-ms-ime-align: auto) {
+  /* Edge-specific overrides */
+  .brand-name-text {
+    font-size: 120px !important;
+    line-height: 70% !important;
+    font-weight: 700 !important;
+    transform: scale(1); /* Force rendering */
+  }
+
+  @media (min-width: 1536px) {
+    .brand-name-text {
+      font-size: 120px !important;
+    }
+  }
+}
+
+/* Force text size for all browsers */
+h1.brand-name-text {
+  font-size: 120px !important;
+  line-height: 70% !important;
+  font-weight: 700 !important;
+}
+
+@media (min-width: 1536px) {
+  h1.brand-name-text {
+    font-size: 120px !important;
+  }
+}
+
+/* Edge-specific overrides using -ms- prefix */
+.brand-name-text {
+  -ms-font-size: 120px !important;
+  -ms-line-height: 70% !important;
+  -ms-font-weight: 700 !important;
+}
+
+@media (min-width: 1536px) {
+  .brand-name-text {
+    -ms-font-size: 120px !important;
+  }
 }
