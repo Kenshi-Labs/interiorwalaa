@@ -63,16 +63,22 @@ export const HeroBanner = ({
 
         {/* Centered Text Overlay */}
         <div className="absolute inset-0 flex flex-col items-center mt-28 text-center px-4">
-          <h2 className="text-[#FDFEFF] max-w-[750px] font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[70px] font-extralight text-center">
+          <h2 className="text-[#FDFEFF] max-w-[700px] font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[70px] font-extralight text-center">
             {headlineText}
           </h2>
         </div>
 
         {/* Brand Name Text */}
-        <div className="absolute -bottom-2 lg:-bottom-5 left-0 right-0 flex justify-center items-end">
+        <div className="absolute bottom-0 left-0 right-0 flex justify-center items-end">
           <h1
-            className="text-center font-['Alexandria'] text-[40px] 2xl:text-[120px] font-bold text-gradient"
-            style={{ lineHeight: '100%' }}
+            className="text-center font-['Alexandria',_Arial,_sans-serif] brand-name-text text-gradient"
+            style={{
+              fontFamily: '"Alexandria", Arial, "Helvetica Neue", Helvetica, sans-serif',
+              fontSize: '120px',
+              lineHeight: '70%',
+              fontWeight: 700,
+              textSizeAdjust: '100%'
+            }}
           >
             {brandName}
           </h1>

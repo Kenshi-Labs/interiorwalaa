@@ -78,7 +78,7 @@ export const Header = () => {
       <div className="sticky top-0 left-0 right-0 z-50 w-full">
         {/* Sticky Navigation Bar */}
         <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8 pt-3 sm:pt-4">
-          <div className={`w-full h-[56px] sm:h-[64px] md:h-[72px] mx-auto rounded-[32px] sm:rounded-[40px] flex items-center justify-between px-4 sm:px-6 container transition-all duration-300 ${getBackgroundClasses()}`}>
+          <div className={`w-full h-[56px] sm:h-[64px] md:h-[72px] rounded-[32px] sm:rounded-[40px] flex items-center justify-between px-4 sm:px-6 transition-all duration-300 ${getBackgroundClasses()}`}>
 
             {/* Logo */}
             <div className="flex-shrink-0">
