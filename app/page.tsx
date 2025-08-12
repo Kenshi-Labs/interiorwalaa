@@ -10,57 +10,19 @@ import ServicesPortfolio from "@/components/servicesPortfolio";
 import VideoGallerySection from "@/components/videoSection";
 import WhatWeOffer from "@/components/whatweoffer";
 import WhyChooseUs from "@/components/whyChooseUs";
-import { getHomepageHero, getHomepageAboutUs, getHomepageServices, getHomepageWhyChooseUs, getHomepageFAQ, getHomepageTestimonials, getHomepageVideo } from "@/api/homepage";
-import { HomepageHeroResponse, HomepageAboutUsResponse, HomepageServicesResponse, HomepageWhyChooseUsResponse, HomepageFAQResponse, HomepageTestimonialsResponse, HomepageVideoResponse } from '@/types/homepage';
-import { useEffect, useState } from "react";
+import { useHomepageData } from "@/hooks/useHomepageData";
 
 export default function Home() {
-  const [heroData, setHeroData] = useState<HomepageHeroResponse | null>(null);
-  const [aboutUsData, setAboutUsData] = useState<HomepageAboutUsResponse | null>(null);
-  const [servicesData, setServicesData] = useState<HomepageServicesResponse | null>(null);
-  const [whyChooseUsData, setWhyChooseUsData] = useState<HomepageWhyChooseUsResponse | null>(null);
-  const [faqData, setFaqData] = useState<HomepageFAQResponse | null>(null);
-  const [testimonialsData, setTestimonialsData] = useState<HomepageTestimonialsResponse | null>(null);
-  const [videoData, setVideoData] = useState<HomepageVideoResponse | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [
-          hero,
-          aboutUs,
-          services,
-          whyChooseUs,
-          faq,
-          testimonials,
-          video
-        ] = await Promise.all([
-          getHomepageHero(),
-          getHomepageAboutUs(),
-          getHomepageServices(),
-          getHomepageWhyChooseUs(),
-          getHomepageFAQ(),
-          getHomepageTestimonials(),
-          getHomepageVideo()
-        ]);
-
-        setHeroData(hero);
-        setAboutUsData(aboutUs);
-        setServicesData(services);
-        setWhyChooseUsData(whyChooseUs);
-        setFaqData(faq);
-        setTestimonialsData(testimonials);
-        setVideoData(video);
-      } catch (error) {
-        console.error("Failed to fetch data:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const {
+    heroData,
+    aboutUsData,
+    servicesData,
+    whyChooseUsData,
+    faqData,
+    testimonialsData,
+    videoData,
+    isLoading
+  } = useHomepageData();
 
   if (isLoading) {
     return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
