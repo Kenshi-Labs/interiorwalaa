@@ -1,29 +1,42 @@
+'use client';
+
 import InternalBanner from "@/components/internalbanner";
 import OurGallery from "@/components/OurGallery";
 import WelcomeSection from "@/components/AboutUsWelcome/Welcome";
 import { getAboutUsBanner, getAboutUsMain, getAboutUsGallery } from "@/api/aboutus";
+import { AboutUsBannerResponse, AboutUsMainResponse, AboutUsGalleryResponse } from '@/types/aboutus';
+import { useEffect, useState } from "react";
 
-export default async function AboutUsPage() {
-  let bannerData = null;
-  let mainData = null;
-  let galleryData = null;
+export default function AboutUsPage() {
+  const [bannerData, setBannerData] = useState<AboutUsBannerResponse | null>(null);
+  const [mainData, setMainData] = useState<AboutUsMainResponse | null>(null);
+  const [galleryData, setGalleryData] = useState<AboutUsGalleryResponse | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  try {
-    bannerData = await getAboutUsBanner();
-  } catch (error) {
-    console.error("Failed to fetch banner data:", error);
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [banner, main, gallery] = await Promise.all([
+          getAboutUsBanner(),
+          getAboutUsMain(),
+          getAboutUsGallery()
+        ]);
 
-  try {
-    mainData = await getAboutUsMain();
-  } catch (error) {
-    console.error("Failed to fetch main data:", error);
-  }
+        setBannerData(banner);
+        setMainData(main);
+        setGalleryData(gallery);
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  try {
-    galleryData = await getAboutUsGallery();
-  } catch (error) {
-    console.error("Failed to fetch gallery data:", error);
+    fetchData();
+  }, []);
+
+  if (isLoading) {
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
   }
 
   return (

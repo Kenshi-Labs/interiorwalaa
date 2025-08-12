@@ -1,10 +1,12 @@
-'use client'
+'use client';
+
 import { Project } from '@/types/project';
 import { notFound } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import ProductDetails from '@/components/gallerySection/ProductDetails';
 import NewsletterSection from '@/components/projectContact';
 import { getProjectsMain } from '@/api/project';
+import { ProjectsMainResponse } from '@/types/project';
 
 type ProjectPageProps = {
   params: Promise<{ slug: string }>
@@ -21,7 +23,7 @@ const ProjectPage = ({ params }: ProjectPageProps) => {
         const { slug } = await params;
 
         // Fetch projects data from API
-        const projectsResponse = await getProjectsMain();
+        const projectsResponse: ProjectsMainResponse = await getProjectsMain();
         const projects = projectsResponse.data.projects;
 
         const foundProject = projects.find((p) => p.slug === slug);
@@ -44,7 +46,7 @@ const ProjectPage = ({ params }: ProjectPageProps) => {
   }, [params]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
   }
 
   if (!project) {
