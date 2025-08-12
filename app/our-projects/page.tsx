@@ -1,32 +1,44 @@
+'use client';
+
 import ContactSection from '@/components/contact'
 import GallerySection from '@/components/gallerySection/page'
 import ProjectBanner from '@/components/internalbanner/ProjectBanner'
 import LatestProjectsSection from '@/components/projectcarsoul/page'
 import HappyHomesSection from '@/components/projectsBanner/page'
 import { getProjectBanner, getLatestProjects, getProjectsMain } from '@/api/project'
-import React from 'react'
+import { ProjectBannerResponse, LatestProjectsResponse, ProjectsMainResponse } from '@/types/project'
+import { useEffect, useState } from 'react'
 
-const page = async () => {
-  let bannerData = null;
-  let latestProjectsData = null;
-  let projectsMainData = null;
+const OurProjectsPage = () => {
+  const [bannerData, setBannerData] = useState<ProjectBannerResponse | null>(null);
+  const [latestProjectsData, setLatestProjectsData] = useState<LatestProjectsResponse | null>(null);
+  const [projectsMainData, setProjectsMainData] = useState<ProjectsMainResponse | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  try {
-    bannerData = await getProjectBanner();
-  } catch (error) {
-    console.error("Failed to fetch banner data:", error);
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [banner, latestProjects, projectsMain] = await Promise.all([
+          getProjectBanner(),
+          getLatestProjects(),
+          getProjectsMain()
+        ]);
 
-  try {
-    latestProjectsData = await getLatestProjects();
-  } catch (error) {
-    console.error("Failed to fetch latest projects data:", error);
-  }
+        setBannerData(banner);
+        setLatestProjectsData(latestProjects);
+        setProjectsMainData(projectsMain);
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  try {
-    projectsMainData = await getProjectsMain();
-  } catch (error) {
-    console.error("Failed to fetch projects main data:", error);
+    fetchData();
+  }, []);
+
+  if (isLoading) {
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
   }
 
   return (
@@ -51,4 +63,4 @@ const page = async () => {
   )
 }
 
-export default page
+export default OurProjectsPage

@@ -1,25 +1,41 @@
+'use client';
+
 import InternalBanner from "@/components/internalbanner";
 import ScrollWrapper from "@/components/scrollWrapper";
 import ServiceContact from "@/components/ServiceContact";
 import Serviceplanning from "@/components/Serviceplanning";
 import ServicesPortfolio from "@/components/servicesPortfolio";
 import { getOurServicesBanner, getOurServicesList } from "@/api/ourservices";
-import React from "react";
+import { OurServicesBannerResponse, OurServicesListResponse } from '@/types/ourservices';
+import { useEffect, useState } from "react";
 
-const page = async () => {
-  let bannerData = null;
-  let servicesData = null;
+const OurServicesPage = () => {
+  const [bannerData, setBannerData] = useState<OurServicesBannerResponse | null>(null);
+  const [servicesData, setServicesData] = useState<OurServicesListResponse | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  try {
-    bannerData = await getOurServicesBanner();
-  } catch (error) {
-    console.error("Failed to fetch banner data:", error);
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [banner, services] = await Promise.all([
+          getOurServicesBanner(),
+          getOurServicesList()
+        ]);
 
-  try {
-    servicesData = await getOurServicesList();
-  } catch (error) {
-    console.error("Failed to fetch services data:", error);
+        setBannerData(banner);
+        setServicesData(services);
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (isLoading) {
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
   }
 
   return (
@@ -38,4 +54,4 @@ const page = async () => {
   );
 };
 
-export default page;
+export default OurServicesPage;
