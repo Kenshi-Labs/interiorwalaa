@@ -1,3 +1,5 @@
+'use client';
+
 import AllAbout from "@/components/common/AllAbout";
 import { HeroBanner } from "@/components/common/HeroBanner";
 import ContactSection from "@/components/contact";
@@ -9,59 +11,59 @@ import VideoGallerySection from "@/components/videoSection";
 import WhatWeOffer from "@/components/whatweoffer";
 import WhyChooseUs from "@/components/whyChooseUs";
 import { getHomepageHero, getHomepageAboutUs, getHomepageServices, getHomepageWhyChooseUs, getHomepageFAQ, getHomepageTestimonials, getHomepageVideo } from "@/api/homepage";
+import { HomepageHeroResponse, HomepageAboutUsResponse, HomepageServicesResponse, HomepageWhyChooseUsResponse, HomepageFAQResponse, HomepageTestimonialsResponse, HomepageVideoResponse } from '@/types/homepage';
+import { useEffect, useState } from "react";
 
-// Add ISR with 30-second revalidation
-export const revalidate = 30; // 30 seconds
+export default function Home() {
+  const [heroData, setHeroData] = useState<HomepageHeroResponse | null>(null);
+  const [aboutUsData, setAboutUsData] = useState<HomepageAboutUsResponse | null>(null);
+  const [servicesData, setServicesData] = useState<HomepageServicesResponse | null>(null);
+  const [whyChooseUsData, setWhyChooseUsData] = useState<HomepageWhyChooseUsResponse | null>(null);
+  const [faqData, setFaqData] = useState<HomepageFAQResponse | null>(null);
+  const [testimonialsData, setTestimonialsData] = useState<HomepageTestimonialsResponse | null>(null);
+  const [videoData, setVideoData] = useState<HomepageVideoResponse | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-export default async function Home() {
-  let heroData = null;
-  let aboutUsData = null;
-  let servicesData = null;
-  let whyChooseUsData = null;
-  let faqData = null;
-  let testimonialsData = null;
-  let videoData = null;
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [
+          hero,
+          aboutUs,
+          services,
+          whyChooseUs,
+          faq,
+          testimonials,
+          video
+        ] = await Promise.all([
+          getHomepageHero(),
+          getHomepageAboutUs(),
+          getHomepageServices(),
+          getHomepageWhyChooseUs(),
+          getHomepageFAQ(),
+          getHomepageTestimonials(),
+          getHomepageVideo()
+        ]);
 
-  try {
-    heroData = await getHomepageHero();
-  } catch (error) {
-    console.error("Failed to fetch hero data:", error);
-  }
+        setHeroData(hero);
+        setAboutUsData(aboutUs);
+        setServicesData(services);
+        setWhyChooseUsData(whyChooseUs);
+        setFaqData(faq);
+        setTestimonialsData(testimonials);
+        setVideoData(video);
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  try {
-    aboutUsData = await getHomepageAboutUs();
-  } catch (error) {
-    console.error("Failed to fetch about-us data:", error);
-  }
+    fetchData();
+  }, []);
 
-  try {
-    servicesData = await getHomepageServices();
-  } catch (error) {
-    console.error("Failed to fetch services data:", error);
-  }
-
-  try {
-    whyChooseUsData = await getHomepageWhyChooseUs();
-  } catch (error) {
-    console.error("Failed to fetch why-choose-us data:", error);
-  }
-
-  try {
-    faqData = await getHomepageFAQ();
-  } catch (error) {
-    console.error("Failed to fetch FAQ data:", error);
-  }
-
-  try {
-    testimonialsData = await getHomepageTestimonials();
-  } catch (error) {
-    console.error("Failed to fetch testimonials data:", error);
-  }
-
-  try {
-    videoData = await getHomepageVideo();
-  } catch (error) {
-    console.error("Failed to fetch video data:", error);
+  if (isLoading) {
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
   }
 
   return (
