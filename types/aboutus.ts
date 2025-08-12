@@ -37,9 +37,6 @@ export interface Content {
 
 export interface AboutUsMainData {
     id: string;
-    title: string;
-    subtitle: string;
-    description: string[];
     content: Content;
     isActive: boolean;
     createdAt: string;
