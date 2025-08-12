@@ -1,26 +1,423 @@
 @import "tailwindcss";
 
+/* Custom Fonts */
+@font-face {
+  font-family: "Alexandria";
+  src: url("/fonts/Alexandria-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Alexandria";
+  src: url("/fonts/Alexandria-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Alexandria";
+  src: url("/fonts/Alexandria-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Alexandria";
+  src: url("/fonts/Alexandria-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Alexandria";
+  src: url("/fonts/Alexandria-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Alexandria";
+  src: url("/fonts/Alexandria-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Urbanist";
+  src: url("/fonts/Urbanist-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Urbanist";
+  src: url("/fonts/Urbanist-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Urbanist";
+  src: url("/fonts/Urbanist-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Urbanist";
+  src: url("/fonts/Urbanist-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Urbanist";
+  src: url("/fonts/Urbanist-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Urbanist";
+  src: url("/fonts/Urbanist-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("/fonts/Manrope-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("/fonts/Manrope-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("/fonts/Manrope-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("/fonts/Manrope-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("/fonts/Manrope-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "WorkSans";
+  src: url("/fonts/WorkSans-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "WorkSans";
+  src: url("/fonts/WorkSans-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "WorkSans";
+  src: url("/fonts/WorkSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "WorkSans";
+  src: url("/fonts/WorkSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "WorkSans";
+  src: url("/fonts/WorkSans-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "WorkSans";
+  src: url("/fonts/WorkSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Primary Colors */
+  --primary-brown: #8f5e3d;
+  --black: #000000;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Secondary Colors */
+  --secondary-brown: #9b7961;
+  --dark-gray: #4f4f4f;
+  --light-cream: #efebe8;
+  --dark-gray-alt: #585859;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Legacy Colors (keeping for compatibility) */
+  --background-brown: #e3d9d2;
+  --brown: #9b7961;
+  --text-primary: #262626;
+  --text-secondary: #4e4c51;
+  --text-muted: #585859;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --bg-tertiary: #fbfbfe;
+  --bg-accent: #f1f2f9;
+  --gray-100: #f5f5f5;
+  --gray-200: #ededed;
+  --gray-300: #d9d9d9;
+  --gray-400: #5b5b5b;
+  --gray-500: #4f4f4f;
+  --gray-600: #373737;
+  --gray-700: #262626;
+  --gray-800: #201f1d;
+  --gray-900: #1e1e1e;
+  --neutral-light: #efebe8;
+  --neutral-medium: #f3f4f6;
+  --white: #ffffff;
+  --white-alt: #fffffe;
+
+  /* Brand Colors */
+  --color-primary: var(--primary-brown);
+  --color-secondary: var(--background-brown);
+  --color-accent: var(--brown);
+
+  /* Text Colors */
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  /* Background Colors */
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-tertiary: var(--bg-tertiary);
+  --color-bg-accent: var(--bg-accent);
+
+  /* Gray Scale */
+  --color-gray-100: var(--gray-100);
+  --color-gray-200: var(--gray-200);
+  --color-gray-300: var(--gray-300);
+  --color-gray-400: var(--gray-400);
+  --color-gray-500: var(--gray-500);
+  --color-gray-600: var(--gray-600);
+  --color-gray-700: var(--gray-700);
+  --color-gray-800: var(--gray-800);
+  --color-gray-900: var(--gray-900);
+
+  /* Neutral Colors */
+  --color-neutral-light: var(--neutral-light);
+  --color-neutral-medium: var(--neutral-medium);
+
+  /* Base Colors */
+  --color-white: var(--white);
+  --color-white-alt: var(--white-alt);
+  --color-black: var(--black);
+
+  /* Font Families */
+  --font-alexandria: "Alexandria", sans-serif;
+  --font-urbanist: "Urbanist", sans-serif;
+  --font-manrope: "Manrope", sans-serif;
+  --font-work-sans: "WorkSans", sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-manrope), Arial, Helvetica, sans-serif;
+}
+
+/* Custom backdrop blur for header hover */
+.header-hover-blur {
+  backdrop-filter: blur(22.15690803527832px);
+}
+
+/* Glassmorphism effect for header */
+.header-glassmorphism {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+/* Text gradient effect */
+.text-gradient {
+  background: linear-gradient(0deg, #fff, rgba(171, 162, 150, 0));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0.9px 0 0 rgba(255, 255, 255, 0),
+    0 0.9px 0 rgba(255, 255, 255, 0), -0.9px 0 0 rgba(255, 255, 255, 0),
+    0 -0.9px 0 rgba(255, 255, 255, 0);
+}
+
+/* Custom banner gradient */
+.banner-gradient {
+  background: linear-gradient(
+    89.94deg,
+    rgba(0, 0, 0, 0) -0.46%,
+    rgba(0, 0, 0, 0.9) 130.2%
+  );
+}
+
+.text-primary-brown {
+  color: var(--primary-brown) !important;
+}
+
+.bg-primary-brown {
+  background-color: var(--primary-brown) !important;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 15s linear infinite;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbars for Firefox */
+.scrollbar-hide {
+  scrollbar-width: none;
+}
+
+/* Hide scrollbars for IE/Edge Legacy */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+}
+
+/* Google Map Box Shadow */
+.google-map-shadow {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.google-map-shadow:hover {
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2), 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+.project-styles p {
+  @apply text-base leading-relaxed text-gray-700 mb-4;
+}
+.project-styles h1 {
+  @apply text-3xl font-bold mt-8 mb-4 text-gray-900;
+}
+.project-styles h2 {
+  @apply text-2xl font-semibold mt-6 mb-3 text-gray-800;
+}
+.project-styles h3 {
+  @apply text-xl font-medium mt-4 mb-2 text-gray-700;
+}
+/* Add more as needed */
+
+.project-styles ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+.project-styles ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+.project-styles li {
+  margin-bottom: 0.5rem;
+  color: #374151; /* Tailwind's gray-700 */
+  line-height: 1.625;
+}
+
+.project-styles img {
+  @apply block mx-auto my-6 rounded-lg shadow-md object-cover;
+  max-width: 32rem; /* Tailwind's max-w-lg (512px), adjust as needed */
+  width: 100%;
+  height: auto;
+}
+
+/* Custom box shadow with CSS variable */
+.card-shadow {
+  box-shadow: 5px 5px 10px 0px rgba(155, 121, 97, 0.4);
+}
+
+/* Fade-in animations for Welcome component */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in-up-delay-1 {
+  animation: fadeInUp 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-up-delay-2 {
+  animation: fadeInUp 0.8s ease-out 0.4s forwards;
+  opacity: 0;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
