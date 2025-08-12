@@ -1,7 +1,7 @@
 import { BlogsBannerResponse, BlogsMainResponse, BlogByIdResponse } from '@/types/blogs';
 import axios from 'axios';
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://dev-api-interiorwala.smeexclusive.com';
+const BASE_URL = process.env.API_BASE_URL || 'https://dev-api-interiorwala.smeexclusive.com';
 
 export async function getBlogsBanner(): Promise<BlogsBannerResponse> {
     try {

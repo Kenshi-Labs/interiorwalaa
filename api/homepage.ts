@@ -1,7 +1,9 @@
 import { HomepageHeroResponse, HomepageAboutUsResponse, HomepageServicesResponse, HomepageWhyChooseUsResponse, HomepageFAQResponse, HomepageTestimonialsResponse, HomepageVideoResponse } from '@/types/homepage';
 import axios from 'axios';
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://dev-api-interiorwala.smeexclusive.com';
+const BASE_URL = process.env.API_BASE_URL || 'https://dev-api-interiorwala.smeexclusive.com';
+console.log(BASE_URL, "BASE_URL");
+
 
 export async function getHomepageHero(): Promise<HomepageHeroResponse> {
     try {
