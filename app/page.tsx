@@ -10,6 +10,9 @@ import WhatWeOffer from "@/components/whatweoffer";
 import WhyChooseUs from "@/components/whyChooseUs";
 import { getHomepageHero, getHomepageAboutUs, getHomepageServices, getHomepageWhyChooseUs, getHomepageFAQ, getHomepageTestimonials, getHomepageVideo } from "@/api/homepage";
 
+// Add ISR with 30-second revalidation
+export const revalidate = 30; // 30 seconds
+
 export default async function Home() {
   let heroData = null;
   let aboutUsData = null;

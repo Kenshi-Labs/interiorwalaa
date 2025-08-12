@@ -2,14 +2,20 @@ import { HomepageHeroResponse, HomepageAboutUsResponse, HomepageServicesResponse
 import axios from 'axios';
 
 const BASE_URL = process.env.API_BASE_URL || 'https://dev-api-interiorwala.smeexclusive.com';
-console.log(BASE_URL, "BASE_URL");
 
+// Add cache control function for better ISR performance
+function getCacheControl() {
+    return {
+        'Cache-Control': 'public, s-maxage=30, stale-while-revalidate=60'
+    };
+}
 
 export async function getHomepageHero(): Promise<HomepageHeroResponse> {
     try {
         const response = await axios.get(`${BASE_URL}/api/v1/homepage/hero`, {
             headers: {
                 'Content-Type': 'application/json',
+                ...getCacheControl()
             },
         });
 
@@ -25,6 +31,7 @@ export async function getHomepageAboutUs(): Promise<HomepageAboutUsResponse> {
         const response = await axios.get(`${BASE_URL}/api/v1/homepage/about-us`, {
             headers: {
                 'Content-Type': 'application/json',
+                ...getCacheControl()
             },
         });
 
@@ -40,6 +47,7 @@ export async function getHomepageServices(): Promise<HomepageServicesResponse> {
         const response = await axios.get(`${BASE_URL}/api/v1/homepage/services`, {
             headers: {
                 'Content-Type': 'application/json',
+                ...getCacheControl()
             },
         });
 
@@ -55,6 +63,7 @@ export async function getHomepageWhyChooseUs(): Promise<HomepageWhyChooseUsRespo
         const response = await axios.get(`${BASE_URL}/api/v1/homepage/why-choose-us`, {
             headers: {
                 'Content-Type': 'application/json',
+                ...getCacheControl()
             },
         });
 
@@ -70,6 +79,7 @@ export async function getHomepageFAQ(): Promise<HomepageFAQResponse> {
         const response = await axios.get(`${BASE_URL}/api/v1/homepage/faq`, {
             headers: {
                 'Content-Type': 'application/json',
+                ...getCacheControl()
             },
         });
 
@@ -85,6 +95,7 @@ export async function getHomepageTestimonials(): Promise<HomepageTestimonialsRes
         const response = await axios.get(`${BASE_URL}/api/v1/homepage/testimonials`, {
             headers: {
                 'Content-Type': 'application/json',
+                ...getCacheControl()
             },
         });
 
@@ -100,6 +111,7 @@ export async function getHomepageVideo(): Promise<HomepageVideoResponse> {
         const response = await axios.get(`${BASE_URL}/api/v1/homepage/video`, {
             headers: {
                 'Content-Type': 'application/json',
+                ...getCacheControl()
             },
         });
 
