@@ -7,7 +7,7 @@ import { projects } from "@/data/projects";
 
 export const FooterSubsection = (): JSX.Element => {
   const router = useRouter();
-  
+
   const services = [
     { name: "Cafe Interiors" },
     { name: "Pub Interiors" },
@@ -216,9 +216,9 @@ export const FooterSubsection = (): JSX.Element => {
             </div>
             <div className="text-white/70 text-sm sm:text-sm md:text-sm lg:text-sm font-['WorkSans'] text-center sm:text-right">
               Created with love by{" "}
-              <span className="font-semibold text-white hover:text-white/80 transition-colors duration-300 cursor-pointer">
+              <Link href="https://www.kenshilabs.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-white hover:text-white/80 transition-colors duration-300 cursor-pointer">
                 Kenshi Labs
-              </span>
+              </Link>
             </div>
           </div>
         </div>
